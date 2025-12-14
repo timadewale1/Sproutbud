@@ -132,7 +132,7 @@ class CustomFooter extends HTMLElement {
             <div class="footer-container">
                 <div class="footer-about">
                     <a href="/index.html" class="footer-logo">
-                        <img src="/media/Logo/IMG_2381.png" alt="SproutBud logo">
+                        <img src="/Media/Logo/IMG_2381.png" alt="SproutBud logo">
                     </a>
                     <p class="footer-about-text">
                         A youth-led African social impact organization working in technology, climate action, clean energy, women empowerment, agriculture, and community development.

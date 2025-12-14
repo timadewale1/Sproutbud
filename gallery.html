@@ -89,7 +89,7 @@
 
     <script>
         async function loadManifest() {
-            const res = await fetch('/media/manifest.json');
+            const res = await fetch('/Media/manifest.json');
             return res.json();
         }
 
@@ -126,7 +126,7 @@
                     const div = document.createElement('div');
                     div.className = 'group relative overflow-hidden rounded-xl aspect-square slide-in';
                     const img = document.createElement('img');
-                    const src = '/media/' + encodePath(it.folder) + '/' + encodeURIComponent(it.file).replace(/%20/g, '%20');
+                    const src = '/Media/' + encodePath(it.folder) + '/' + encodeURIComponent(it.file).replace(/%20/g, '%20');
                     img.src = src;
                     img.alt = it.file;
                     img.className = 'w-full h-full object-cover transition duration-500 group-hover:scale-105';

@@ -5,7 +5,7 @@
  * Usage:
  * 1. Place a Firebase service account JSON file (serviceAccount.json) next to this script.
  * 2. Install dependencies: `npm install` (see package.json included)
- * 3. Run: `node import_publications.js ./media/publications` (folder with PDFs)
+ * 3. Run: `node import_publications.js ./Media/publications` (folder with PDFs)
  *
  * NOTE: This script runs locally and requires Node.js and a service account.
  */

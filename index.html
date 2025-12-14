@@ -222,7 +222,7 @@
                 <!-- Project Cards -->
                 <div class="bg-white/10 rounded-2xl overflow-hidden backdrop-blur-sm hover:backdrop-blur transition duration-300">
                     <div class="h-48 bg-sprout-green-900">
-                        <img src="/media/TechNest%20-%20Students%20Training/20220519_122850.jpg" alt="TechNest" class="w-full h-full object-cover">
+                        <img src="/Media/TechNest%20-%20Students%20Training/20220519_122850.jpg" alt="TechNest" class="w-full h-full object-cover">
                     </div>
                     <div class="p-6">
                         <div class="flex items-center mb-4">
@@ -240,7 +240,7 @@
                 
                 <div class="bg-white/10 rounded-2xl overflow-hidden backdrop-blur-sm hover:backdrop-blur transition duration-300">
                     <div class="h-48 bg-sprout-green-900">
-                        <img src="/media/World%20Cleanup%20Day%202025/Brown%20Illustrative%20Clean%20Up%20Day%20Flyer%20(2).png" alt="World Cleanup Day" class="w-full h-full object-cover">
+                        <img src="/Media/World%20Cleanup%20Day%202025/Brown%20Illustrative%20Clean%20Up%20Day%20Flyer%20(2).png" alt="World Cleanup Day" class="w-full h-full object-cover">
                     </div>
                     <div class="p-6">
                         <div class="flex items-center mb-4">
@@ -258,7 +258,7 @@
                 
                 <div class="bg-white/10 rounded-2xl overflow-hidden backdrop-blur-sm hover:backdrop-blur transition duration-300">
                     <div class="h-48 bg-sprout-green-900">
-                        <img src="/media/Young%20Women%20Launchpad/GridArt_20250601_192911900.jpg" alt="Young Women Launchpad" class="w-full h-full object-cover">
+                        <img src="/Media/Young%20Women%20Launchpad/GridArt_20250601_192911900.jpg" alt="Young Women Launchpad" class="w-full h-full object-cover">
                     </div>
                     <div class="p-6">
                         <div class="flex items-center mb-4">
@@ -303,7 +303,7 @@
     <script>
         async function initHomeSlides() {
             try {
-                const res = await fetch('/media/manifest.json');
+                const res = await fetch('/Media/manifest.json');
                 const manifest = await res.json();
                 const folders = Object.keys(manifest).filter(f=> f !== 'Logo');
                 // hero backgrounds: pick first image from first three folders if available
@@ -312,7 +312,7 @@
                 const heroImages = [];
                 for(let i=0;i<folders.length && heroImages.length<3;i++){
                     const arr = manifest[folders[i]];
-                    if(arr && arr.length) heroImages.push('/media/'+encodeURIComponent(folders[i]).replace(/%20/g,'%20')+'/'+encodeURIComponent(arr[0]));
+                    if(arr && arr.length) heroImages.push('/Media/'+encodeURIComponent(folders[i]).replace(/%20/g,'%20')+'/'+encodeURIComponent(arr[0]));
                 }
                 let hIndex=0;
                 if(heroImages.length){
@@ -328,7 +328,7 @@
                 const whoImgs = [];
                 folders.forEach(folder => {
                     const arr = manifest[folder] || [];
-                    arr.slice(0,2).forEach(fn => whoImgs.push('/media/'+encodeURIComponent(folder).replace(/%20/g,'%20')+'/'+encodeURIComponent(fn)));
+                    arr.slice(0,2).forEach(fn => whoImgs.push('/Media/'+encodeURIComponent(folder).replace(/%20/g,'%20')+'/'+encodeURIComponent(fn)));
                 });
                 let wIndex=0;
                 if(whoImgs.length){

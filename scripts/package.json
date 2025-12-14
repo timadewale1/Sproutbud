@@ -4,7 +4,7 @@
   "description": "Helper scripts for importing publications into Firebase",
   "main": "import_publications.js",
   "scripts": {
-    "import:publications": "node import_publications.js ./media/publications"
+    "import:publications": "node import_publications.js ./Media/publications"
   },
   "dependencies": {
     "body-parser": "^2.2.1",

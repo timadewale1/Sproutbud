@@ -164,7 +164,7 @@ class CustomNavbar extends HTMLElement {
 
       <nav>
         <a href="/index.html" class="logo">
-          <img src="/media/Logo/IMG_2380.png" alt="SproutBud" class="logo-img">
+          <img src="/Media/Logo/IMG_2380.png" alt="SproutBud" class="logo-img">
         </a>
 
         <!-- Desktop -->
