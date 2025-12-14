@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Blog Post</title>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css">
+  <script src="firebase.js"></script>
+</head>
+<body class="font-body bg-sprout-green-50">
+  <custom-navbar></custom-navbar>
+  <div class="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow mt-24">
+    <div id="post"></div>
+  </div>
+
+  <script>
+    async function loadPost(){
+      const params = new URLSearchParams(location.search);
+      const id = params.get('id');
+      if(!id) return document.getElementById('post').innerHTML = '<p>No post id provided.</p>';
+      // wait for firebase init
+      const waitFor = () => new Promise(res=>{ const i = setInterval(()=>{ if(window.db){ clearInterval(i); res(); } },100); });
+      await waitFor();
+      const doc = await db.collection('posts').doc(id).get();
+      if(!doc.exists) return document.getElementById('post').innerHTML = '<p>Post not found.</p>';
+      const data = doc.data();
+      const html = `
+        <h1 class="text-3xl font-heading font-bold mb-4">${data.title}</h1>
+        ${data.imageUrl? `<img src="${data.imageUrl}" class="w-full h-64 object-cover rounded mb-4">`:''}
+        <p class="text-gray-600 mb-4">${data.summary||''}</p>
+        <div class="prose">${data.content.replace(/\n/g,'<br/>')}</div>
+      `;
+      document.getElementById('post').innerHTML = html;
+    }
+    loadPost();
+  </script>
+  <script src="components/navbar.js"></script>
+  <script src="components/footer.js"></script>
+</body>
+</html>

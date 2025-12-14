@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Projects - SproutBud</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        sprout: {
+                            green: '#32A65A',
+                            forest: '#1E5B3A',
+                            blue: '#3A8DFF',
+                            deep: '#1D3557',
+                            brown: '#A67C52',
+                            earth: '#6B4F33',
+                        }
+                    },
+                    fontFamily: {
+                        heading: ['Manrope', 'sans-serif'],
+                        body: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-sprout-green-50 font-body">
+    <custom-navbar></custom-navbar>
+
+    <!-- Page Header -->
+    <section class="relative bg-gradient-to-r from-sprout-forest to-sprout-deep text-white py-24 px-6">
+        <div class="max-w-6xl mx-auto">
+            <h1 class="text-4xl md:text-5xl font-heading font-bold mb-6">Our Projects</h1>
+            <p class="text-xl max-w-2xl">
+                Explore our initiatives creating tangible impact across African communities.
+            </p>
+        </div>
+        <div class="absolute bottom-0 left-0 right-0 h-16 bg-white/10 backdrop-blur-sm"></div>
+    </section>
+
+    <!-- Project Filters -->
+    <section class="py-12 px-6 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex flex-wrap gap-4 justify-center">
+                <button class="px-6 py-2 rounded-full bg-sprout-green text-white font-medium">All</button>
+                <button
+                    class="px-6 py-2 rounded-full bg-sprout-green-100 text-sprout-green font-medium hover:bg-sprout-green-200 transition">Technology</button>
+                <button
+                    class="px-6 py-2 rounded-full bg-sprout-green-100 text-sprout-green font-medium hover:bg-sprout-green-200 transition">Agriculture</button>
+                <button
+                    class="px-6 py-2 rounded-full bg-sprout-green-100 text-sprout-green font-medium hover:bg-sprout-green-200 transition">Education</button>
+                <button
+                    class="px-6 py-2 rounded-full bg-sprout-green-100 text-sprout-green font-medium hover:bg-sprout-green-200 transition">Women</button>
+                <button
+                    class="px-6 py-2 rounded-full bg-sprout-green-100 text-sprout-green font-medium hover:bg-sprout-green-200 transition">Energy</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Grid -->
+    <section class="py-20 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300">
+                    <div class="h-48 bg-sprout-green-900">
+                        <img src="/media/TechNest%20-%20Students%20Training/20220519_122850.jpg" alt="Project"
+                            class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <span
+                                class="text-xs font-medium px-3 py-1 rounded-full bg-sprout-blue-900 text-sprout-blue-200">Technology</span>
+                            <span class="text-xs text-gray-500 ml-2">Kenya</span>
+                        </div>
+                        <h3 class="text-xl font-heading font-bold text-sprout-deep mb-3">Digital Literacy for Rural
+                            Schools</h3>
+                        <p class="text-gray-600 text-sm mb-4">Training 5,000 students in basic digital skills across 20
+                            rural schools in Kenya.</p>
+                        <a href="/projects/digital-literacy/index.html"
+                            class="text-sprout-green hover:text-sprout-forest text-sm font-medium flex items-center">
+                            Read project report
+                            <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300">
+                    <div class="h-48 bg-sprout-green-900">
+                        <img src="/media/World%20Environment%20Day%202025/IMG_20250605_113509_745.jpg" alt="Project"
+                            class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <span
+                                class="text-xs font-medium px-3 py-1 rounded-full bg-sprout-brown-900 text-sprout-brown-200">Agriculture</span>
+                            <span class="text-xs text-gray-500 ml-2">Nigeria</span>
+                        </div>
+                        <h3 class="text-xl font-heading font-bold text-sprout-deep mb-3">Smart Irrigation Initiative
+                        </h3>
+                        <p class="text-gray-600 text-sm mb-4">Implementing solar-powered irrigation for 500 smallholder
+                            farmers in Nigeria.</p>
+                        <a href="/projects/smart-irrigation/index.html"
+                            class="text-sprout-green hover:text-sprout-forest text-sm font-medium flex items-center">
+                            Read project report
+                            <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300">
+                    <div class="h-48 bg-sprout-green-900">
+                        <img src="/media/Young%20Women%20Launchpad/GridArt_20250601_192911900.jpg" alt="Project"
+                            class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <span
+                                class="text-xs font-medium px-3 py-1 rounded-full bg-purple-900 text-purple-200">Women</span>
+                            <span class="text-xs text-gray-500 ml-2">Pan-Africa</span>
+                        </div>
+                        <h3 class="text-xl font-heading font-bold text-sprout-deep mb-3">Girls Who Code Africa</h3>
+                        <p class="text-gray-600 text-sm mb-4">Training 1,000 young women in software development across
+                            5 countries.</p>
+                        <a href="/projects/girls-who-code/index.html"
+                            class="text-sprout-green hover:text-sprout-forest text-sm font-medium flex items-center">
+                            Read project report
+                            <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300">
+                    <div class="h-48 bg-sprout-green-900">
+                        <img src="/media/TechNest%20-%20Students%20Training/IMG_20210707_113636.jpg" alt="Project"
+                            class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <span
+                                class="text-xs font-medium px-3 py-1 rounded-full bg-yellow-900 text-yellow-200">Education</span>
+                            <span class="text-xs text-gray-500 ml-2">South Africa</span>
+                        </div>
+                        <h3 class="text-xl font-heading font-bold text-sprout-deep mb-3">STEM Hubs for Youth</h3>
+                        <p class="text-gray-600 text-sm mb-4">Establishing STEM learning centers in 15 underserved
+                            communities.</p>
+                        <a href="/projects/stem-hubs/index.html"
+                            class="text-sprout-green hover:text-sprout-forest text-sm font-medium flex items-center">
+                            Read project report
+                            <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 5 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300">
+                    <div class="h-48 bg-sprout-green-900">
+                        <img src="/media/World%20Environment%20Day%202025/8b1d5d442455720194714a5df02ab131_3.jpeg" alt="Project"
+                            class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <span
+                                class="text-xs font-medium px-3 py-1 rounded-full bg-red-900 text-red-200">Energy</span>
+                            <span class="text-xs text-gray-500 ml-2">Tanzania</span>
+                        </div>
+                        <h3 class="text-xl font-heading font-bold text-sprout-deep mb-3">Solar for Rural Health Clinics
+                        </h3>
+                        <p class="text-gray-600 text-sm mb-4">Providing solar power solutions to 30 rural health
+                            facilities.</p>
+                        <a href="/projects/solar-clinics/index.html"
+                            class="text-sprout-green hover:text-sprout-forest text-sm font-medium flex items-center">
+                            Read project report
+                            <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 6 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300">
+                    <div class="h-48 bg-sprout-green-900">
+                        <img src="/media/TechNest%20-%20Students%20Training/20220630_112135.jpg" alt="Project"
+                            class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <span
+                                class="text-xs font-medium px-3 py-1 rounded-full bg-sprout-brown-900 text-sprout-brown-200">Agriculture</span>
+                            <span class="text-xs text-gray-500 ml-2">Ethiopia</span>
+                        </div>
+                        <h3 class="text-xl font-heading font-bold text-sprout-deep mb-3">Climate-Smart Farming</h3>
+                        <p class="text-gray-600 text-sm mb-4">Training 2,000 farmers in climate-resilient agricultural
+                            practices.</p>
+                        <a href="/projects/climate-farming/index.html"
+                            class="text-sprout-green hover:text-sprout-forest text-sm font-medium flex items-center">
+                            Read project report
+                            <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <button
+                    class="bg-sprout-green hover:bg-sprout-forest text-white px-8 py-3 rounded-full font-medium transition duration-300">
+                    Load More Projects
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <custom-footer></custom-footer>
+
+    <script src="components/navbar.js"></script>
+    <script src="components/footer.js"></script>
+    <script src="script.js"></script>
+    <script>
+        feather.replace();
+    </script>
+</body>
+
+</html>

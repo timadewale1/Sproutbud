@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenFront - SproutBud</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body class="bg-sprout-green-50 font-body">
+    <custom-navbar></custom-navbar>
+
+    <!-- Program Header -->
+    <section class="relative bg-gradient-to-r from-sprout-forest to-sprout-deep text-white py-24 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-start">
+                <div>
+                    <h1 class="text-4xl md:text-5xl font-heading font-bold mb-6">GreenFront</h1>
+                    <p class="text-xl max-w-2xl">
+                        Climate action initiatives and environmental conservation programs.
+                    </p>
+                </div>
+                <div class="mt-6 md:mt-0 w-24 h-24 rounded-xl bg-white/20 flex items-center justify-center">
+                    <i data-feather="leaf" class="w-12 h-12"></i>
+                </div>
+            </div>
+        </div>
+        <div class="absolute bottom-0 left-0 right-0 h-16 bg-white/10 backdrop-blur-sm"></div>
+    </section>
+
+    <!-- Program Content -->
+    <section class="py-20 px-6">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-12">
+            <div class="md:col-span-2">
+                <h2 class="text-3xl font-heading font-bold text-sprout-deep mb-6">About GreenFront</h2>
+                <div class="prose max-w-none">
+                    <p class="text-lg text-gray-700 mb-6">
+                        GreenFront is our environmental sustainability program that addresses climate change through
+                        community-led conservation, renewable energy adoption, and environmental education.
+                    </p>
+                    <p class="text-lg text-gray-700 mb-6">
+                        Since 2019, we've planted over 500,000 trees, trained 8,000 climate ambassadors, and implemented
+                        45 community conservation projects across 10 African countries.
+                    </p>
+
+                    <h3 class="text-2xl font-heading font-bold text-sprout-deep mt-12 mb-6">Our Approach</h3>
+                    <div class="grid sm:grid-cols-2 gap-6 mb-12">
+                        <div class="bg-white p-6 rounded-xl shadow-md">
+                            <div
+                                class="w-12 h-12 rounded-full bg-sprout-green-100 flex items-center justify-center mb-4">
+                                <i data-feather="tree" class="text-sprout-green"></i>
+                            </div>
+                            <h4 class="text-xl font-heading font-bold text-sprout-deep mb-3">Reforestation</h4>
+                            <p class="text-gray-600">Community tree planting and forest conservation initiatives.</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl shadow-md">
+                            <div
+                                class="w-12 h-12 rounded-full bg-sprout-blue-100 flex items-center justify-center mb-4">
+                                <i data-feather="sun" class="text-sprout-blue"></i>
+                            </div>
+                            <h4 class="text-xl font-heading font-bold text-sprout-deep mb-3">Clean Energy</h4>
+                            <p class="text-gray-600">Promoting solar and other renewable energy solutions.</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl shadow-md">
+                            <div
+                                class="w-12 h-12 rounded-full bg-sprout-brown-100 flex items-center justify-center mb-4">
+                                <i data-feather="book" class="text-sprout-brown"></i>
+                            </div>
+                            <h4 class="text-xl font-heading font-bold text-sprout-deep mb-3">Education</h4>
+                            <p class="text-gray-600">Climate literacy programs for schools and communities.</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl shadow-md">
+                            <div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center mb-4">
+                                <i data-feather="users" class="text-purple-600"></i>
+                            </div>
+                            <h4 class="text-xl font-heading font-bold text-sprout-deep mb-3">Advocacy</h4>
+                            <p class="text-gray-600">Youth-led climate policy engagement and activism.</p>
+                        </div>
+                    </div>
+
+                    <h3 class="text-2xl font-heading font-bold text-sprout-deep mt-12 mb-6">Impact Stories</h3>
+                    <div class="bg-sprout-green-50 rounded-2xl p-8 mb-8">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 mr-4">
+                                <img src="http://static.photos/people/100x100/2" alt="Participant"
+                                    class="w-12 h-12 rounded-full">
+                            </div>
+                            <div>
+                                <blockquote class="text-gray-700 mb-4">
+                                    "As a GreenFront ambassador, I've trained over 200 students in climate action and
+                                    led a community tree planting project that restored 5 hectares of degraded land."
+                                </blockquote>
+                                <p class="font-medium text-sprout-deep">- Fatou D., Senegal Ambassador</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-lg mb-12">
+                        <div class="h-64 bg-sprout-green-900">
+                            <img src="http://static.photos/nature/800x450/2" alt="GreenFront Project"
+                                class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-xl font-heading font-bold text-sprout-deep mb-3">Great Green Wall Initiative
+                            </h4>
+                            <p class="text-gray-600 mb-4">Our partnership to plant trees across the Sahel region has
+                                restored 1,200 hectares.</p>
+                            <a href="/projects/green-wall"
+                                class="text-sprout-green font-medium hover:text-sprout-forest transition duration-300 flex items-center">
+                                Read case study
+                                <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-6">
+                <div class="bg-white p-6 rounded-2xl shadow-lg">
+                    <h3 class="text-xl font-heading font-bold text-sprout-deep mb-4">Quick Facts</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <i data-feather="check-circle" class="text-sprout-green mr-3 mt-1 flex-shrink-0"></i>
+                            <span>500,000+ trees planted</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-feather="check-circle" class="text-sprout-green mr-3 mt-1 flex-shrink-0"></i>
+                            <span>8,000 climate ambassadors trained</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-feather="check-circle" class="text-sprout-green mr-3 mt-1 flex-shrink-0"></i>
+                            <span>45 conservation projects</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-feather="check-circle" class="text-sprout-green mr-3 mt-1 flex-shrink-0"></i>
+                            <span>10 countries active</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-lg">
+                    <h3 class="text-xl font-heading font-bold text-sprout-deep mb-4">Get Involved</h3>
+                    <div class="space-y-4">
+                        <a href="/join-greenfront"
+                            class="block bg-sprout-green hover:bg-sprout-forest text-white py-3 px-6 rounded-lg font-medium transition duration-300 text-center">
+                            Become an Ambassador
+                        </a>
+                        <a href="/volunteer-greenfront"
+                            class="block border border-sprout-green text-sprout-green hover:bg-sprout-green-50 py-3 px-6 rounded-lg font-medium transition duration-300 text-center">
+                            Volunteer
+                        </a>
+                        <a href="/partner-greenfront"
+                            class="block border border-sprout-green text-sprout-green hover:bg-sprout-green-50 py-3 px-6 rounded-lg font-medium transition duration-300 text-center">
+                            Partner With Us
+                        </a>
+                        <a href="/donate-greenfront"
+                            class="block border border-sprout-green text-sprout-green hover:bg-sprout-green-50 py-3 px-6 rounded-lg font-medium transition duration-300 text-center">
+                            Donate
+                        </a>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-lg">
+                    <h3 class="text-xl font-heading font-bold text-sprout-deep mb-4">Resources</h3>
+                    <div class="space-y-3">
+                        <a href="#" class="flex items-center text-sprout-green hover:text-sprout-forest">
+                            <i data-feather="download" class="mr-3 w-5 h-5"></i>
+                            <span>Climate Action Toolkit</span>
+                        </a>
+                        <a href="#" class="flex items-center text-sprout-green hover:text-sprout-forest">
+                            <i data-feather="download" class="mr-3 w-5 h-5"></i>
+                            <span>School Curriculum Guide</span>
+                        </a>
+                        <a href="#" class="flex items-center text-sprout-green hover:text-sprout-forest">
+                            <i data-feather="download" class="mr-3 w-5 h-5"></i>
+                            <span>Annual Impact Report</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <custom-footer></custom-footer>
+
+    <script src="../components/navbar.js"></script>
+    <script src="../components/footer.js"></script>
+    <script src="../script.js"></script>
+    <script>
+        feather.replace();
+    </script>
+</body>
+
+</html>

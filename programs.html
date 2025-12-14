@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Programs - SproutBud</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        sprout: {
+                            green: '#32A65A',
+                            forest: '#1E5B3A',
+                            blue: '#3A8DFF',
+                            deep: '#1D3557',
+                            brown: '#A67C52',
+                            earth: '#6B4F33',
+                        }
+                    },
+                    fontFamily: {
+                        heading: ['Manrope', 'sans-serif'],
+                        body: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-sprout-green-50 font-body">
+    <custom-navbar></custom-navbar>
+
+    <!-- Page Header -->
+    <section class="relative bg-gradient-to-r from-sprout-forest to-sprout-deep text-white py-24 px-6">
+        <div class="max-w-6xl mx-auto">
+            <h1 class="text-4xl md:text-5xl font-heading font-bold mb-6">Our Programs</h1>
+            <p class="text-xl max-w-2xl">
+                Comprehensive initiatives driving sustainable development across Africa.
+            </p>
+        </div>
+        <div class="absolute bottom-0 left-0 right-0 h-16 bg-white/10 backdrop-blur-sm"></div>
+    </section>
+
+    <!-- Programs Overview -->
+    <section class="py-20 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-heading font-bold text-sprout-deep mb-4">Creating Impact Through Specialized
+                    Programs</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Our programs are designed to address Africa's most pressing challenges through innovation,
+                    technology, and community empowerment.
+                </p>
+            </div>
+
+            <!-- Program Tabs -->
+            <div class="mb-12">
+                <div class="flex flex-wrap gap-2 justify-center">
+                    <button class="px-6 py-3 rounded-lg bg-sprout-green text-white font-medium">All Programs</button>
+                    <button
+                        class="px-6 py-3 rounded-lg bg-sprout-green-100 text-sprout-green font-medium hover:bg-sprout-green-200 transition">Technology</button>
+                    <button
+                        class="px-6 py-3 rounded-lg bg-sprout-green-100 text-sprout-green font-medium hover:bg-sprout-green-200 transition">Environment</button>
+                    <button
+                        class="px-6 py-3 rounded-lg bg-sprout-green-100 text-sprout-green font-medium hover:bg-sprout-green-200 transition">Women</button>
+                    <button
+                        class="px-6 py-3 rounded-lg bg-sprout-green-100 text-sprout-green font-medium hover:bg-sprout-green-200 transition">Education</button>
+                </div>
+            </div>
+
+            <!-- Program Cards -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- ImpactCore -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition duration-300">
+                    <div class="w-16 h-16 rounded-full bg-sprout-green-100 flex items-center justify-center mb-6">
+                        <i data-feather="cpu" class="text-sprout-green w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-heading font-bold text-sprout-deep mb-3">ImpactCore</h3>
+                    <p class="text-gray-600 mb-6">Technology solutions for social impact through our digital innovation
+                        hubs.</p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span
+                            class="text-xs font-medium px-3 py-1 rounded-full bg-sprout-green-100 text-sprout-green">Technology</span>
+                        <span
+                            class="text-xs font-medium px-3 py-1 rounded-full bg-sprout-green-100 text-sprout-green">Innovation</span>
+                    </div>
+                    <a href="/programs/impactcore.html"
+                        class="text-sprout-green font-medium hover:text-sprout-forest transition duration-300 flex items-center">
+                        Program details
+                        <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                    </a>
+                </div>
+
+                <!-- Innovate -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition duration-300">
+                    <div class="w-16 h-16 rounded-full bg-sprout-blue-100 flex items-center justify-center mb-6">
+                        <i data-feather="zap" class="text-sprout-blue w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-heading font-bold text-sprout-deep mb-3">Innovate</h3>
+                    <p class="text-gray-600 mb-6">Clean energy solutions and sustainable technology innovations.</p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span
+                            class="text-xs font-medium px-3 py-1 rounded-full bg-sprout-blue-100 text-sprout-blue">Energy</span>
+                        <span
+                            class="text-xs font-medium px-3 py-1 rounded-full bg-sprout-blue-100 text-sprout-blue">Technology</span>
+                    </div>
+                    <a href="/programs/innovate.html"
+                        class="text-sprout-green font-medium hover:text-sprout-forest transition duration-300 flex items-center">
+                        Program details
+                        <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                    </a>
+                </div>
+
+                <!-- GreenFront -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition duration-300">
+                    <div class="w-16 h-16 rounded-full bg-sprout-brown-100 flex items-center justify-center mb-6">
+                        <i data-feather="leaf" class="text-sprout-forest w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-heading font-bold text-sprout-deep mb-3">GreenFront</h3>
+                    <p class="text-gray-600 mb-6">Climate action initiatives and environmental conservation programs.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span
+                            class="text-xs font-medium px-3 py-1 rounded-full bg-sprout-brown-100 text-sprout-brown">Environment</span>
+                        <span
+                            class="text-xs font-medium px-3 py-1 rounded-full bg-sprout-brown-100 text-sprout-brown">Climate</span>
+                    </div>
+                    <a href="/programs/greenfront.html"
+                        class="text-sprout-green font-medium hover:text-sprout-forest transition duration-300 flex items-center">
+                        Program details
+                        <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                    </a>
+                </div>
+
+                <!-- Women Initiative -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition duration-300">
+                    <div class="w-16 h-16 rounded-full bg-purple-100 flex items-center justify-center mb-6">
+                        <i data-feather="users" class="text-purple-600 w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-heading font-bold text-sprout-deep mb-3">Women Initiative</h3>
+                    <p class="text-gray-600 mb-6">Empowering women and girls through technology and entrepreneurship.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span
+                            class="text-xs font-medium px-3 py-1 rounded-full bg-purple-100 text-purple-600">Women</span>
+                        <span
+                            class="text-xs font-medium px-3 py-1 rounded-full bg-purple-100 text-purple-600">Empowerment</span>
+                    </div>
+                    <a href="/programs/women.html"
+                        class="text-sprout-green font-medium hover:text-sprout-forest transition duration-300 flex items-center">
+                        Program details
+                        <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                    </a>
+                </div>
+
+                <!-- Media & Comms -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition duration-300">
+                    <div class="w-16 h-16 rounded-full bg-yellow-100 flex items-center justify-center mb-6">
+                        <i data-feather="mic" class="text-yellow-600 w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-heading font-bold text-sprout-deep mb-3">Media & Comms</h3>
+                    <p class="text-gray-600 mb-6">Amplifying youth voices and social impact stories across Africa.</p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span
+                            class="text-xs font-medium px-3 py-1 rounded-full bg-yellow-100 text-yellow-600">Media</span>
+                        <span
+                            class="text-xs font-medium px-3 py-1 rounded-full bg-yellow-100 text-yellow-600">Storytelling</span>
+                    </div>
+                    <a href="/programs/media.html"
+                        class="text-sprout-green font-medium hover:text-sprout-forest transition duration-300 flex items-center">
+                        Program details
+                        <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                    </a>
+                </div>
+
+                <!-- Youth Leadership -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition duration-300">
+                    <div class="w-16 h-16 rounded-full bg-red-100 flex items-center justify-center mb-6">
+                        <i data-feather="award" class="text-red-600 w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-heading font-bold text-sprout-deep mb-3">Youth Leadership</h3>
+                    <p class="text-gray-600 mb-6">Developing the next generation of African change-makers and leaders.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span
+                            class="text-xs font-medium px-3 py-1 rounded-full bg-red-100 text-red-600">Leadership</span>
+                        <span
+                            class="text-xs font-medium px-3 py-1 rounded-full bg-red-100 text-red-600">Development</span>
+                    </div>
+                    <a href="/programs/leadership"
+                        class="text-sprout-green font-medium hover:text-sprout-forest transition duration-300 flex items-center">
+                        Program details
+                        <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How to Get Involved -->
+    <section class="py-16 px-6 bg-sprout-green-50">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-heading font-bold mb-4">Get Involved With Our Programs</h2>
+                <p class="text-gray-700 max-w-2xl mx-auto">Support our work through volunteering, partnership, or donations. Your contribution helps scale impact.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-2xl p-8 shadow-sm">
+                    <div class="w-16 h-16 rounded-full bg-sprout-green-100 flex items-center justify-center mb-6">
+                        <i data-feather="heart" class="text-sprout-green w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-heading font-bold mb-3">Volunteer With Us</h3>
+                    <p class="text-gray-600 mb-4">Contribute your time and skills to our programs across technology, climate, and women empowerment.</p>
+                    <a href="/volunteer.html" class="text-sprout-green font-medium hover:underline">Volunteer</a>
+                </div>
+
+                <div class="bg-white rounded-2xl p-8 shadow-sm">
+                    <div class="w-16 h-16 rounded-full bg-yellow-100 flex items-center justify-center mb-6">
+                        <i data-feather="briefcase" class="text-yellow-600 w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-heading font-bold mb-3">Partner With Us</h3>
+                    <p class="text-gray-600 mb-4">Collaborate with SproutBud to co-design programs, CSR initiatives, and research partnerships.</p>
+                    <a href="/partner.html" class="text-sprout-green font-medium hover:underline">Partner</a>
+                </div>
+
+                <div class="bg-white rounded-2xl p-8 shadow-sm">
+                    <div class="w-16 h-16 rounded-full bg-sprout-green-100 flex items-center justify-center mb-6">
+                        <i data-feather="gift" class="text-sprout-green w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-heading font-bold mb-3">Donate</h3>
+                    <p class="text-gray-600 mb-4">Support our programs directly. Donations fund training, clean energy installations, and community projects.</p>
+                    <a href="/donate.html" class="text-sprout-green font-medium hover:underline">Donate</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="border-t border-gray-200"></div>
+
+    <custom-footer></custom-footer>
+
+    <script src="components/navbar.js"></script>
+    <script src="components/footer.js"></script>
+    <script src="script.js"></script>
+    <script>
+        feather.replace();
+    </script>
+</body>
+
+</html>

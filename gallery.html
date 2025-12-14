@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - SproutBud</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        sprout: {
+                            green: '#32A65A',
+                            forest: '#1E5B3A',
+                            blue: '#3A8DFF',
+                            deep: '#1D3557',
+                            brown: '#A67C52',
+                            earth: '#6B4F33',
+                        }
+                    },
+                    fontFamily: {
+                        heading: ['Manrope', 'sans-serif'],
+                        body: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-sprout-green-50 font-body">
+    <custom-navbar></custom-navbar>
+
+    <!-- Page Header -->
+    <section class="relative bg-gradient-to-r from-sprout-forest to-sprout-deep text-white py-24 px-6">
+        <div class="max-w-6xl mx-auto">
+            <h1 class="text-4xl md:text-5xl font-heading font-bold mb-6">Our Gallery</h1>
+            <p class="text-xl max-w-2xl">
+                Visual stories of our impact across communities in Africa.
+            </p>
+        </div>
+        <div class="absolute bottom-0 left-0 right-0 h-16 bg-white/10 backdrop-blur-sm"></div>
+    </section>
+
+    <!-- Gallery Content -->
+    <section class="py-20 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-6">
+                <div>
+                    <h2 class="text-3xl font-heading font-bold text-sprout-deep mb-2">Photo Gallery</h2>
+                    <p class="text-gray-600">Moments that capture our work and impact</p>
+                </div>
+                <div class="mt-4 md:mt-0">
+                    <select id="gallery-filter"
+                        class="border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-sprout-green focus:border-sprout-green">
+                        <option value="all">All Categories</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="gallery-groups" class="mb-8"></div>
+
+            <!-- Gallery Grid -->
+            <div id="gallery-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
+
+            <div class="text-center mt-12">
+                <button id="load-more-photos"
+                    class="bg-sprout-green hover:bg-sprout-forest text-white px-8 py-3 rounded-full font-medium transition duration-300">
+                    Load More Photos
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        .slide-in { transform: translateY(18px); opacity: 0; }
+        .slide-in.show { animation: slideIn 500ms forwards; }
+        @keyframes slideIn { to { transform: none; opacity: 1; } }
+    </style>
+
+    <script>
+        async function loadManifest() {
+            const res = await fetch('/media/manifest.json');
+            return res.json();
+        }
+
+        function encodePath(p) { return p.split(' ').map(encodeURIComponent).join('%20'); }
+
+        (async function(){
+            const manifest = await loadManifest();
+            const filter = document.getElementById('gallery-filter');
+            const groupsEl = document.getElementById('gallery-groups');
+            const grid = document.getElementById('gallery-grid');
+
+            const folders = Object.keys(manifest);
+            folders.forEach(name => {
+                const opt = document.createElement('option'); opt.value = name; opt.textContent = name; filter.appendChild(opt);
+                const btn = document.createElement('button');
+                btn.className = 'px-3 py-2 mr-2 mb-2 rounded-full bg-white/10 text-sprout-deep';
+                btn.textContent = name;
+                btn.addEventListener('click', () => { filter.value = name; renderGrid(name); });
+                groupsEl.appendChild(btn);
+            });
+
+            let loaded = 0; const perLoad = 12;
+            function renderGrid(folder) {
+                grid.innerHTML = '';
+                let items = [];
+                if(folder && folder !== 'all') items = manifest[folder] || [];
+                else folders.forEach(f => items = items.concat(manifest[f].slice(0,10).map(fn => ({folder: f, file: fn}))));
+
+                // normalize items when folder specified
+                if(folder && folder !== 'all') items = (manifest[folder]||[]).map(fn => ({folder: folder, file: fn}));
+
+                const toShow = items.slice(0, perLoad);
+                toShow.forEach((it, i) => {
+                    const div = document.createElement('div');
+                    div.className = 'group relative overflow-hidden rounded-xl aspect-square slide-in';
+                    const img = document.createElement('img');
+                    const src = '/media/' + encodePath(it.folder) + '/' + encodeURIComponent(it.file).replace(/%20/g, '%20');
+                    img.src = src;
+                    img.alt = it.file;
+                    img.className = 'w-full h-full object-cover transition duration-500 group-hover:scale-105';
+                    div.appendChild(img);
+                    const overlay = document.createElement('div');
+                    overlay.className = 'absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-4';
+                    const p = document.createElement('p'); p.className = 'text-white'; p.textContent = it.folder;
+                    overlay.appendChild(p);
+                    div.appendChild(overlay);
+                    grid.appendChild(div);
+                    // staggered animation
+                    setTimeout(()=> div.classList.add('show'), i*80);
+                });
+            }
+
+            renderGrid('all');
+
+            filter.addEventListener('change', (e)=> renderGrid(e.target.value));
+            document.getElementById('load-more-photos').addEventListener('click', ()=> alert('Load more - implement lazy loading or pagination as needed'));
+        })();
+    </script>
+
+    <!-- Video Section -->
+    <section class="py-20 px-6 bg-sprout-green-50">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-heading font-bold text-sprout-deep mb-12 text-center">Video Stories</h2>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Video 1 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg">
+                    <div class="relative aspect-video bg-sprout-green-900">
+                        <img src="http://static.photos/people/800x450/9" alt="Video thumbnail"
+                            class="w-full h-full object-cover">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="w-16 h-16 rounded-full bg-white/80 flex items-center justify-center">
+                                <i data-feather="play" class="text-sprout-green w-8 h-8"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-heading font-bold text-sprout-deep mb-2">Digital Literacy in Action</h3>
+                        <p class="text-gray-600 mb-4">See how our program is transforming education in rural Kenya</p>
+                        <p class="text-sm text-gray-500">5 min • June 2023</p>
+                    </div>
+                </div>
+
+                <!-- Video 2 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg">
+                    <div class="relative aspect-video bg-sprout-green-900">
+                        <img src="http://static.photos/technology/800x450/10" alt="Video thumbnail"
+                            class="w-full h-full object-cover">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="w-16 h-16 rounded-full bg-white/80 flex items-center justify-center">
+                                <i data-feather="play" class="text-sprout-green w-8 h-8"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-heading font-bold text-sprout-deep mb-2">Girls Who Code: Changing
+                            Narratives</h3>
+                        <p class="text-gray-600 mb-4">Meet the young women breaking barriers in tech</p>
+                        <p class="text-sm text-gray-500">7 min • May 2023</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <custom-footer></custom-footer>
+
+    <script src="components/navbar.js"></script>
+    <script src="components/footer.js"></script>
+    <script src="script.js"></script>
+    <script>
+        feather.replace();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - SproutBud</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        sprout: {
+                            green: '#32A65A',
+                            forest: '#1E5B3A',
+                            blue: '#3A8DFF',
+                            deep: '#1D3557',
+                            brown: '#A67C52',
+                            earth: '#6B4F33',
+                        }
+                    },
+                    fontFamily: {
+                        heading: ['Manrope', 'sans-serif'],
+                        body: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-sprout-green-50 font-body">
+    <custom-navbar></custom-navbar>
+
+    <!-- Page Header -->
+    <section class="relative bg-gradient-to-r from-sprout-forest to-sprout-deep text-white py-24 px-6">
+        <div class="max-w-6xl mx-auto">
+            <h1 class="text-4xl md:text-5xl font-heading font-bold mb-6">Blog</h1>
+            <p class="text-xl max-w-2xl">
+                Stories, insights and updates — showcasing our work in technology, climate action, women’s empowerment and community resilience.
+            </p>
+        </div>
+        <div class="absolute bottom-0 left-0 right-0 h-16 bg-white/10 backdrop-blur-sm"></div>
+    </section>
+
+    <!-- Blog Content -->
+    <section class="py-20 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12">
+                <div>
+                    <h2 class="text-3xl font-heading font-bold text-sprout-deep mb-2">Latest Posts</h2>
+                    <p class="text-gray-600">Read our stories of impact and innovation</p>
+                </div>
+                <div class="mt-4 md:mt-0">
+                    <select
+                        class="border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-sprout-green focus:border-sprout-green">
+                        <option>All Categories</option>
+                        <option>Impact Stories</option>
+                        <option>Technology</option>
+                        <option>Climate Action</option>
+                        <option>Women Empowerment</option>
+                        <option>Updates</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Featured Post -->
+            <div class="bg-white rounded-2xl overflow-hidden shadow-lg mb-12">
+                <div class="md:flex">
+                    <div class="md:w-1/2 h-96">
+                        <img src="http://static.photos/people/800x450/1" alt="Featured post"
+                            class="w-full h-full object-cover">
+                    </div>
+                    <div class="md:w-1/2 p-8">
+                        <div class="flex items-center mb-4">
+                            <span
+                                class="text-xs font-medium px-3 py-1 rounded-full bg-sprout-blue-900 text-sprout-blue-200">Technology</span>
+                            <span class="text-xs text-gray-500 ml-2">June 15, 2023</span>
+                        </div>
+                        <h3 class="text-2xl font-heading font-bold text-sprout-deep mb-4">How Digital Literacy is
+                            Transforming Rural Education in Kenya</h3>
+                        <p class="text-gray-600 mb-6">
+                            An inside look at our Digital Literacy for Rural Schools project and its impact on students
+                            and teachers in Western Kenya.
+                        </p>
+                        <div class="flex items-center">
+                            <img src="http://static.photos/people/50x50/1" alt="Author"
+                                class="w-10 h-10 rounded-full mr-3">
+                            <div>
+                                <p class="font-medium text-sprout-deep">Amina K.</p>
+                                <p class="text-sm text-gray-500">Program Director</p>
+                            </div>
+                        </div>
+                        <a href="/blog/digital-literacy-transformation"
+                            class="mt-6 inline-flex items-center text-sprout-green hover:text-sprout-forest font-medium">
+                            Read full story
+                            <i data-feather="arrow-right" class="ml-2 w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Blog Grid -->
+                    <div id="blog-dynamic" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Blog Post 1 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300">
+                    <div class="h-48 bg-sprout-green-900">
+                        <img src="http://static.photos/agriculture/640x360/1" alt="Blog post"
+                            class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <span
+                                class="text-xs font-medium px-3 py-1 rounded-full bg-sprout-brown-900 text-sprout-brown-200">Agriculture</span>
+                            <span class="text-xs text-gray-500 ml-2">June 10, 2023</span>
+                        </div>
+                        <h3 class="text-xl font-heading font-bold text-sprout-deep mb-3">Climate-Smart Farming in
+                            Ethiopia</h3>
+                        <p class="text-gray-600 text-sm mb-4">How our training programs are helping farmers adapt to
+                            climate change.</p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <img src="http://static.photos/people/30x30/2" alt="Author"
+                                    class="w-6 h-6 rounded-full mr-2">
+                                <span class="text-sm text-gray-600">Abdi S.</span>
+                            </div>
+                            <a href="/blog/climate-smart-farming"
+                                class="text-sprout-green hover:text-sprout-forest text-sm font-medium flex items-center">
+                                Read
+                                <i data-feather="arrow-right" class="ml-1 w-4 h-4"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Blog Post 2 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300">
+                    <div class="h-48 bg-sprout-green-900">
+                        <img src="http://static.photos/technology/640x360/2" alt="Blog post"
+                            class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <span
+                                class="text-xs font-medium px-3 py-1 rounded-full bg-purple-900 text-purple-200">Women</span>
+                            <span class="text-xs text-gray-500 ml-2">June 5, 2023</span>
+                        </div>
+                        <h3 class="text-xl font-heading font-bold text-sprout-deep mb-3">Meet the First Girls Who Code
+                            Africa Graduates</h3>
+                        <p class="text-gray-600 text-sm mb-4">Stories from our inaugural cohort of young women
+                            developers.</p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <img src="http://static.photos/people/30x30/3" alt="Author"
+                                    class="w-6 h-6 rounded-full mr-2">
+                                <span class="text-sm text-gray-600">Fatima D.</span>
+                            </div>
+                            <a href="/blog/girls-who-code-graduates"
+                                class="text-sprout-green hover:text-sprout-forest text-sm font-medium flex items-center">
+                                Read
+                                <i data-feather="arrow-right" class="ml-1 w-4 h-4"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Blog Post 3 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300">
+                    <div class="h-48 bg-sprout-green-900">
+                        <img src="http://static.photos/energy/640x360/3" alt="Blog post"
+                            class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <span
+                                class="text-xs font-medium px-3 py-1 rounded-full bg-sprout-blue-900 text-sprout-blue-200">Energy</span>
+                            <span class="text-xs text-gray-500 ml-2">May 28, 2023</span>
+                        </div>
+                        <h3 class="text-xl font-heading font-bold text-sprout-deep mb-3">Solar Power Brings Light to
+                            Rural Clinics</h3>
+                        <p class="text-gray-600 text-sm mb-4">How our solar initiative is improving healthcare delivery.
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <img src="http://static.photos/people/30x30/4" alt="Author"
+                                    class="w-6 h-6 rounded-full mr-2">
+                                <span class="text-sm text-gray-600">Kwame B.</span>
+                            </div>
+                            <a href="/blog/solar-clinics"
+                                class="text-sprout-green hover:text-sprout-forest text-sm font-medium flex items-center">
+                                Read
+                                <i data-feather="arrow-right" class="ml-1 w-4 h-4"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Blog Post 4 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300">
+                    <div class="h-48 bg-sprout-green-900">
+                        <img src="http://static.photos/education/640x360/4" alt="Blog post"
+                            class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <span
+                                class="text-xs font-medium px-3 py-1 rounded-full bg-sprout-green-900 text-sprout-green-200">Education</span>
+                            <span class="text-xs text-gray-500 ml-2">May 20, 2023</span>
+                        </div>
+                        <h3 class="text-xl font-heading font-bold text-sprout-deep mb-3">STEM Education for the Next
+                            Generation</h3>
+                        <p class="text-gray-600 text-sm mb-4">Building Africa's future scientists and innovators.</p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <img src="http://static.photos/people/30x30/5" alt="Author"
+                                    class="w-6 h-6 rounded-full mr-2">
+                                <span class="text-sm text-gray-600">Thomas M.</span>
+                            </div>
+                            <a href="/blog/stem-education"
+                                class="text-sprout-green hover:text-sprout-forest text-sm font-medium flex items-center">
+                                Read
+                                <i data-feather="arrow-right" class="ml-1 w-4 h-4"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Blog Post 5 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300">
+                    <div class="h-48 bg-sprout-green-900">
+                        <img src="http://static.photos/people/640x360/5" alt="Blog post"
+                            class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <span
+                                class="text-xs font-medium px-3 py-1 rounded-full bg-yellow-900 text-yellow-200">Leadership</span>
+                            <span class="text-xs text-gray-500 ml-2">May 15, 2023</span>
+                        </div>
+                        <h3 class="text-xl font-heading font-bold text-sprout-deep mb-3">Youth Leadership in Social
+                            Impact</h3>
+                        <p class="text-gray-600 text-sm mb-4">How young Africans are driving change in their
+                            communities.</p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <img src="http://static.photos/people/30x30/6" alt="Author"
+                                    class="w-6 h-6 rounded-full mr-2">
+                                <span class="text-sm text-gray-600">Ngozi O.</span>
+                            </div>
+                            <a href="/blog/youth-leadership"
+                                class="text-sprout-green hover:text-sprout-forest text-sm font-medium flex items-center">
+                                Read
+                                <i data-feather="arrow-right" class="ml-1 w-4 h-4"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Blog Post 6 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300">
+                    <div class="h-48 bg-sprout-green-900">
+                        <img src="http://static.photos/nature/640x360/6" alt="Blog post"
+                            class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <span
+                                class="text-xs font-medium px-3 py-1 rounded-full bg-sprout-brown-900 text-sprout-brown-200">Environment</span>
+                            <span class="text-xs text-gray-500 ml-2">May 10, 2023</span>
+                        </div>
+                        <h3 class="text-xl font-heading font-bold text-sprout-deep mb-3">Restoring the Great Green Wall
+                        </h3>
+                        <p class="text-gray-600 text-sm mb-4">Our community-led approach to combating desertification.
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <img src="http://static.photos/people/30x30/7" alt="Author"
+                                    class="w-6 h-6 rounded-full mr-2">
+                                <span class="text-sm text-gray-600">Kofi A.</span>
+                            </div>
+                            <a href="/blog/green-wall"
+                                class="text-sprout-green hover:text-sprout-forest text-sm font-medium flex items-center">
+                                Read
+                                <i data-feather="arrow-right" class="ml-1 w-4 h-4"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <button
+                    class="bg-sprout-green hover:bg-sprout-forest text-white px-8 py-3 rounded-full font-medium transition duration-300">
+                    Load More Articles
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="py-20 px-6 bg-sprout-deep text-white">
+        <div class="max-w-3xl mx-auto text-center">
+            <h2 class="text-3xl font-heading font-bold mb-6">Stay Updated</h2>
+            <p class="text-xl mb-10">
+                Subscribe to our newsletter to receive the latest blog posts and updates.
+            </p>
+            <form class="flex flex-col sm:flex-row gap-4 max-w-xl mx-auto">
+                <input type="email" placeholder="Your email address"
+                    class="flex-grow px-6 py-3 rounded-full border-0 focus:ring-2 focus:ring-sprout-green">
+                <button type="submit"
+                    class="bg-sprout-green hover:bg-sprout-forest text-white px-8 py-3 rounded-full font-medium transition duration-300">
+                    Subscribe
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <custom-footer></custom-footer>
+
+    <script src="components/navbar.js"></script>
+    <script src="components/footer.js"></script>
+    <script src="script.js"></script>
+    <script src="firebase.js"></script>
+    <script>
+        // wait for firebase to initialize
+        (async function(){
+            const waitFor = () => new Promise(res=>{ const i = setInterval(()=>{ if(window.db){ clearInterval(i); res(); } },100); });
+            await waitFor();
+            const container = document.getElementById('blog-dynamic');
+            try{
+                const snapshot = await db.collection('posts').orderBy('createdAt','desc').limit(12).get();
+                if(snapshot.empty) { container.innerHTML = '<p class="text-gray-600">No posts yet.</p>'; return; }
+                container.innerHTML = '';
+                snapshot.forEach(doc=>{
+                    const d = doc.data();
+                    const el = document.createElement('div');
+                    el.className = 'bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300';
+                    el.innerHTML = `
+                        <div class="h-48 bg-sprout-green-900">
+                            ${d.imageUrl? `<img src="${d.imageUrl}" class="w-full h-full object-cover">` : ''}
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <span class="text-xs font-medium px-3 py-1 rounded-full bg-sprout-blue-900 text-sprout-blue-200">${d.category||'Article'}</span>
+                                <span class="text-xs text-gray-500 ml-2">${d.createdAt && d.createdAt.toDate? d.createdAt.toDate().toDateString() : ''}</span>
+                            </div>
+                            <h3 class="text-xl font-heading font-bold text-sprout-deep mb-3">${d.title}</h3>
+                            <p class="text-gray-600 text-sm mb-4">${d.summary||''}</p>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <img src="/media/Logo/IMG_2380.png" class="w-6 h-6 rounded-full mr-2">
+                                    <span class="text-sm text-gray-600">SproutBud</span>
+                                </div>
+                                <a href="/blog-post.html?id=${doc.id}" class="text-sprout-green hover:text-sprout-forest text-sm font-medium flex items-center">Read <i data-feather="arrow-right" class="ml-1 w-4 h-4"></i></a>
+                            </div>
+                        </div>
+                    `;
+                    container.appendChild(el);
+                });
+                feather.replace();
+            }catch(e){ console.error(e); }
+        })();
+    </script>
+    <script>
+        feather.replace();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SproutBud - Innovating for Impact, Empowering Communities</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        sprout: {
+                            green: '#32A65A',
+                            forest: '#1E5B3A',
+                            blue: '#3A8DFF',
+                            deep: '#1D3557',
+                            brown: '#A67C52',
+                            earth: '#6B4F33',
+                        }
+                    },
+                    fontFamily: {
+                        heading: ['Manrope', 'sans-serif'],
+                        body: ['Inter', 'sans-serif'],
+                    },
+                    borderRadius: {
+                        'xl': '1rem',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-sprout-green-50 font-body">
+    <custom-navbar></custom-navbar>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative text-white py-24 px-6">
+        <div class="absolute inset-0 -z-20 bg-cover bg-center" id="hero-bg"></div>
+        <div class="absolute inset-0 -z-10 pointer-events-none" id="hero-overlay" style="background-color: rgba(50,166,90,0.45);"></div>
+        <div class="max-w-6xl mx-auto text-center">
+            <h1 class="text-5xl md:text-6xl font-heading font-bold mb-6 leading-tight">
+                Innovating for Impact<br>Empowering Communities
+            </h1>
+            <p class="text-xl max-w-2xl mx-auto mb-10">
+                We harness technology and youth innovation to drive sustainable development across Africa's most pressing challenges.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="/programs.html" class="bg-sprout-green hover:bg-sprout-forest px-8 py-4 rounded-full font-medium transition duration-300">
+                    Explore Programs
+                </a>
+                <a href="/partner.html" class="bg-transparent border-2 border-white hover:bg-white hover:text-sprout-deep px-8 py-4 rounded-full font-medium transition duration-300">
+                    Partner With Us
+                </a>
+            </div>
+        </div>
+        <div class="absolute bottom-0 left-0 right-0 h-16 bg-white/10 backdrop-blur-sm"></div>
+    </section>
+
+    <!-- Who We Are -->
+    <section class="py-20 px-6">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+            <div>
+                <h2 class="text-3xl font-heading font-bold text-sprout-deep mb-6">Who We Are</h2>
+                <p class="text-lg text-gray-700 mb-6">
+                    SproutBud is a youth-led African social impact organization harnessing innovation to solve community challenges across technology, climate action, clean energy, women empowerment, and agriculture.
+                </p>
+                <p class="text-lg text-gray-700 mb-8">
+                    Founded in 2018, we've grown from a small volunteer group to a pan-African movement with operations in 12 countries and over 50,000 youth members.
+                </p>
+                <a href="/about.html" class="inline-flex items-center text-sprout-green font-medium hover:text-sprout-forest transition duration-300">
+                    Learn more about us
+                    <i data-feather="arrow-right" class="ml-2 w-5 h-5"></i>
+                </a>
+            </div>
+            <div class="rounded-2xl overflow-hidden shadow-xl">
+                <div id="who-slideshow" class="w-full h-64 md:h-80 bg-center bg-cover"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What We Do -->
+    <section class="py-20 px-6 bg-sprout-green-50">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-heading font-bold text-sprout-deep mb-4">What We Do</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Our programs are designed to create sustainable impact across Africa's most pressing challenges
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Program Cards -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition duration-300">
+                    <div class="w-16 h-16 rounded-full bg-sprout-green-100 flex items-center justify-center mb-6">
+                        <i data-feather="cpu" class="text-sprout-green w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-heading font-bold text-sprout-deep mb-3">ImpactCore</h3>
+                    <p class="text-gray-600 mb-6">Technology solutions for social impact through our digital innovation hubs.</p>
+                    <a href="/programs/impactcore.html" class="text-sprout-green font-medium hover:text-sprout-forest transition duration-300 flex items-center">
+                        Learn more
+                        <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                    </a>
+                </div>
+
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition duration-300">
+                    <div class="w-16 h-16 rounded-full bg-sprout-blue-100 flex items-center justify-center mb-6">
+                        <i data-feather="zap" class="text-sprout-blue w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-heading font-bold text-sprout-deep mb-3">Innovate</h3>
+                    <p class="text-gray-600 mb-6">Clean energy solutions and sustainable technology innovations.</p>
+                    <a href="/programs/innovate.html" class="text-sprout-green font-medium hover:text-sprout-forest transition duration-300 flex items-center">
+                        Learn more
+                        <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                    </a>
+                </div>
+
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition duration-300">
+                    <div class="w-16 h-16 rounded-full bg-sprout-brown-100 flex items-center justify-center mb-6">
+                        <i data-feather="leaf" class="text-sprout-forest w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-heading font-bold text-sprout-deep mb-3">GreenFront</h3>
+                    <p class="text-gray-600 mb-6">Climate action initiatives and environmental conservation programs.</p>
+                    <a href="/programs/greenfront.html" class="text-sprout-green font-medium hover:text-sprout-forest transition duration-300 flex items-center">
+                        Learn more
+                        <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                    </a>
+                </div>
+
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition duration-300">
+                    <div class="w-16 h-16 rounded-full bg-purple-100 flex items-center justify-center mb-6">
+                        <i data-feather="users" class="text-purple-600 w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-heading font-bold text-sprout-deep mb-3">Women Initiative</h3>
+                    <p class="text-gray-600 mb-6">Empowering women and girls through technology and entrepreneurship.</p>
+                    <a href="/programs/women.html" class="text-sprout-green font-medium hover:text-sprout-forest transition duration-300 flex items-center">
+                        Learn more
+                        <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                    </a>
+                </div>
+
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition duration-300">
+                    <div class="w-16 h-16 rounded-full bg-yellow-100 flex items-center justify-center mb-6">
+                        <i data-feather="mic" class="text-yellow-600 w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-heading font-bold text-sprout-deep mb-3">Media & Comms</h3>
+                    <p class="text-gray-600 mb-6">Amplifying youth voices and social impact stories across Africa.</p>
+                    <a href="/programs/media.html" class="text-sprout-green font-medium hover:text-sprout-forest transition duration-300 flex items-center">
+                        Learn more
+                        <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                    </a>
+                </div>
+
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition duration-300 flex flex-col justify-center items-center">
+                    <a href="/programs.html" class="flex flex-col items-center text-center">
+                        <div class="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mb-6">
+                            <i data-feather="grid" class="text-gray-600 w-8 h-8"></i>
+                        </div>
+                        <h3 class="text-xl font-heading font-bold text-sprout-deep mb-3">All Programs</h3>
+                        <p class="text-gray-600">Discover all our impact initiatives</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Highlights -->
+    <section class="py-20 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-heading font-bold text-sprout-deep mb-4">Our Impact</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Numbers that tell our story of transformation across communities
+                </p>
+            </div>
+            
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white rounded-2xl p-8 shadow-lg text-center">
+                    <div class="text-5xl font-heading font-bold text-sprout-green mb-3">50K+</div>
+                    <p class="text-gray-600">Youth members across Africa</p>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-8 shadow-lg text-center">
+                    <div class="text-5xl font-heading font-bold text-sprout-blue mb-3">12</div>
+                    <p class="text-gray-600">Countries with active programs</p>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-8 shadow-lg text-center">
+                    <div class="text-5xl font-heading font-bold text-sprout-brown mb-3">250+</div>
+                    <p class="text-gray-600">Community projects implemented</p>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-8 shadow-lg text-center">
+                    <div class="text-5xl font-heading font-bold text-sprout-forest mb-3">10K+</div>
+                    <p class="text-gray-600">Women & girls empowered</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Projects -->
+    <section class="py-20 px-6 bg-sprout-deep text-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12">
+                <div>
+                    <h2 class="text-3xl font-heading font-bold mb-4">Featured Projects</h2>
+                    <p class="text-sprout-blue-200 max-w-xl">See how we're creating change across communities</p>
+                </div>
+                <a href="/projects.html" class="flex items-center mt-4 md:mt-0 text-sprout-green hover:text-white transition duration-300">
+                    View all projects
+                    <i data-feather="arrow-right" class="ml-2 w-5 h-5"></i>
+                </a>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Project Cards -->
+                <div class="bg-white/10 rounded-2xl overflow-hidden backdrop-blur-sm hover:backdrop-blur transition duration-300">
+                    <div class="h-48 bg-sprout-green-900">
+                        <img src="/media/TechNest%20-%20Students%20Training/20220519_122850.jpg" alt="TechNest" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <span class="text-xs font-medium px-3 py-1 rounded-full bg-sprout-blue-900 text-sprout-blue-200">Technology</span>
+                            <span class="text-xs text-gray-300 ml-2">2022–2025</span>
+                        </div>
+                        <h3 class="text-xl font-heading font-bold mb-3">TechNest — Student Training</h3>
+                        <p class="text-gray-300 text-sm mb-4">Digital literacy and school transformation training — 180+ students and 92 teachers trained.</p>
+                        <a href="/projects/technest/index.html" class="text-sprout-green hover:text-white text-sm font-medium flex items-center">
+                            Read case study
+                            <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="bg-white/10 rounded-2xl overflow-hidden backdrop-blur-sm hover:backdrop-blur transition duration-300">
+                    <div class="h-48 bg-sprout-green-900">
+                        <img src="/media/World%20Cleanup%20Day%202025/Brown%20Illustrative%20Clean%20Up%20Day%20Flyer%20(2).png" alt="World Cleanup Day" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <span class="text-xs font-medium px-3 py-1 rounded-full bg-sprout-brown-900 text-sprout-brown-200">Environment</span>
+                            <span class="text-xs text-gray-300 ml-2">2025</span>
+                        </div>
+                        <h3 class="text-xl font-heading font-bold mb-3">World Cleanup Day — Mararaba</h3>
+                        <p class="text-gray-300 text-sm mb-4">Mobilized 57 volunteers to remove 2 tonnes of waste and form 6 Community Waste Watch Groups.</p>
+                        <a href="/projects/world-cleanup-2025/index.html" class="text-sprout-green hover:text-white text-sm font-medium flex items-center">
+                            Read case study
+                            <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="bg-white/10 rounded-2xl overflow-hidden backdrop-blur-sm hover:backdrop-blur transition duration-300">
+                    <div class="h-48 bg-sprout-green-900">
+                        <img src="/media/Young%20Women%20Launchpad/GridArt_20250601_192911900.jpg" alt="Young Women Launchpad" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <span class="text-xs font-medium px-3 py-1 rounded-full bg-purple-900 text-purple-200">Women</span>
+                            <span class="text-xs text-gray-300 ml-2">2025</span>
+                        </div>
+                        <h3 class="text-xl font-heading font-bold mb-3">Young Women’s Entrepreneurship Launchpad</h3>
+                        <p class="text-gray-300 text-sm mb-4">Cohort-based incubation and mentorship to support women entrepreneurs with training and seed mentorship.</p>
+                        <a href="/projects/young-women-launchpad/index.html" class="text-sprout-green hover:text-white text-sm font-medium flex items-center">
+                            Read case study
+                            <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners -->
+    <section class="py-16 px-6 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-2xl font-heading font-bold text-sprout-deep mb-2">Our Partners</h2>
+                <p class="text-gray-600">Collaborating with organizations that share our vision</p>
+            </div>
+            
+            <div class="flex flex-wrap justify-center items-center gap-12 md:gap-16">
+                <img src="http://static.photos/logo/200x200/1" alt="Partner" class="h-12 opacity-70 hover:opacity-100 transition duration-300">
+                <img src="http://static.photos/logo/200x200/2" alt="Partner" class="h-12 opacity-70 hover:opacity-100 transition duration-300">
+                <img src="http://static.photos/logo/200x200/3" alt="Partner" class="h-12 opacity-70 hover:opacity-100 transition duration-300">
+                <img src="http://static.photos/logo/200x200/4" alt="Partner" class="h-12 opacity-70 hover:opacity-100 transition duration-300">
+                <img src="http://static.photos/logo/200x200/5" alt="Partner" class="h-12 opacity-70 hover:opacity-100 transition duration-300">
+            </div>
+        </div>
+    </section>
+
+    <custom-footer></custom-footer>
+
+    <script src="components/navbar.js"></script>
+    <script src="components/footer.js"></script>
+    <script src="script.js"></script>
+    <script>
+        async function initHomeSlides() {
+            try {
+                const res = await fetch('/media/manifest.json');
+                const manifest = await res.json();
+                const folders = Object.keys(manifest).filter(f=> f !== 'Logo');
+                // hero backgrounds: pick first image from first three folders if available
+                const heroBg = document.getElementById('hero-bg');
+                const who = document.getElementById('who-slideshow');
+                const heroImages = [];
+                for(let i=0;i<folders.length && heroImages.length<3;i++){
+                    const arr = manifest[folders[i]];
+                    if(arr && arr.length) heroImages.push('/media/'+encodeURIComponent(folders[i]).replace(/%20/g,'%20')+'/'+encodeURIComponent(arr[0]));
+                }
+                let hIndex=0;
+                if(heroImages.length){
+                    heroBg.style.backgroundImage = `url('${heroImages[0]}')`;
+                    setInterval(()=>{
+                        hIndex = (hIndex+1) % heroImages.length;
+                        heroBg.style.transition = 'background-image 800ms ease-in-out';
+                        heroBg.style.backgroundImage = `url('${heroImages[hIndex]}')`;
+                    }, 5000);
+                }
+
+                // who slideshow: collect up to 10 images across folders
+                const whoImgs = [];
+                folders.forEach(folder => {
+                    const arr = manifest[folder] || [];
+                    arr.slice(0,2).forEach(fn => whoImgs.push('/media/'+encodeURIComponent(folder).replace(/%20/g,'%20')+'/'+encodeURIComponent(fn)));
+                });
+                let wIndex=0;
+                if(whoImgs.length){
+                    who.style.backgroundImage = `url('${whoImgs[0]}')`;
+                    setInterval(()=>{
+                        wIndex = (wIndex+1) % whoImgs.length;
+                        who.style.transition = 'background-image 800ms ease-in-out';
+                        who.style.backgroundImage = `url('${whoImgs[wIndex]}')`;
+                    }, 3000);
+                }
+            } catch(e){ console.error('slides init error', e); }
+        }
+        initHomeSlides();
+
+        feather.replace();
+    </script>
+</body>
+</html>

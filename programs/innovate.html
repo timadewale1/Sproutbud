@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SproutBud Innovate</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+  <link rel="stylesheet" href="../style.css">
+  <script>
+    tailwind.config = {
+      theme: { extend: { colors: { sprout: { green: '#32A65A', forest: '#1E5B3A', blue: '#3A8DFF', deep: '#1D3557', brown: '#A67C52', earth: '#6B4F33' } }, fontFamily: { heading: ['Manrope','sans-serif'], body: ['Inter','sans-serif'] } } }
+    }
+  </script>
+</head>
+<body>
+  <custom-navbar></custom-navbar>
+  <main class="pt-28">
+    <section class="py-16 px-6">
+      <div class="max-w-4xl mx-auto">
+        <h1 class="text-3xl font-heading font-bold mb-4">SproutBud Innovate</h1>
+        <p class="text-gray-700 mb-6">Innovate houses tech incubation, entrepreneurship, and digital inclusion programs including TechNest, Startup Launchpad, Employability Launchpad, and Bars to Hope prison reform initiatives.</p>
+
+        <h2 class="text-2xl font-bold mb-3">Signature programs</h2>
+        <ul class="list-disc list-inside text-gray-700 mb-6">
+          <li>TechNest: ICT for Change and school digital transformation.</li>
+          <li>Startup & Employability Launchpads: cohort-based acceleration and job-readiness.</li>
+          <li>Bars to Hope: IT and vocational training for incarcerated individuals.</li>
+        </ul>
+
+        <p class="text-gray-700">Key metrics include 180 students trained, multi-school deployments, and active cohorts for women entrepreneurs and youth innovators.</p>
+
+        <div class="mt-8">
+          <a href="/projects/technest/index.html" class="px-6 py-3 bg-sprout-green text-white rounded-full font-bold">See TechNest</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <custom-footer></custom-footer>
+</body>
+</html>

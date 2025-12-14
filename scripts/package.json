@@ -1,0 +1,16 @@
+{
+  "name": "sproutbud-import-scripts",
+  "version": "1.0.0",
+  "description": "Helper scripts for importing publications into Firebase",
+  "main": "import_publications.js",
+  "scripts": {
+    "import:publications": "node import_publications.js ./media/publications"
+  },
+  "dependencies": {
+    "body-parser": "^2.2.1",
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1",
+    "firebase-admin": "^11.11.1",
+    "minimist": "^1.2.8"
+  }
+}

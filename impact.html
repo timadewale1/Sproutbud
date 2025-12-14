@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Impact — SproutBud</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            sprout: { green: '#32A65A', forest: '#1E5B3A', blue: '#3A8DFF', deep: '#1D3557', brown: '#A67C52', earth: '#6B4F33' }
+          },
+          fontFamily: { heading: ['Manrope','sans-serif'], body: ['Inter','sans-serif'] }
+        }
+      }
+    }
+  </script>
+</head>
+<body>
+  <custom-navbar></custom-navbar>
+
+  <main class="pt-28">
+    <section class="py-20 px-6 bg-white">
+      <div class="max-w-5xl mx-auto text-center">
+        <h1 class="text-4xl font-heading font-bold mb-4">Our Impact</h1>
+        <p class="text-gray-600 max-w-3xl mx-auto">SproutBud creates measurable change by training young people, supporting women entrepreneurs, mobilizing community action on waste, and delivering technology and clean energy solutions that expand opportunity across Nigeria and Africa.</p>
+      </div>
+    </section>
+
+    <section class="py-12 px-6 bg-sprout-cream">
+      <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
+        <div class="bg-white/5 rounded-2xl p-6">
+          <h3 class="text-xl font-bold mb-2">Training & Skills</h3>
+          <p class="text-gray-300">Trained 180+ students in digital literacy, reached 92 teachers, and supported tech incubation cohorts for young founders.</p>
+        </div>
+        <div class="bg-white/5 rounded-2xl p-6">
+          <h3 class="text-xl font-bold mb-2">Community & Environment</h3>
+          <p class="text-gray-300">Mobilized volunteers to remove 2 tonnes of waste; formed Community Waste Watch Groups and ran national cleanup events.</p>
+        </div>
+        <div class="bg-white/5 rounded-2xl p-6">
+          <h3 class="text-xl font-bold mb-2">Women’s Empowerment</h3>
+          <p class="text-gray-300">Delivered the Young Women’s Entrepreneurship Launchpad and W.O.M.E.N legal and health services for vulnerable women.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-12 px-6">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-2xl font-heading font-bold mb-6">Selected Highlights</h2>
+        <ul class="list-inside list-disc text-gray-700 space-y-2">
+          <li>Trained 180+ children and youth in digital literacy and tech skills.</li>
+          <li>Launched the Young Women’s Entrepreneurship Launchpad and selected businesses for mentorship.</li>
+          <li>Mobilized 57 volunteers to remove 2 tonnes of waste through World Cleanup Day activities.</li>
+          <li>Provided pro bono legal aid and health services through the W.O.M.E.N Initiative.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="py-12 px-6 bg-white">
+      <div class="max-w-6xl mx-auto text-center">
+        <a href="/programs.html" class="inline-block px-6 py-3 bg-sprout-green text-white rounded-full font-bold">Explore Our Programs</a>
+        <a href="/donate.html" class="inline-block ml-4 px-6 py-3 border border-sprout-green text-sprout-green rounded-full font-bold">Support Our Work</a>
+      </div>
+    </section>
+  </main>
+
+  <custom-footer></custom-footer>
+</body>
+</html>

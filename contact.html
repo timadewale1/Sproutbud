@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - SproutBud</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        sprout: {
+                            green: '#32A65A',
+                            forest: '#1E5B3A',
+                            blue: '#3A8DFF',
+                            deep: '#1D3557',
+                            brown: '#A67C52',
+                            earth: '#6B4F33',
+                        }
+                    },
+                    fontFamily: {
+                        heading: ['Manrope', 'sans-serif'],
+                        body: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-sprout-green-50 font-body">
+    <custom-navbar></custom-navbar>
+
+    <!-- Page Header -->
+    <section class="relative bg-gradient-to-r from-sprout-forest to-sprout-deep text-white py-24 px-6">
+        <div class="max-w-6xl mx-auto">
+            <h1 class="text-4xl md:text-5xl font-heading font-bold mb-6">Contact Us</h1>
+            <p class="text-xl max-w-2xl">
+                Get in touch with our team - we'd love to hear from you.
+            </p>
+        </div>
+        <div class="absolute bottom-0 left-0 right-0 h-16 bg-white/10 backdrop-blur-sm"></div>
+    </section>
+
+    <!-- Contact Sections -->
+    <section class="py-20 px-6">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12">
+            <!-- Contact Form -->
+            <div class="bg-white rounded-2xl p-8 shadow-lg">
+                <h2 class="text-2xl font-heading font-bold text-sprout-deep mb-6">Send us a message</h2>
+                <form id="contactForm">
+                    <div class="mb-6">
+                        <label for="name" class="block text-gray-700 font-medium mb-2">Full Name</label>
+                        <input type="text" id="name"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sprout-green focus:border-sprout-green">
+                    </div>
+                    <div class="mb-6">
+                        <label for="email" class="block text-gray-700 font-medium mb-2">Email Address</label>
+                        <input type="email" id="email"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sprout-green focus:border-sprout-green">
+                    </div>
+                    <div class="mb-6">
+                        <label for="subject" class="block text-gray-700 font-medium mb-2">Subject</label>
+                        <select id="subject"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sprout-green focus:border-sprout-green">
+                            <option value="" disabled selected>Select a subject</option>
+                            <option value="general">General Inquiry</option>
+                            <option value="partnership">Partnership</option>
+                            <option value="volunteer">Volunteering</option>
+                            <option value="programs">Programs</option>
+                            <option value="media">Media Inquiry</option>
+                        </select>
+                    </div>
+                    <div class="mb-6">
+                        <label for="message" class="block text-gray-700 font-medium mb-2">Message</label>
+                        <textarea id="message" rows="5"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sprout-green focus:border-sprout-green"></textarea>
+                    </div>
+                    <button type="submit"
+                        class="w-full bg-sprout-green hover:bg-sprout-forest text-white py-3 px-6 rounded-lg font-medium transition duration-300">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+
+            <!-- Contact Info -->
+            <div>
+                <h2 class="text-2xl font-heading font-bold text-sprout-deep mb-6">Our Offices</h2>
+
+                <div class="grid gap-8">
+                    <!-- Headquarters -->
+                    <div class="bg-white rounded-2xl p-6 shadow-lg">
+                        <h3 class="text-xl font-heading font-bold text-sprout-deep mb-4 flex items-center">
+                            <i data-feather="map-pin" class="text-sprout-green mr-2"></i>
+                            Headquarters
+                        </h3>
+                        <address class="not-italic text-gray-700 mb-4">
+                            Abuja, FCT, Nigeria
+                        </address>
+                        <div class="flex items-center text-gray-700 mb-2">
+                            <i data-feather="phone" class="mr-2 text-sprout-green"></i>
+                            +234 800 123 4567
+                        </div>
+                        <div class="flex items-center text-gray-700">
+                            <i data-feather="mail" class="mr-2 text-sprout-green"></i>
+                            info@sproutbud.org
+                        </div>
+                    </div>
+
+                    <!-- Regional Offices -->
+                    <div class="bg-white rounded-2xl p-6 shadow-lg">
+                        <h3 class="text-xl font-heading font-bold text-sprout-deep mb-4 flex items-center">
+                            <i data-feather="globe" class="text-sprout-green mr-2"></i>
+                            Regional Offices
+                        </h3>
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="font-medium text-gray-800">Lagos, Nigeria</h4>
+                                <p class="text-gray-600 text-sm">+234 800 123 4567</p>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-800">Accra, Ghana</h4>
+                                <p class="text-gray-600 text-sm">+233 200 123 456</p>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-800">Johannesburg, South Africa</h4>
+                                <p class="text-gray-600 text-sm">+27 110 123 456</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Social Media -->
+                    <div class="bg-white rounded-2xl p-6 shadow-lg">
+                        <h3 class="text-xl font-heading font-bold text-sprout-deep mb-4 flex items-center">
+                            <i data-feather="share-2" class="text-sprout-green mr-2"></i>
+                            Connect With Us
+                        </h3>
+                        <div class="flex space-x-4">
+                            <a href="#"
+                                class="w-10 h-10 rounded-full bg-sprout-green-100 flex items-center justify-center text-sprout-green hover:bg-sprout-green hover:text-white transition">
+                                <i data-feather="twitter"></i>
+                            </a>
+                            <a href="#"
+                                class="w-10 h-10 rounded-full bg-sprout-green-100 flex items-center justify-center text-sprout-green hover:bg-sprout-green hover:text-white transition">
+                                <i data-feather="facebook"></i>
+                            </a>
+                            <a href="#"
+                                class="w-10 h-10 rounded-full bg-sprout-green-100 flex items-center justify-center text-sprout-green hover:bg-sprout-green hover:text-white transition">
+                                <i data-feather="instagram"></i>
+                            </a>
+                            <a href="#"
+                                class="w-10 h-10 rounded-full bg-sprout-green-100 flex items-center justify-center text-sprout-green hover:bg-sprout-green hover:text-white transition">
+                                <i data-feather="linkedin"></i>
+                            </a>
+                            <a href="#"
+                                class="w-10 h-10 rounded-full bg-sprout-green-100 flex items-center justify-center text-sprout-green hover:bg-sprout-green hover:text-white transition">
+                                <i data-feather="youtube"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="px-6 pb-20">
+        <div class="max-w-6xl mx-auto bg-white rounded-2xl overflow-hidden shadow-lg">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.808477395487!2d36.82115931475392!3d-1.292355835980238!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMcKwMTcnMzIuNSJTIDM2wrA0OScyNS4xIkU!5e0!3m2!1sen!2ske!4v1623849399999!5m2!1sen!2ske"
+                width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </section>
+
+    <custom-footer></custom-footer>
+
+    <script src="components/navbar.js"></script>
+    <script src="components/footer.js"></script>
+    <script src="script.js"></script>
+    <script>
+        feather.replace();
+
+        // Form submission handler
+        document.getElementById('contactForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            this.reset();
+        });
+    </script>
+</body>
+
+</html>

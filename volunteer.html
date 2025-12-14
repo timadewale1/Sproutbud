@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Volunteer — SproutBud</title>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css">
+  </head>
+<body class="font-body bg-sprout-green-50">
+  <custom-navbar></custom-navbar>
+  <main class="max-w-4xl mx-auto p-6 mt-24">
+    <h1 class="text-3xl font-heading font-bold mb-4">Volunteer With Us</h1>
+    <p class="text-gray-700 mb-6">Contribute your time and skills to help deliver SproutBud programs across technology, climate, and women empowerment.</p>
+    <div class="bg-white p-6 rounded shadow">
+      <h3 class="font-semibold mb-2">Opportunities</h3>
+      <ul class="list-disc pl-5 text-gray-700">
+        <li>M&E and research support</li>
+        <li>Training and facilitation</li>
+        <li>Communications and storytelling</li>
+        <li>Technical mentoring for young entrepreneurs</li>
+      </ul>
+    </div>
+
+    <div class="bg-white p-6 rounded shadow mt-6">
+      <h3 class="font-semibold mb-4">Volunteer Sign-up</h3>
+      <form id="vol-form" class="space-y-3">
+        <div class="grid md:grid-cols-2 gap-3">
+          <input id="v-name" placeholder="Full name" class="border px-3 py-2 rounded" required>
+          <input id="v-email" placeholder="Email" type="email" class="border px-3 py-2 rounded" required>
+        </div>
+        <div class="grid md:grid-cols-2 gap-3">
+          <input id="v-phone" placeholder="Phone" class="border px-3 py-2 rounded">
+          <input id="v-location" placeholder="Location" class="border px-3 py-2 rounded">
+        </div>
+        <input id="v-skills" placeholder="Skills / Areas of interest" class="border px-3 py-2 rounded">
+        <textarea id="v-message" placeholder="Tell us briefly why you want to volunteer" class="w-full border px-3 py-2 rounded" rows="4"></textarea>
+        <div class="flex items-center gap-3">
+          <button id="v-submit" type="submit" class="bg-sprout-green text-white px-4 py-2 rounded">Submit</button>
+          <div id="v-status" class="text-sm text-gray-600"></div>
+        </div>
+      </form>
+    </div>
+  </main>
+
+    <script src="components/navbar.js"></script>
+  <script src="components/footer.js"></script>
+  <script src="firebase.js"></script>
+  <script>
+    document.getElementById('vol-form').addEventListener('submit', async (e)=>{
+      e.preventDefault();
+      const status = document.getElementById('v-status');
+      const name = document.getElementById('v-name').value.trim();
+      const email = document.getElementById('v-email').value.trim();
+      if(!name || !email){ status.textContent = 'Name and email required'; return; }
+      status.textContent = 'Saving...';
+      try{
+        const siteKey = (window.CONFIG && window.CONFIG.recaptcha && window.CONFIG.recaptcha.siteKey) ? window.CONFIG.recaptcha.siteKey : null;
+        const token = await getRecaptchaToken(siteKey);
+        const docId = await saveVolunteer({ name, email, phone: document.getElementById('v-phone').value.trim(), location: document.getElementById('v-location').value.trim(), skills: document.getElementById('v-skills').value.trim(), message: document.getElementById('v-message').value.trim(), recaptchaToken: token });
+        status.textContent = 'Thanks — we received your interest. Reference: '+docId;
+        document.getElementById('vol-form').reset();
+      }catch(e){ console.error(e); status.textContent = 'Error: '+e.message; }
+    });
+  </script>
+</body>
+</html>

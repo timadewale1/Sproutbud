@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SproutBud GreenFront</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+  <link rel="stylesheet" href="../style.css">
+  <script>
+    tailwind.config = {
+      theme: { extend: { colors: { sprout: { green: '#32A65A', forest: '#1E5B3A', blue: '#3A8DFF', deep: '#1D3557', brown: '#A67C52', earth: '#6B4F33' } }, fontFamily: { heading: ['Manrope','sans-serif'], body: ['Inter','sans-serif'] } } }
+    }
+  </script>
+</head>
+<body>
+  <custom-navbar></custom-navbar>
+  <main class="pt-28">
+    <section class="py-16 px-6">
+      <div class="max-w-4xl mx-auto">
+        <h1 class="text-3xl font-heading font-bold mb-4">SproutBud GreenFront</h1>
+        <p class="text-gray-700 mb-6">GreenFront leads climate action, regenerative agriculture, clean energy access, waste-to-wealth programs, and extreme heat management initiatives.</p>
+
+        <h2 class="text-2xl font-bold mb-3">Programs</h2>
+        <ul class="list-disc list-inside text-gray-700 mb-6">
+          <li>Pages & Planets Initiative — environmental education for children</li>
+          <li>Urban & Community Farming and Climate-Smart Agriculture trainings</li>
+          <li>Waste to Wealth and community clean-up campaigns</li>
+          <li>Clean Energy Access — solar deployments and training</li>
+        </ul>
+
+        <div class="mt-8">
+          <a href="/projects/world-cleanup-2025/index.html" class="px-6 py-3 bg-sprout-green text-white rounded-full font-bold">See World Cleanup Day</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <custom-footer></custom-footer>
+</body>
+</html>

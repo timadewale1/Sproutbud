@@ -1,0 +1,48 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Publications: public read, admin-only writes
+    match /publications/{doc} {
+      allow read: if true;
+      allow create, update, delete: if request.auth != null && request.auth.token.admin == true;
+    }
+
+    // Posts / blog: admin-only writes
+    match /posts/{doc} {
+      allow read: if true;
+      allow create, update, delete: if request.auth != null && request.auth.token.admin == true;
+    }
+
+    // Volunteers, partners, donations:
+    // Allow unauthenticated creates for convenience, but in production you should
+    // route form submissions through a server that verifies reCAPTCHA and writes
+    // to Firestore with service credentials instead. Reads/edits restricted to admins.
+    match /volunteers/{doc} {
+      allow create: if true;
+      allow read, update, delete: if request.auth != null && request.auth.token.admin == true;
+    }
+
+    match /partners/{doc} {
+      allow create: if true;
+      allow read, update, delete: if request.auth != null && request.auth.token.admin == true;
+    }
+
+    match /donations/{doc} {
+      allow create: if true;
+      allow read, update, delete: if request.auth != null && request.auth.token.admin == true;
+    }
+
+    // Default: allow reads, deny writes
+    match /{document=**} {
+      allow read: if true;
+      allow write: if false;
+    }
+  }
+}
+
+// Notes:
+// - Use the `create_admin_user.js` script in `scripts/` to create an admin and set
+//   the custom claim `admin: true`.
+// - Consider removing client-side direct writes to the `donations` collection and
+//   instead have your payment webhook server validate and write donation records.
