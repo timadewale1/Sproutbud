@@ -1,13 +1,38 @@
-// Firebase initialization (compat) - loads client config from /env.json
+// Firebase initialization (compat) - loads client config from API or /env.json
 async function initFirebaseFromEnv(){
   let cfg = null;
-  try{
-    const res = await fetch('/env.json');
-    if(res.ok) cfg = await res.json();
-  }catch(e){ console.warn('Failed to load /env.json', e); }
 
-  // Prefer explicit /env.json -> cfg.firebase, otherwise allow a page-level `window.__FIREBASE_CONFIG__`.
-  const firebaseConfig = (cfg && cfg.firebase) ? cfg.firebase : (window.__FIREBASE_CONFIG__ || null);
+  // Try to load from API first (for production)
+  try{
+    const res = await fetch('/api/config');
+    if(res.ok) cfg = await res.json();
+  }catch(e){
+    console.warn('Failed to load config from API, trying /env.json', e);
+    // Fallback to /env.json (for local development)
+    try{
+      const res = await fetch('/env.json');
+      if(res.ok) cfg = await res.json();
+    }catch(e2){ console.warn('Failed to load /env.json', e2); }
+  }
+
+  // Check for Vercel environment variables as fallback
+  const vercelFirebaseConfig = {
+    apiKey: process.env.FIREBASE_API_KEY || window.FIREBASE_API_KEY,
+    authDomain: process.env.FIREBASE_AUTH_DOMAIN || window.FIREBASE_AUTH_DOMAIN,
+    projectId: process.env.FIREBASE_PROJECT_ID || window.FIREBASE_PROJECT_ID,
+    storageBucket: process.env.FIREBASE_STORAGE_BUCKET || window.FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID || window.FIREBASE_MESSAGING_SENDER_ID,
+    appId: process.env.FIREBASE_APP_ID || window.FIREBASE_APP_ID
+  };
+
+  // Check if Vercel config has all required fields
+  const hasVercelConfig = vercelFirebaseConfig.apiKey && vercelFirebaseConfig.projectId;
+
+  // Prefer API config, then /env.json, then Vercel env vars, otherwise allow a page-level `window.__FIREBASE_CONFIG__`.
+  const firebaseConfig = (cfg && cfg.firebase) ? cfg.firebase :
+                        (hasVercelConfig ? vercelFirebaseConfig :
+                        (window.__FIREBASE_CONFIG__ || null));
+
   if(!firebaseConfig){
     console.error('No Firebase config found. Add Firebase config to /env.json or set window.__FIREBASE_CONFIG__. Firebase will not be initialized.');
     window.CONFIG = cfg || {};
