@@ -39,20 +39,37 @@ async function initFirebaseFromEnv(){
     return; // abort initialization when no config is available
   }
 
-  // Load compat libraries dynamically
-  const s1 = document.createElement('script'); s1.src='https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js'; document.head.appendChild(s1);
-  const s2 = document.createElement('script'); s2.src='https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js'; document.head.appendChild(s2);
-  const s3 = document.createElement('script'); s3.src='https://www.gstatic.com/firebasejs/9.22.1/firebase-storage-compat.js'; document.head.appendChild(s3);
-  const s4 = document.createElement('script'); s4.src='https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js'; document.head.appendChild(s4);
+  // Load compat libraries dynamically in sequence
+  const s1 = document.createElement('script');
+  s1.src='https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js';
+  document.head.appendChild(s1);
 
-  s4.onload = () => {
-    if(!window.firebase) return console.error('Firebase failed to load');
-    firebase.initializeApp(firebaseConfig);
-    window.db = firebase.firestore();
-    window.storage = firebase.storage();
-    window.auth = firebase.auth();
-    window.CONFIG = cfg || {};
-    console.log('Firebase initialized');
+  s1.onload = () => {
+    const s2 = document.createElement('script');
+    s2.src='https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js';
+    document.head.appendChild(s2);
+
+    s2.onload = () => {
+      const s3 = document.createElement('script');
+      s3.src='https://www.gstatic.com/firebasejs/9.22.1/firebase-storage-compat.js';
+      document.head.appendChild(s3);
+
+      s3.onload = () => {
+        const s4 = document.createElement('script');
+        s4.src='https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js';
+        document.head.appendChild(s4);
+
+        s4.onload = () => {
+          if(!window.firebase) return console.error('Firebase failed to load');
+          firebase.initializeApp(firebaseConfig);
+          window.db = firebase.firestore();
+          window.storage = firebase.storage();
+          window.auth = firebase.auth();
+          window.CONFIG = cfg || {};
+          console.log('Firebase initialized');
+        }
+      }
+    }
   }
 }
 
