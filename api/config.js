@@ -1,4 +1,4 @@
-export default function handler(req, res) {
+module.exports = function handler(req, res) {
   // Firebase config from environment variables
   const firebaseConfig = {
     apiKey: process.env.FIREBASE_API_KEY,
