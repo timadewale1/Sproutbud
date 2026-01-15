@@ -65,10 +65,17 @@ whenFirebaseReady(()=>{
   }
 
   // dashboard auth guard
-  if(window.location.pathname.endsWith('/admin/dashboard.html')){
+  if(window.location.pathname.endsWith('/admin/dashboard.html') ||
+     window.location.pathname.endsWith('/admin/blog.html') ||
+     window.location.pathname.endsWith('/admin/publications.html') ||
+     window.location.pathname.endsWith('/admin/partners.html') ||
+     window.location.pathname.endsWith('/admin/volunteers.html') ||
+     window.location.pathname.endsWith('/admin/messages.html') ||
+     window.location.pathname.endsWith('/admin/donations.html') ||
+     window.location.pathname.endsWith('/admin/newsletter.html')){
     onAuthStateChanged(user=>{
       if(!user){ window.location.href = '/admin/login.html'; }
-      else { initDashboard(); }
+      else if(window.location.pathname.endsWith('/admin/dashboard.html')) { initDashboard(); }
     });
   }
 
