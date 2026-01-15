@@ -15,14 +15,14 @@ async function initFirebaseFromEnv(){
     }catch(e2){ console.warn('Failed to load /env.json', e2); }
   }
 
-  // Check for Vercel environment variables as fallback
+  // Check for environment variables as fallback (only in Node.js environments)
   const vercelFirebaseConfig = {
-    apiKey: process.env.FIREBASE_API_KEY || window.FIREBASE_API_KEY,
-    authDomain: process.env.FIREBASE_AUTH_DOMAIN || window.FIREBASE_AUTH_DOMAIN,
-    projectId: process.env.FIREBASE_PROJECT_ID || window.FIREBASE_PROJECT_ID,
-    storageBucket: process.env.FIREBASE_STORAGE_BUCKET || window.FIREBASE_STORAGE_BUCKET,
-    messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID || window.FIREBASE_MESSAGING_SENDER_ID,
-    appId: process.env.FIREBASE_APP_ID || window.FIREBASE_APP_ID
+    apiKey: (typeof process !== 'undefined' ? process.env.FIREBASE_API_KEY : null) || window.FIREBASE_API_KEY,
+    authDomain: (typeof process !== 'undefined' ? process.env.FIREBASE_AUTH_DOMAIN : null) || window.FIREBASE_AUTH_DOMAIN,
+    projectId: (typeof process !== 'undefined' ? process.env.FIREBASE_PROJECT_ID : null) || window.FIREBASE_PROJECT_ID,
+    storageBucket: (typeof process !== 'undefined' ? process.env.FIREBASE_STORAGE_BUCKET : null) || window.FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: (typeof process !== 'undefined' ? process.env.FIREBASE_MESSAGING_SENDER_ID : null) || window.FIREBASE_MESSAGING_SENDER_ID,
+    appId: (typeof process !== 'undefined' ? process.env.FIREBASE_APP_ID : null) || window.FIREBASE_APP_ID
   };
 
   // Check if Vercel config has all required fields
