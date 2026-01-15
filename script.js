@@ -44,6 +44,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Add animation classes when elements come into view
   setupIntersectionObserver();
+
+  // Newsletter subscription is now handled by the footer component itself
 });
 
 function initializeFeaturedProjectsSlider() {
@@ -101,4 +103,17 @@ function validateContactForm(form) {
   }
 
   return isValid;
+}
+
+function waitForFirebase() {
+  return new Promise((resolve) => {
+    const checkFirebase = () => {
+      if (window.db && window.firebase) {
+        resolve();
+      } else {
+        setTimeout(checkFirebase, 100);
+      }
+    };
+    checkFirebase();
+  });
 }

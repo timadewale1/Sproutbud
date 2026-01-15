@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin Sign In — SproutBud</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/admin/css/admin.css">
+  <script src="/firebase.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body class="admin auth-page">
+  <main style="max-width:480px;margin:48px auto;padding:20px;">
+    <div class="card-plain">
+      <div class="auth-header">
+        <div class="auth-logo">
+          <i data-feather="shield"></i>
+        </div>
+        <h1>Sign In</h1>
+        <p>Sign in to access the admin dashboard.</p>
+      </div>
+      <form id="login-form" class="space-y-4">
+        <div class="input-icon">
+          <i data-feather="mail"></i>
+          <input id="email" type="email" placeholder="Email Address" required />
+        </div>
+      
+        <div class="input-icon">
+          <i data-feather="lock"></i>
+          <input id="password" type="password" placeholder="Password" required />
+        </div>
+        <div class="auth-actions">
+          <button class="btn btn-primary" type="submit">Sign In</button>
+          <a href="/admin/forgot.html">Forgot password?</a>
+        </div>
+        <div id="login-status" class="muted"></div>
+      </form>
+      <hr style="margin:24px 0;border:none;border-top:1px solid #f1f5f9;">
+      <p class="muted">Need an account? <a href="/admin/signup.html">Create admin account</a></p>
+    </div>
+  </main>
+  <script>
+    feather.replace();
+  </script>
+  <script src="/admin/js/app.js"></script>
+</body>
+</html>

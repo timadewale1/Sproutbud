@@ -1,0 +1,162 @@
+[
+  {
+    "slug": "ict-for-change",
+    "program": "Innovate",
+    "title": "ICT for Change (TechNest)",
+    "short": "Grassroots digital literacy and school digital transformation for low-resource schools.",
+    "timeline": "Phase 1: Jan 2022 - Dec 2024; Phase 2: 2026-2030",
+    "keyMetrics": "Trained 180 students (65% girls), 92 teachers; deployed SMS in 8 schools; 4 community ICT hubs.",
+    "image": "Media/TechNest - Students Training/20220519_122850.jpg",
+    "path": "projects/digital-literacy/index.html"
+  },
+  {
+    "slug": "women-in-tech",
+    "program": "Innovate",
+    "title": "Women in Tech Series",
+    "short": "Digital literacy and confidence-building workshops for young women and girls.",
+    "timeline": "Ongoing",
+    "keyMetrics": "",
+    "image": "",
+    "path": "projects/women-in-tech/index.html"
+  },
+  {
+    "slug": "idp-camp-tech",
+    "program": "Innovate",
+    "title": "IDP Camp Tech Project",
+    "short": "Technology and digital skills training for youth in IDP camps.",
+    "timeline": "Ongoing",
+    "keyMetrics": "",
+    "image": "",
+    "path": "projects/idp-camp-tech/index.html"
+  },
+  {
+    "slug": "startup-launchpad",
+    "program": "Innovate",
+    "title": "Startup Launchpad (Young Women's Launchpad)",
+    "short": "Incubation and acceleration program focused on women entrepreneurs.",
+    "timeline": "Ongoing; Cohort 1: March 2025",
+    "keyMetrics": "6-week cohort; 10 participants; 5 businesses selected for mentorship.",
+    "image": "Media/Young Women Launchpad/GridArt_20250601_192911900.jpg",
+    "path": "projects/young-women-launchpad/index.html"
+  },
+  {
+    "slug": "bars-to-hope",
+    "program": "Innovate",
+    "title": "Bars to Hope (Prison Reform)",
+    "short": "IT and vocational training for incarcerated individuals to support reintegration.",
+    "timeline": "Ongoing",
+    "keyMetrics": "",
+    "image": "",
+    "path": "projects/bars-to-hope/index.html"
+  },
+  {
+    "slug": "pangolin-x",
+    "program": "Innovate",
+    "title": "Pangolin-X (Agricultural Weather Intelligence)",
+    "short": "AI-powered agricultural weather intelligence platform.",
+    "timeline": "2025",
+    "keyMetrics": "",
+    "image": "",
+    "path": "projects/pangolin-x/index.html"
+  },
+  {
+    "slug": "pages-and-planets",
+    "program": "GreenFront",
+    "title": "Pages & Planets Initiative",
+    "short": "Green education for children integrating environmental literacy, art, and hands-on science.",
+    "timeline": "Ongoing",
+    "keyMetrics": "",
+    "image": "",
+    "path": "projects/pages-and-planets/index.html"
+  },
+  {
+    "slug": "bring-back-our-school-farm",
+    "program": "GreenFront",
+    "title": "Bring Back Our School Farm",
+    "short": "Revives hands-on farming in schools with climate-smart agriculture training.",
+    "timeline": "Ongoing",
+    "keyMetrics": "",
+    "image": "",
+    "path": "projects/bring-back-our-school-farm/index.html"
+  },
+  {
+    "slug": "urban-community-farming",
+    "program": "GreenFront",
+    "title": "Urban & Community Farming Projects",
+    "short": "Sustainable urban agriculture and seed saving for local food security.",
+    "timeline": "Ongoing",
+    "keyMetrics": "",
+    "image": "Media/World Environment Day 2025/IMG_20250605_113509_745.jpg",
+    "path": "projects/urban-community-farming/index.html"
+  },
+  {
+    "slug": "climate-smart-agriculture",
+    "program": "GreenFront",
+    "title": "Climate-Smart Agriculture Trainings",
+    "short": "Field-based workshops for smallholder farmers and women in agribusiness on sustainable practices.",
+    "timeline": "Ongoing",
+    "keyMetrics": "83 farmers trained",
+    "image": "Media/TechNest - Students Training/20220630_112135.jpg",
+    "path": "projects/climate-farming/index.html"
+  },
+  {
+    "slug": "world-cleanup-2025",
+    "program": "GreenFront",
+    "title": "World Clean-up Day 2025 - Mararaba",
+    "short": "Community clean-up and advocacy event along Abuja-Keffi corridor.",
+    "timeline": "Sept 19-20, 2025",
+    "keyMetrics": "57 volunteers, 2 tonnes of waste removed, 6 Community Waste Watch Groups formed",
+    "image": "Media/World Cleanup Day 2025/IMG-20250919-WA0003.jpg",
+    "path": "projects/world-cleanup-2025/index.html"
+  },
+  {
+    "slug": "nigeria-plastic-action",
+    "program": "GreenFront",
+    "title": "Nigeria Plastic Action Campaign",
+    "short": "Community initiative enabling women and youth to convert plastic waste into income (with UNDP).",
+    "timeline": "2023-2024",
+    "keyMetrics": "Reached 4,000 residents",
+    "image": "",
+    "path": "projects/nigeria-plastic-action/index.html"
+  },
+  {
+    "slug": "clean-energy-access",
+    "program": "GreenFront",
+    "title": "Clean Energy Access (Solar & Renewable Deployment)",
+    "short": "Provides off-grid solar solutions and renewable energy training to communities.",
+    "timeline": "Ongoing",
+    "keyMetrics": "",
+    "image": "Media/World Environment Day 2025/8b1d5d442455720194714a5df02ab131_3.jpeg",
+    "path": "projects/solar-clinics/index.html"
+  },
+  {
+    "slug": "waste-to-wealth",
+    "program": "GreenFront",
+    "title": "Waste to Wealth Program",
+    "short": "Circular economy initiatives: women's packaging co-ops, waste-to-wealth youth enterprise, Baban-Bola empowerment.",
+    "timeline": "Ongoing",
+    "keyMetrics": "",
+    "image": "",
+    "path": "projects/waste-to-wealth/index.html"
+  },
+  {
+    "slug": "skills-for-impact-2025",
+    "program": "Special Projects",
+    "title": "Skills for Impact Training Program (2025)",
+    "short": "EU-funded youth empowerment program in partnership with ImpactPal Africa.",
+    "timeline": "2025",
+    "keyMetrics": "",
+    "image": "",
+    "path": "projects/skills-for-impact-2025/index.html"
+  },
+  {
+    "slug": "community-business-school",
+    "program": "Special Projects",
+    "title": "Community Business School",
+    "short": "Trains micro-entrepreneurs (70% women) in business and clean technology adoption.",
+    "timeline": "Ongoing",
+    "keyMetrics": "300+ micro-entrepreneurs trained, 75% adoption rate",
+    "image": "",
+    "path": "projects/community-business-school/index.html"
+  }
+]

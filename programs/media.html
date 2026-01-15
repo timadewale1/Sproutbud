@@ -19,24 +19,74 @@
 <body>
   <custom-navbar></custom-navbar>
   <main class="pt-28">
+    <section class="relative hero-gradient text-white py-24 px-6">
+      <div class="hero-content text-center">
+        <h1 class="text-4xl font-heading font-bold mb-4">SproutBud Media & Comms</h1>
+        <p class="text-xl max-w-3xl mx-auto">Media & Comms tells the story of SproutBud’s impact through digital media, podcasts, research, and public engagement.</p>
+      </div>
+      <div class="hero-overlay-bottom"></div>
+    </section>
+
     <section class="py-16 px-6">
       <div class="max-w-4xl mx-auto">
-        <h1 class="text-3xl font-heading font-bold mb-4">SproutBud Media & Comms</h1>
-        <p class="text-gray-700 mb-6">Media & Comms tells the story of SproutBud’s impact through digital media, podcasts, research, and public engagement.</p>
 
-        <h2 class="text-2xl font-bold mb-3">Activities</h2>
-        <ul class="list-disc list-inside text-gray-700 mb-6">
-          <li>Digital media and growth, content creation and social campaigns</li>
-          <li>Podcast production and thought leadership publishing</li>
-          <li>Summits, public engagements and research reports including Pangolin-X white papers</li>
-        </ul>
+        <h2 class="text-2xl font-bold mb-6">Activities</h2>
+        <div class="grid sm:grid-cols-2 gap-6 mb-6">
+          <div class="bg-white p-6 rounded-2xl shadow-lg">
+            <div class="w-12 h-12 rounded-full bg-yellow-100 flex items-center justify-center mb-4">
+              <i data-feather="mic" class="text-yellow-600 w-6 h-6"></i>
+            </div>
+            <h4 class="text-lg font-bold mb-2">Digital Media</h4>
+            <p class="text-gray-700">Content creation, social campaigns, and digital growth.</p>
+          </div>
+
+          <div class="bg-white p-6 rounded-2xl shadow-lg">
+            <div class="w-12 h-12 rounded-full bg-sprout-blue-100 flex items-center justify-center mb-4">
+              <i data-feather="podcast" class="text-sprout-blue w-6 h-6"></i>
+            </div>
+            <h4 class="text-lg font-bold mb-2">Podcast & Publishing</h4>
+            <p class="text-gray-700">Podcast production and thought leadership publishing.</p>
+          </div>
+
+          <div class="bg-white p-6 rounded-2xl shadow-lg">
+            <div class="w-12 h-12 rounded-full bg-sprout-green-100 flex items-center justify-center mb-4">
+              <i data-feather="users" class="text-sprout-green w-6 h-6"></i>
+            </div>
+            <h4 class="text-lg font-bold mb-2">Events & Engagements</h4>
+            <p class="text-gray-700">Summits, public engagements, and community events.</p>
+          </div>
+
+          <div class="bg-white p-6 rounded-2xl shadow-lg">
+            <div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center mb-4">
+              <i data-feather="file-text" class="text-purple-600 w-6 h-6"></i>
+            </div>
+            <h4 class="text-lg font-bold mb-2">Research</h4>
+            <p class="text-gray-700">Research reports including white papers and policy briefs.</p>
+          </div>
+        </div>
 
         <div class="mt-8">
-          <a href="/blog.html" class="px-6 py-3 bg-sprout-green text-white rounded-full font-bold">Read our Publications</a>
+          <a href="/blog.html" class="btn btn-primary">Read our Publications</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-12 px-6">
+      <div class="max-w-4xl mx-auto">
+        <h3 class="text-xl font-bold mb-4">Projects & Outputs</h3>
+        <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+          <a href="/projects/digital-media-growth/index.html" class="btn btn-primary">Digital Media & Growth</a>
+          <a href="/projects/podcast-production/index.html" class="btn btn-primary">Podcast Production</a>
+          <a href="/projects/summits-public-engagements/index.html" class="btn btn-primary">Summits & Public Engagements</a>
+          <a href="/projects/research-publications/index.html" class="btn btn-primary">Research & Publications</a>
         </div>
       </div>
     </section>
   </main>
   <custom-footer></custom-footer>
+  <script src="../components/navbar.js"></script>
+  <script src="../components/footer.js"></script>
+  <script src="../script.js"></script>
+  <script>feather.replace();</script>
 </body>
 </html>

@@ -73,148 +73,121 @@
     <!-- Projects Grid -->
     <section class="py-20 px-6">
         <div class="max-w-6xl mx-auto">
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Project 1 -->
-                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300">
-                    <div class="h-48 bg-sprout-green-900">
-                        <img src="/Media/TechNest%20-%20Students%20Training/20220519_122850.jpg" alt="Project"
-                            class="w-full h-full object-cover">
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center mb-4">
-                            <span
-                                class="text-xs font-medium px-3 py-1 rounded-full bg-sprout-blue-900 text-sprout-blue-200">Technology</span>
-                            <!-- <span class="text-xs text-gray-500 ml-2">Kenya</span> -->
-                        </div>
-                        <h3 class="text-xl font-heading font-bold text-sprout-deep mb-3">Digital Literacy for Rural
-                            Schools</h3>
-                        <p class="text-gray-600 text-sm mb-4">Training 5,000 students in basic digital skills across 20
-                            rural schools in Abuja.</p>
-                        <a href="/projects/digital-literacy/index.html"
-                            class="text-sprout-green hover:text-sprout-forest text-sm font-medium flex items-center">
-                            Read project report
-                            <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
-                        </a>
-                    </div>
-                </div>
+            <div id="projects-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+            <div id="projects-pagination" class="mt-8 flex items-center justify-center gap-3"></div>
+        </div>
+    </section>
 
-                <!-- Project 2 -->
-                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300">
-                    <div class="h-48 bg-sprout-green-900">
-                        <img src="/Media/World%20Environment%20Day%202025/IMG_20250605_113509_745.jpg" alt="Project"
-                            class="w-full h-full object-cover">
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center mb-4">
-                            <span
-                                class="text-xs font-medium px-3 py-1 rounded-full bg-sprout-brown-900 text-sprout-brown-200">Agriculture</span>
-                            <span class="text-xs text-gray-500 ml-2">Nigeria</span>
-                        </div>
-                        <h3 class="text-xl font-heading font-bold text-sprout-deep mb-3">Smart Irrigation Initiative
-                        </h3>
-                        <p class="text-gray-600 text-sm mb-4">Implementing solar-powered irrigation for 500 smallholder
-                            farmers in Nigeria.</p>
-                        <a href="/projects/smart-irrigation/index.html"
-                            class="text-sprout-green hover:text-sprout-forest text-sm font-medium flex items-center">
-                            Read project report
-                            <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
-                        </a>
-                    </div>
-                </div>
+    <script>
+    (function(){
+      const perPage = 6;
+      let projects = [];
+      let manifest = {};
+      function normalize(s){ return (s||'').toString().toLowerCase().replace(/[^a-z0-9]+/g,''); }
+            function findMediaFolderFor(title){
+                const t = (title||'').toString().toLowerCase();
+                // direct substring matches
+                for(const key of Object.keys(manifest||{})){
+                    if(!key) continue;
+                    const k = key.toString().toLowerCase();
+                    if(k.indexOf(t)!==-1 || t.indexOf(k)!==-1) return key;
+                }
+                // token intersection matching (better for titles vs folder names)
+                const tTokens = new Set(t.split(/[^a-z0-9]+/).filter(Boolean));
+                for(const key of Object.keys(manifest||{})){
+                    const kTokens = new Set(key.toString().toLowerCase().split(/[^a-z0-9]+/).filter(Boolean));
+                    let common = 0;
+                    kTokens.forEach(tok=>{ if(tTokens.has(tok)) common++; });
+                    if(common>0) return key;
+                }
+                // special mappings for known folders
+                const map = {
+                    'digital literacy': 'TechNest - Students Training',
+                    'ict for change': 'TechNest - Students Training',
+                    'technest': 'TechNest - Students Training',
+                    'world cleanup 2025': 'World Cleanup Day 2025',
+                    'young women launchpad': 'Young Women Launchpad'
+                };
+                for(const k of Object.keys(map)){
+                    if(t.indexOf(k)!==-1 && manifest[map[k]]) return map[k];
+                }
+                return null;
+            }
 
-                <!-- Project 3 -->
-                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300">
-                    <div class="h-48 bg-sprout-green-900">
-                        <img src="/Media/Young%20Women%20Launchpad/GridArt_20250601_192911900.jpg" alt="Project"
-                            class="w-full h-full object-cover">
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center mb-4">
-                            <span
-                                class="text-xs font-medium px-3 py-1 rounded-full bg-purple-900 text-purple-200">Women</span>
-                            <!-- <span class="text-xs text-gray-500 ml-2">Pan-Africa</span> -->
-                        </div>
-                        <h3 class="text-xl font-heading font-bold text-sprout-deep mb-3">Girls Who Code Africa</h3>
-                        <p class="text-gray-600 text-sm mb-4">Training 1,000 young women in software development across
-                            5 states.</p>
-                        <a href="/projects/girls-who-code/index.html"
-                            class="text-sprout-green hover:text-sprout-forest text-sm font-medium flex items-center">
-                            Read project report
-                            <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
-                        </a>
-                    </div>
-                </div>
+      function getIconFor(title){
+        const t = title.toLowerCase();
+        if(t.includes('tech')||t.includes('digital')||t.includes('ict')||t.includes('code')) return 'zap';
+        if(t.includes('women')||t.includes('girl')) return 'users';
+        if(t.includes('solar')||t.includes('energy')) return 'sun';
+        if(t.includes('podcast')||t.includes('audio')) return 'mic';
+        if(t.includes('research')||t.includes('publication')) return 'book-open';
+        if(t.includes('agri')||t.includes('farm')||t.includes('farming')) return 'leaf';
+        if(t.includes('school')||t.includes('education')) return 'book';
+        return 'folder';
+      }
 
-                <!-- Project 4 -->
-                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300">
-                    <div class="h-48 bg-sprout-green-900">
-                        <img src="/Media/TechNest%20-%20Students%20Training/IMG_20210707_113636.jpg" alt="Project"
-                            class="w-full h-full object-cover">
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center mb-4">
-                            <span
-                                class="text-xs font-medium px-3 py-1 rounded-full bg-yellow-900 text-yellow-200">Education</span>
-                            <!-- <span class="text-xs text-gray-500 ml-2">South Africa</span> -->
-                        </div>
-                        <h3 class="text-xl font-heading font-bold text-sprout-deep mb-3">STEM Hubs for Youth</h3>
-                        <p class="text-gray-600 text-sm mb-4">Establishing STEM learning centers in 15 underserved
-                            communities.</p>
-                        <a href="/projects/stem-hubs/index.html"
-                            class="text-sprout-green hover:text-sprout-forest text-sm font-medium flex items-center">
-                            Read project report
-                            <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
-                        </a>
-                    </div>
-                </div>
+      function renderPage(page){
+        const start = (page-1)*perPage;
+        const slice = projects.slice(start, start+perPage);
+        const grid = document.getElementById('projects-grid');
+        grid.innerHTML = '';
+        slice.forEach(p=>{
+          const hasMedia = !!p.mediaFolder && manifest[p.mediaFolder] && manifest[p.mediaFolder].length;
+          const col = document.createElement('div');
+          col.className = 'bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300 card';
+          const top = document.createElement('div');
+          top.className = 'h-48 bg-sprout-green-900 flex items-center justify-center';
+          if(hasMedia){
+            const img = document.createElement('img');
+            img.className = 'w-full h-full object-cover';
+            const imgName = manifest[p.mediaFolder][0];
+            img.src = '/Media/' + encodeURIComponent(p.mediaFolder) + '/' + encodeURIComponent(imgName);
+            img.alt = p.title;
+            top.appendChild(img);
+          } else {
+            const i = document.createElement('i'); i.setAttribute('data-feather', getIconFor(p.title)); i.className='w-12 h-12 text-white';
+            top.appendChild(i);
+          }
+          col.appendChild(top);
 
-                <!-- Project 5 -->
-                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300">
-                    <div class="h-48 bg-sprout-green-900">
-                        <img src="/Media/World%20Environment%20Day%202025/8b1d5d442455720194714a5df02ab131_3.jpeg" alt="Project"
-                            class="w-full h-full object-cover">
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center mb-4">
-                            <span
-                                class="text-xs font-medium px-3 py-1 rounded-full bg-red-900 text-red-200">Energy</span>
-                            <!-- <span class="text-xs text-gray-500 ml-2">Tanzania</span> -->
-                        </div>
-                        <h3 class="text-xl font-heading font-bold text-sprout-deep mb-3">Solar for Rural Health Clinics
-                        </h3>
-                        <p class="text-gray-600 text-sm mb-4">Providing solar power solutions to 30 rural health
-                            facilities.</p>
-                        <a href="/projects/solar-clinics/index.html"
-                            class="text-sprout-green hover:text-sprout-forest text-sm font-medium flex items-center">
-                            Read project report
-                            <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
-                        </a>
-                    </div>
-                </div>
+          const body = document.createElement('div'); body.className='p-6';
+          const title = document.createElement('h3'); title.className='text-xl font-heading font-bold text-sprout-deep mb-3'; title.textContent = p.title;
+          const desc = document.createElement('p'); desc.className='text-gray-600 text-sm mb-4'; desc.textContent = p.description || '';
+          const a = document.createElement('a'); a.href = p.url; a.className='text-sprout-green hover:text-sprout-forest text-sm font-medium flex items-center'; a.innerHTML = 'Go to project <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>';
+          body.appendChild(title); body.appendChild(desc); body.appendChild(a);
+          col.appendChild(body);
+          grid.appendChild(col);
+        });
+        // replace feather icons in new nodes
+        if(window.feather && window.feather.replace) window.feather.replace();
+        renderPagination();
+      }
 
-                <!-- Project 6 -->
-                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300">
-                    <div class="h-48 bg-sprout-green-900">
-                        <img src="/Media/TechNest%20-%20Students%20Training/20220630_112135.jpg" alt="Project"
-                            class="w-full h-full object-cover">
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center mb-4">
-                            <span
-                                class="text-xs font-medium px-3 py-1 rounded-full bg-sprout-brown-900 text-sprout-brown-200">Agriculture</span>
-                            <!-- <span class="text-xs text-gray-500 ml-2">Ethiopia</span> -->
-                        </div>
-                        <h3 class="text-xl font-heading font-bold text-sprout-deep mb-3">Climate-Smart Farming</h3>
-                        <p class="text-gray-600 text-sm mb-4">Training 2,000 farmers in climate-resilient agricultural
-                            practices.</p>
-                        <a href="/projects/climate-farming/index.html"
-                            class="text-sprout-green hover:text-sprout-forest text-sm font-medium flex items-center">
-                            Read project report
-                            <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
+      function renderPagination(){
+        const total = projects.length; const pages = Math.ceil(total/perPage);
+        const container = document.getElementById('projects-pagination');
+        container.innerHTML = '';
+        const current = parseInt(container.getAttribute('data-page')||'1',10);
+        const prev = document.createElement('button'); prev.className='btn btn-outline'; prev.textContent='Previous'; prev.disabled = current<=1; prev.addEventListener('click',()=>{ container.setAttribute('data-page', current-1); renderPage(current-1); });
+        container.appendChild(prev);
+        for(let i=1;i<=pages;i++){
+          const b=document.createElement('button'); b.className='btn'; b.textContent = i; if(i===current) b.className+=' btn-primary'; b.addEventListener('click',()=>{ container.setAttribute('data-page', i); renderPage(i); }); container.appendChild(b);
+        }
+        const next = document.createElement('button'); next.className='btn btn-outline'; next.textContent='Next'; next.disabled = current>=pages; next.addEventListener('click',()=>{ container.setAttribute('data-page', current+1); renderPage(current+1); }); container.appendChild(next);
+      }
+
+      Promise.all([fetch('/data/projects-list.json').then(r=>r.json()), fetch('/Media/manifest.json').then(r=>r.json())]).then(([plist, m])=>{
+        manifest = m || {};
+        // annotate projects with media presence and optional description
+        projects = plist.map(p=>({ title: p.title, url: p.url, description: p.description || '', mediaFolder: p.mediaFolder || findMediaFolderFor(p.title) }));
+        // sort: media first
+        projects.sort((a,b)=>{ const aHas = !!(a.mediaFolder && manifest[a.mediaFolder] && manifest[a.mediaFolder].length); const bHas = !!(b.mediaFolder && manifest[b.mediaFolder] && manifest[b.mediaFolder].length); return (aHas===bHas)? a.title.localeCompare(b.title): (aHas? -1: 1); });
+        // init pagination
+        const container = document.getElementById('projects-pagination'); container.setAttribute('data-page','1');
+        renderPage(1);
+      }).catch(err=>{ console.error('Failed to load projects or media manifest', err); });
+    })();
+    </script>
 
             <!-- <div class="text-center mt-12">
                 <button

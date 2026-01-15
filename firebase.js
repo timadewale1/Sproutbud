@@ -20,7 +20,7 @@ async function initFirebaseFromEnv(){
   const s3 = document.createElement('script'); s3.src='https://www.gstatic.com/firebasejs/9.22.1/firebase-storage-compat.js'; document.head.appendChild(s3);
   const s4 = document.createElement('script'); s4.src='https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js'; document.head.appendChild(s4);
 
-  s3.onload = () => {
+  s4.onload = () => {
     if(!window.firebase) return console.error('Firebase failed to load');
     firebase.initializeApp(firebaseConfig);
     window.db = firebase.firestore();

@@ -3,18 +3,22 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Donate — SproutBud</title>
+  <title>Donate - SproutBud</title>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="style.css">
   </head>
 <body class="font-body bg-sprout-green-50">
   <custom-navbar></custom-navbar>
+  <section class="relative bg-gradient-to-r from-sprout-forest to-sprout-deep text-white py-24 px-6">
+    <div class="w-full text-center">
+      <h1 class="text-4xl font-heading font-bold mb-4">Support SproutBud</h1>
+      <p class="text-xl max-w-3xl mx-auto">Your donation helps fund training, clean energy installations, and community projects across Africa.</p>
+    </div>
+    <div class="absolute bottom-0 left-0 right-0 h-16 bg-white/10 backdrop-blur-sm"></div>
+  </section>
   <main class="max-w-4xl mx-auto p-6 mt-24">
-    <h1 class="text-3xl font-heading font-bold mb-4">Support SproutBud</h1>
-    <p class="text-gray-700 mb-6">Your donation helps fund training, clean energy installations, and community projects across Africa.</p>
-
-    <div class="bg-white p-6 rounded shadow">
+    <div class="form-card">
       <h3 class="font-semibold mb-2">Donate</h3>
       <form id="donate-form" class="space-y-3">
         <input id="d-name" placeholder="Full name" class="w-full border px-3 py-2 rounded" required>
@@ -24,14 +28,14 @@
           <input id="d-phone" placeholder="Phone" class="border px-3 py-2 rounded">
           <input id="d-amount" placeholder="Amount (NGN)" type="number" class="border px-3 py-2 rounded" required>
         </div>
-        <div class="flex items-center gap-3">
-          <button id="pay-btn" type="button" class="bg-sprout-green text-white px-4 py-2 rounded">Pay Donation</button>
+          <div class="flex items-center gap-3">
+          <button id="pay-btn" type="button" class="btn btn-primary">Pay Donation</button>
           <div id="donate-status" class="text-sm text-gray-600"></div>
         </div>
       </form>
       <section class="mt-6 bg-gray-50 p-4 rounded">
         <h4 class="font-semibold">Bank Transfer</h4>
-        <p class="text-sm text-gray-600">Account name: SproutBud Ltd/Gte — Account number: 000000000 — Bank: Example Bank</p>
+        <p class="text-sm text-gray-600">Account name: SproutBud Ltd/Gte - Account number: 8061935246 - Bank: Moniepoint MFB</p>
       </section>
     </div>
 
@@ -43,41 +47,107 @@
         <p class="text-sm text-gray-700 mb-4">We appreciate your support. Redirecting to home…</p>
       </div>
     </div>
-    <script src="https://js.paystack.co/v1/inline.js"></script>
+      <script src="https://js.paystack.co/v1/inline.js"></script>
       <script src="firebase.js"></script>
       <script>
         // Replace with your Paystack public key
         const PAYSTACK_PUBLIC_KEY = 'PAYSTACK_PUBLIC_KEY';
+        
+        // Save donation to Firestore
+        async function saveDonation(donationData) {
+          await waitForFirebase();
+          const docRef = await window.db.collection('donations').add({
+            ...donationData,
+            createdAt: firebase.firestore.FieldValue.serverTimestamp()
+          });
+          return docRef.id;
+        }
+        
+        function waitForFirebase() {
+          return new Promise((resolve) => {
+            const checkFirebase = () => {
+              if (window.db && window.firebase) {
+                resolve();
+              } else {
+                setTimeout(checkFirebase, 100);
+              }
+            };
+            checkFirebase();
+          });
+        }
+        
         const payBtn = document.getElementById('pay-btn');
         const statusEl = document.getElementById('donate-status');
+        
         payBtn.addEventListener('click', async ()=>{
-        const name = document.getElementById('d-name').value.trim();
-        const email = document.getElementById('d-email').value.trim();
-        const amount = parseFloat(document.getElementById('d-amount').value);
-        if(!name || !email || !amount || amount <= 0){ statusEl.textContent = 'Please provide name, email and a valid amount.'; return; }
-        statusEl.textContent = 'Initializing payment...';
-        // get recaptcha token if available
-        const siteKey = (window.CONFIG && window.CONFIG.recaptcha && window.CONFIG.recaptcha.siteKey) ? window.CONFIG.recaptcha.siteKey : null;
-        const recaptchaToken = await getRecaptchaToken(siteKey);
-        const handler = PaystackPop.setup({
-          key: (window.CONFIG && window.CONFIG.paystack && window.CONFIG.paystack.publicKey) ? window.CONFIG.paystack.publicKey : PAYSTACK_PUBLIC_KEY,
-          email, amount: Math.round(amount) * 100,
-          metadata: { custom_fields: [{ display_name: 'Donor', variable_name: 'donor', value: name }] },
-          onClose: function(){ statusEl.textContent = 'Payment cancelled.'; },
-          callback: async function(response){
-            statusEl.textContent = 'Payment successful. Saving...';
-            try{
-              // Save donation record (include recaptcha token)
-              const donationId = await saveDonation({ donorName: name, email, phone: document.getElementById('d-phone').value.trim(), organization: document.getElementById('d-org').value.trim(), amount, paystackRef: response.reference, paidAt: new Date().toISOString(), recaptchaToken });
-              document.getElementById('thankyou').classList.remove('hidden');
-              setTimeout(()=> window.location.href = '/index.html', 3500);
-            }catch(e){ console.error(e); statusEl.textContent = 'Error saving donation: '+e.message; }
+          const name = document.getElementById('d-name').value.trim();
+          const email = document.getElementById('d-email').value.trim();
+          const amount = parseFloat(document.getElementById('d-amount').value);
+          if(!name || !email || !amount || amount <= 0){ 
+            statusEl.textContent = 'Please provide name, email and a valid amount.'; 
+            return; 
+          }
+          
+          statusEl.textContent = 'Initializing payment...';
+          
+          // Check if Paystack is loaded
+          if (typeof PaystackPop === 'undefined') {
+            statusEl.textContent = 'Payment system not loaded. Please refresh and try again.';
+            return;
+          }
+          
+          try {
+            const handler = PaystackPop.setup({
+              key: (window.CONFIG && window.CONFIG.paystack && window.CONFIG.paystack.publicKey) ? window.CONFIG.paystack.publicKey : PAYSTACK_PUBLIC_KEY,
+              email: email,
+              amount: Math.round(amount * 100), // Convert to kobo
+              currency: 'NGN',
+              metadata: { 
+                custom_fields: [
+                  { display_name: 'Donor Name', variable_name: 'donor_name', value: name },
+                  { display_name: 'Organization', variable_name: 'organization', value: document.getElementById('d-org').value.trim() || 'N/A' }
+                ]
+              },
+              onClose: function(){
+                statusEl.textContent = 'Payment cancelled.';
+              },
+              callback: function(response){
+                statusEl.textContent = 'Payment successful. Saving...';
+                // Use setTimeout to ensure callback completes
+                setTimeout(async () => {
+                  try {
+                    const donationId = await saveDonation({ 
+                      name: name, 
+                      email: email, 
+                      phone: document.getElementById('d-phone').value.trim(), 
+                      organization: document.getElementById('d-org').value.trim(), 
+                      amount: amount,
+                      currency: 'NGN',
+                      method: 'paystack',
+                      ref: response.reference, 
+                      paidAt: new Date().toISOString()
+                    });
+                    document.getElementById('thankyou').classList.remove('hidden');
+                    setTimeout(()=> window.location.href = '/index.html', 3500);
+                  } catch(e) { 
+                    console.error(e); 
+                    statusEl.textContent = 'Error saving donation: ' + e.message; 
+                  }
+                }, 100);
+              }
+            });
+            
+            statusEl.textContent = 'Opening payment...';
+            handler.openIframe();
+            
+          } catch (error) {
+            console.error('Payment setup error:', error);
+            statusEl.textContent = 'Error initializing payment. Please try again.';
           }
         });
-        handler.openIframe();
-      });
       </script>
   </main>
+    <custom-footer></custom-footer>
 
   <script src="components/navbar.js"></script>
   <script src="components/footer.js"></script>

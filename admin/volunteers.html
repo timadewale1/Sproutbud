@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Volunteers — Admin</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/admin/css/admin.css">
+  <script src="/firebase.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body class="admin">
+  <div class="admin-shell">
+    <aside class="admin-sidebar">
+      <div class="brand">SproutBud Admin</div>
+      <div class="subtitle">Manage content, users and records</div>
+      <nav>
+        <a href="/admin/dashboard.html"><i data-feather="home"></i> Overview</a>
+        <a href="/admin/volunteers.html" class="active"><i data-feather="users"></i> Volunteers</a>
+        <a href="/admin/partners.html"><i data-feather="briefcase"></i> Partners</a>
+        <a href="/admin/messages.html"><i data-feather="mail"></i> Messages</a>
+        <a href="/admin/donations.html"><i data-feather="dollar-sign"></i> Donations</a>
+        <a href="/admin/newsletter.html"><i data-feather="send"></i> Newsletter</a>
+        <a href="/admin/blog.html"><i data-feather="file-text"></i> Blog</a>
+        <a href="/admin/publications.html"><i data-feather="book"></i> Publications</a>
+        <a id="signout" href="#" class="mt-3"><i data-feather="log-out"></i> Sign Out</a>
+      </nav>
+    </aside>
+    <main class="admin-main">
+      <div class="admin-top">
+        <div style="display:flex;align-items:center;gap:12px;"><button id="sidebar-toggle" class="btn"><i data-feather="menu"></i></button><h1 class="text-2xl font-heading font-bold">Volunteers</h1></div>
+        <div style="display:flex;align-items:center;gap:12px;"><button id="sidebar-collapse" class="btn"><i data-feather="chevrons-left"></i></button><div id="admin-user" class="font-semibold">—</div></div>
+      </div>
+      <div class="card-plain">
+        <h3 class="font-semibold">Add Volunteer</h3>
+        <form id="volunteer-form" class="space-y-4 mt-4">
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <label for="v-name" class="block mb-2">Full Name</label>
+              <div class="input-icon">
+                <i data-feather="user"></i>
+                <input id="v-name" placeholder="Full name" required>
+              </div>
+            </div>
+            <div>
+              <label for="v-email" class="block mb-2">Email</label>
+              <div class="input-icon">
+                <i data-feather="mail"></i>
+                <input id="v-email" placeholder="Email" type="email">
+              </div>
+            </div>
+          </div>
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <label for="v-phone" class="block mb-2">Phone</label>
+              <div class="input-icon">
+                <i data-feather="phone"></i>
+                <input id="v-phone" placeholder="Phone">
+              </div>
+            </div>
+            <div>
+              <label for="v-location" class="block mb-2">Location</label>
+              <div class="input-icon">
+                <i data-feather="map-pin"></i>
+                <input id="v-location" placeholder="Location">
+              </div>
+            </div>
+          </div>
+          <div>
+            <label for="v-skills" class="block mb-2">Skills / Areas of Interest</label>
+            <div class="input-icon">
+              <i data-feather="layers"></i>
+              <input id="v-skills" placeholder="Skills / Areas of interest">
+            </div>
+          </div>
+          <div>
+            <label for="v-message" class="block mb-2">Message</label>
+            <div class="input-icon">
+              <i data-feather="message-circle"></i>
+              <textarea id="v-message" placeholder="Message" rows="4"></textarea>
+            </div>
+          </div>
+          <div class="mt-4"><button class="btn btn-primary">Add Volunteer</button> <span id="v-status" class="text-sm text-gray-600"></span></div>
+        </form>
+      </div>
+      <div class="mt-4 card-plain">
+        <h3 class="font-semibold">Volunteer List</h3>
+        <div id="volunteers-list" class="mt-3"></div>
+      </div>
+    </main>
+  </div>
+  <script src="/admin/js/volunteers.js"></script>
+  <script src="/admin/js/app.js"></script>
+  <script src="/admin/js/sidebar.js"></script>
+  <script>
+    feather.replace();
+  </script>
+</body>
+</html>

@@ -97,6 +97,111 @@ body {
     max-width: 65ch;
 }
 
+/* Layout container used by hero/sections to prevent overflow */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+    box-sizing: border-box;
+}
+
+/* Keep hero/section layout natural; specific pages use centered containers */
+/* Avoid forcing flex on all section.relative to preserve native layout (about page style) */
+
+/* Make default white cards slightly off-white so they stand out on white backgrounds */
+body .bg-white {
+    background-color: #fbfdf9 !important;
+}
+
+/* Cards: more contrast and visible hover state */
+.card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 1rem;
+    box-shadow: 0 6px 18px rgba(13,38,59,0.06);
+    border: 1px solid rgba(13,38,59,0.04);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.card--muted {
+    background: #f7faf7;
+}
+.card:hover, .card.card-hover:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 24px 48px rgba(13,38,59,0.12);
+    border-color: rgba(13,38,59,0.08);
+}
+
+/* Buttons: unified primary and outline styles */
+.btn {
+    display: inline-block;
+    padding: 0.5rem 0.9rem;
+    border-radius: 10px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease;
+}
+.btn-primary, .donate-btn, .btn-sprout {
+    background: #32A65A;
+    color: #fff !important;
+}
+.btn-primary:hover, .donate-btn:hover, .btn-sprout:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 24px rgba(50,166,90,0.16);
+}
+.btn-outline {
+    background: transparent;
+    border: 2px solid #32A65A;
+    color: #32A65A;
+}
+.btn-outline:hover {
+    background: #32A65A;
+    color: white;
+}
+
+/* Small utility text color that some pages use */
+.text-sprout-green {
+    color: #32A65A;
+}
+
+/* Footer and other forms: improve plain pages look */
+.form-card {
+    background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(250,255,250,0.95));
+    border-radius: 12px;
+    padding: 1.25rem;
+    box-shadow: 0 8px 30px rgba(13,38,59,0.06);
+    border: 1px solid rgba(13,38,59,0.04);
+}
+
+/* Improve default rounded card states site-wide */
+.rounded-2xl.shadow-lg {
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    border: 1px solid rgba(13,38,59,0.04);
+}
+.rounded-2xl.shadow-lg:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 24px 48px rgba(13,38,59,0.12);
+    border-color: rgba(13,38,59,0.08);
+}
+
+/* Featured project cards use a translucent background; make them more legible */
+.bg-white\/10 {
+    background: rgba(255,255,255,0.06) !important;
+}
+.bg-white\/10 .p-6 a {
+    transition: color 0.18s ease, transform 0.18s ease;
+}
+.bg-white\/10:hover {
+    background: rgba(255,255,255,0.09) !important;
+}
+
+/* Links styled as small CTAs inside cards */
+.card a, .rounded-2xl .flex.items-center a, .bg-white\/10 a {
+    color: #32A65A;
+}
+.card a:hover, .rounded-2xl a:hover, .bg-white\/10 a:hover {
+    color: #ffffff;
+}
+
 /* Custom Focus Styles */
 button:focus, a:focus, input:focus, textarea:focus {
     outline: 2px dashed #3A8DFF;
@@ -118,3 +223,37 @@ button:focus, a:focus, input:focus, textarea:focus {
 .skip-link:focus {
     top: 0;
 }
+
+/* Hero gradient utility (used across pages without Tailwind custom colors) */
+.hero-gradient {
+    background: linear-gradient(90deg, #1E5B3A 0%, #1D3557 100%);
+    color: #fff;
+}
+.hero-gradient .hero-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+}
+.hero-overlay-bottom {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 4rem;
+    background: rgba(255,255,255,0.06);
+    backdrop-filter: blur(6px);
+}
+
+/* Compatibility for pages that still use the Tailwind-like utility classes
+   Ensure the gradient renders even if Tailwind's custom color config isn't present */
+.bg-gradient-to-r.from-sprout-forest.to-sprout-deep,
+.bg-gradient-to-r.from-sprout-forest.to-sprout-deep.text-white {
+    background: linear-gradient(90deg, #1E5B3A 0%, #1D3557 100%);
+    color: #fff;
+}
+
+.bg-gradient-to-r.from-sprout-forest.to-sprout-deep .max-w-6xl,
+.bg-gradient-to-r.from-sprout-forest.to-sprout-deep .max-w-4xl {
+    margin: 0 auto;
+}
+

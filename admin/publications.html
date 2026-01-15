@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Publications — Admin</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/admin/css/admin.css">
+  <script src="/firebase.js"></script>
+  <script src="/components/navbar.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body class="admin">
+  <div class="admin-shell">
+    <aside class="admin-sidebar">
+      <div class="brand">SproutBud Admin</div>
+      <div class="subtitle">Manage content, users and records</div>
+      <nav>
+        <a href="/admin/dashboard.html"><i data-feather="home"></i> Overview</a>
+        <a href="/admin/volunteers.html"><i data-feather="users"></i> Volunteers</a>
+        <a href="/admin/partners.html"><i data-feather="briefcase"></i> Partners</a>
+        <a href="/admin/messages.html"><i data-feather="mail"></i> Messages</a>
+        <a href="/admin/donations.html"><i data-feather="dollar-sign"></i> Donations</a>
+        <a href="/admin/newsletter.html"><i data-feather="send"></i> Newsletter</a>
+        <a href="/admin/blog.html"><i data-feather="file-text"></i> Blog</a>
+        <a href="/admin/publications.html" class="active"><i data-feather="book"></i> Publications</a>
+        <a id="signout" href="#" class="mt-3"><i data-feather="log-out"></i> Sign Out</a>
+      </nav>
+    </aside>
+    <main class="admin-main">
+      <div class="admin-top">
+        <div style="display:flex;align-items:center;gap:12px;"><button id="sidebar-toggle" class="btn"><i data-feather="menu"></i></button><h1 class="text-2xl font-heading font-bold">Publications</h1></div>
+        <div style="display:flex;align-items:center;gap:12px;"><button id="sidebar-collapse" class="btn"><i data-feather="chevrons-left"></i></button><div id="admin-user-block" class="text-right">
+          <div id="admin-user" class="font-semibold">—</div>
+          <div id="admin-email" class="text-sm muted"></div>
+        </div></div>
+      </div>
+      <div class="card-plain">
+        <h3 class="font-semibold">Add Publication</h3>
+        <form id="publication-form" class="space-y-4 mt-4">
+          <div>
+            <label for="pub-title" class="block mb-2">Title</label>
+            <div class="input-icon"><i style="visibility:hidden"></i><input id="pub-title" placeholder="Title" required></div>
+          </div>
+          <div>
+            <label for="pub-year" class="block mb-2">Year</label>
+            <div class="input-icon"><i style="visibility:hidden"></i><input id="pub-year" placeholder="Year (e.g. 2025)"></div>
+          </div>
+          <div>
+            <label for="pub-type" class="block mb-2">Type</label>
+            <div class="input-icon"><i style="visibility:hidden"></i><input id="pub-type" placeholder="Type (Report / Case Study)"></div>
+          </div>
+          <div class="file-upload">
+            <input id="pub-cover" type="file" accept="image/*">
+            <label for="pub-cover">
+              <i data-feather="image"></i>
+              <span>Upload cover image</span>
+              <small>PNG, JPG — optional</small>
+            </label>
+          </div>
+          
+          <div class="file-upload">
+            <input id="pub-file" type="file" accept="application/pdf">
+            <label for="pub-file">
+              <i data-feather="file-text"></i>
+              <span>Upload PDF</span>
+              <small>PDF only — required</small>
+            </label>
+          </div>
+
+          <div class="mt-4"><button class="btn btn-primary">Upload Publication</button> <span id="pub-status" class="text-sm text-gray-600"></span></div>
+        </form>
+      </div>
+      <div class="mt-4 card-plain">
+        <h3 class="font-semibold">Publications List</h3>
+        <div id="publications-list" class="mt-3">Loading...</div>
+      </div>
+    </main>
+  </div>
+  <script src="/admin/js/publications.js"></script>
+  <script src="/admin/js/app.js"></script>
+  <script src="/admin/js/sidebar.js"></script>
+  <script>
+    feather.replace();
+  </script>
+</body>
+</html>

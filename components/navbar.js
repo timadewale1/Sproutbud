@@ -35,7 +35,7 @@ class CustomNavbar extends HTMLElement {
         }
 
         .logo-img {
-          width: 100px;
+          width: 200px;
           height: 56px;
           object-fit: contain;
         }
@@ -140,6 +140,18 @@ class CustomNavbar extends HTMLElement {
           cursor: pointer;
         }
 
+        /* Mobile details/link tweaks */
+        .mobile-projects-list a {
+          display: block;
+          padding: 0.35rem 0;
+          color: #1D3557;
+          text-decoration: none;
+          font-weight: 600;
+        }
+
+        details summary a { color: #1D3557; text-decoration: none; display: inline-block; }
+        details[open] .mobile-projects-list { display: block; }
+
         details {
           padding-left: 0.5rem;
         }
@@ -186,10 +198,8 @@ class CustomNavbar extends HTMLElement {
 
           <div class="nav-item">
             <a href="/projects.html" class="nav-link">Projects</a>
-            <div class="dropdown-menu">
-              <a href="/projects/digital-literacy/index.html">Digital Literacy</a>
-              <a href="/projects/smart-irrigation/index.html">Smart Irrigation</a>
-              <a href="/projects/girls-who-code/index.html">Girls Who Code</a>
+            <div class="dropdown-menu projects-dropdown">
+              <a href="/projects.html">View all projects</a>
             </div>
           </div>
 
@@ -217,18 +227,18 @@ class CustomNavbar extends HTMLElement {
             <a href="/about.html">About</a>
             <a href="/impact.html">Impact</a>
 
-            <details>
-              <summary>Programs</summary>
-              <a href="/programs/impactcore.html">ImpactCore</a>
-              <a href="/programs/innovate.html">Innovate</a>
-              <a href="/programs/greenfront.html">GreenFront</a>
-            </details>
+              <details>
+                <summary><a href="/programs.html">Programs</a></summary>
+                <a href="/programs/impactcore.html">ImpactCore</a>
+                <a href="/programs/innovate.html">Innovate</a>
+                <a href="/programs/greenfront.html">GreenFront</a>
+                <a href="/programs/women.html">W.O.M.E.N Initiative</a>
+              </details>
 
-            <details>
-              <summary>Projects</summary>
-              <a href="/projects/digital-literacy/index.html">Digital Literacy</a>
-              <a href="/projects/smart-irrigation/index.html">Smart Irrigation</a>
-            </details>
+              <details>
+                <summary><a href="/projects.html">Projects</a></summary>
+                <div class="mobile-projects-list">Loading...</div>
+              </details>
 
             <a href="/blog.html">Blog</a>
             <a href="/publications.html">Publications</a>
@@ -248,6 +258,37 @@ class CustomNavbar extends HTMLElement {
       const open = menu.classList.toggle('open');
       btn.setAttribute('aria-expanded', open.toString());
     });
+
+    // Populate projects list dynamically from data file
+    (function populateProjects(){
+      const desktopContainer = this.shadowRoot.querySelector('.projects-dropdown');
+      const mobileContainer = this.shadowRoot.querySelector('.mobile-projects-list');
+      fetch('/data/projects-list.json').then(r=>r.json()).then(list=>{
+        if(desktopContainer){
+          // clear existing except the first link
+          desktopContainer.innerHTML = '';
+          list.forEach(item=>{
+            const a = document.createElement('a');
+            a.href = item.url;
+            a.textContent = item.title;
+            desktopContainer.appendChild(a);
+          });
+        }
+        if(mobileContainer){
+          mobileContainer.innerHTML = '';
+          list.forEach(item=>{
+            const a = document.createElement('a');
+            a.href = item.url;
+            a.textContent = item.title;
+            a.style.display = 'block';
+            a.style.padding = '0.35rem 0';
+            mobileContainer.appendChild(a);
+          });
+        }
+      }).catch(()=>{
+        if(mobileContainer) mobileContainer.textContent = 'Projects unavailable';
+      });
+    }).call(this);
   }
 }
 

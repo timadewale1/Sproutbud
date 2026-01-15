@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Partners — Admin</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/admin/css/admin.css">
+  <script src="/firebase.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body class="admin">
+  <div class="admin-shell">
+    <aside class="admin-sidebar">
+      <div class="brand">SproutBud Admin</div>
+      <div class="subtitle">Manage content, users and records</div>
+      <nav>
+        <a href="/admin/dashboard.html"><i data-feather="home"></i> Overview</a>
+        <a href="/admin/volunteers.html"><i data-feather="users"></i> Volunteers</a>
+        <a href="/admin/partners.html" class="active"><i data-feather="briefcase"></i> Partners</a>
+        <a href="/admin/messages.html"><i data-feather="mail"></i> Messages</a>
+        <a href="/admin/donations.html"><i data-feather="dollar-sign"></i> Donations</a>
+        <a href="/admin/newsletter.html"><i data-feather="send"></i> Newsletter</a>
+        <a href="/admin/blog.html"><i data-feather="file-text"></i> Blog</a>
+        <a href="/admin/publications.html"><i data-feather="book"></i> Publications</a>
+        <a id="signout" href="#" class="mt-3"><i data-feather="log-out"></i> Sign Out</a>
+      </nav>
+    </aside>
+    <main class="admin-main">
+      <div class="admin-top">
+        <div style="display:flex;align-items:center;gap:12px;"><button id="sidebar-toggle" class="btn"><i data-feather="menu"></i></button><h1 class="text-2xl font-heading font-bold">Partners</h1></div>
+        <div style="display:flex;align-items:center;gap:12px;"><button id="sidebar-collapse" class="btn"><i data-feather="chevrons-left"></i></button><div id="admin-user" class="font-semibold">—</div></div>
+      </div>
+      <div class="card-plain">
+        <h3 class="font-semibold">Add Partner</h3>
+        <form id="partner-form" class="space-y-4 mt-4">
+          <div>
+            <label for="p-name">Partner Name</label>
+            <input id="p-name" type="text" placeholder="Partner name" required>
+          </div>
+          
+          <div>
+            <label for="p-website">Website</label>
+            <input id="p-website" type="text" placeholder="Website (optional)">
+          </div>
+          
+          <div>
+            <label for="p-desc">Short Description</label>
+            <textarea id="p-desc" placeholder="Short description"></textarea>
+          </div>
+          <div class="upload-box">
+            <input id="p-logo" type="file" accept="image/*" hidden>
+            <label for="p-logo" class="upload-ui">
+              <i data-feather="upload"></i>
+              <div>
+                <strong>Upload logo(optional)</strong>
+                <span>PNG, JPG up to 2MB</span>
+              </div>
+            </label>
+          </div>
+
+          <div class="mt-4"><button class="btn btn-primary">Add Partner</button> <span id="p-status" class="text-sm text-gray-600"></span></div>
+        </form>
+      </div>
+      <div class="mt-4 card-plain">
+        <h3 class="font-semibold">Partner List</h3>
+        <div id="partners-list" class="mt-3"></div>
+      </div>
+    </main>
+  </div>
+  <script src="/admin/js/partners.js"></script>
+  <script src="/admin/js/app.js"></script>
+  <script src="/admin/js/sidebar.js"></script>
+  <script>
+    feather.replace();
+  </script>
+</body>
+</html>

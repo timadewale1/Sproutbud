@@ -18,26 +18,80 @@
 </head>
 <body>
   <custom-navbar></custom-navbar>
-  <main class="pt-28">
+  <main class="pt-28 container">
+    <section class="relative hero-gradient text-white py-24 px-6">
+      <div class="w-full text-center">
+        <h1 class="text-4xl font-heading font-bold mb-4">SproutBud GreenFront</h1>
+        <p class="text-xl max-w-3xl mx-auto">GreenFront leads climate action, regenerative agriculture, clean energy access, waste-to-wealth programs, and extreme heat management initiatives.</p>
+      </div>
+      <div class="absolute bottom-0 left-0 right-0 h-16 bg-white/10 backdrop-blur-sm"></div>
+    </section>
+
     <section class="py-16 px-6">
       <div class="max-w-4xl mx-auto">
-        <h1 class="text-3xl font-heading font-bold mb-4">SproutBud GreenFront</h1>
-        <p class="text-gray-700 mb-6">GreenFront leads climate action, regenerative agriculture, clean energy access, waste-to-wealth programs, and extreme heat management initiatives.</p>
 
-        <h2 class="text-2xl font-bold mb-3">Programs</h2>
-        <ul class="list-disc list-inside text-gray-700 mb-6">
-          <li>Pages & Planets Initiative — environmental education for children</li>
-          <li>Urban & Community Farming and Climate-Smart Agriculture trainings</li>
-          <li>Waste to Wealth and community clean-up campaigns</li>
-          <li>Clean Energy Access — solar deployments and training</li>
-        </ul>
+        <h2 class="text-2xl font-bold mb-6">Programs</h2>
+        <div class="grid sm:grid-cols-2 gap-6 mb-6">
+          <div class="bg-white p-6 rounded-2xl shadow-lg">
+            <div class="w-12 h-12 rounded-full bg-sprout-brown-100 flex items-center justify-center mb-4">
+              <i data-feather="book" class="text-sprout-brown w-6 h-6"></i>
+            </div>
+            <h4 class="text-lg font-bold mb-2">Pages & Planets Initiative</h4>
+            <p class="text-gray-700">Environmental education for children.</p>
+          </div>
+
+          <div class="bg-white p-6 rounded-2xl shadow-lg">
+            <div class="w-12 h-12 rounded-full bg-sprout-green-100 flex items-center justify-center mb-4">
+              <i data-feather="seed" class="text-sprout-green w-6 h-6"></i>
+            </div>
+            <h4 class="text-lg font-bold mb-2">Urban & Community Farming</h4>
+            <p class="text-gray-700">Climate-Smart Agriculture trainings.</p>
+          </div>
+
+          <div class="bg-white p-6 rounded-2xl shadow-lg">
+            <div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center mb-4">
+              <i data-feather="trash-2" class="text-purple-600 w-6 h-6"></i>
+            </div>
+            <h4 class="text-lg font-bold mb-2">Waste to Wealth</h4>
+            <p class="text-gray-700">Community clean-up campaigns and recycling for income.</p>
+          </div>
+
+          <div class="bg-white p-6 rounded-2xl shadow-lg">
+            <div class="w-12 h-12 rounded-full bg-yellow-100 flex items-center justify-center mb-4">
+              <i data-feather="sun" class="text-yellow-600 w-6 h-6"></i>
+            </div>
+            <h4 class="text-lg font-bold mb-2">Clean Energy Access</h4>
+            <p class="text-gray-700">Solar deployments and training for communities.</p>
+          </div>
+        </div>
 
         <div class="mt-8">
-          <a href="/projects/world-cleanup-2025/index.html" class="px-6 py-3 bg-sprout-green text-white rounded-full font-bold">See World Cleanup Day</a>
+          <a href="/projects/world-cleanup-2025/index.html" class="btn btn-primary">See World Cleanup Day</a>
+        </div>
+
+        <section class="mt-12">
+          <h3 class="text-xl font-bold mb-4">Projects under GreenFront</h3>
+          <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+            <a href="/projects/pages-and-planets/index.html" class="btn btn-primary">Pages & Planets</a>
+            <a href="/projects/green-composting-clubs/index.html" class="btn btn-primary">Green & Composting Clubs</a>
+            <a href="/projects/bring-back-our-school-farm/index.html" class="btn btn-primary">Bring Back Our School Farm</a>
+            <a href="/projects/urban-community-farming/index.html" class="btn btn-primary">Urban & Community Farming</a>
+            <a href="/projects/climate-farming/index.html" class="btn btn-primary">Climate-Smart Agriculture</a>
+            <a href="/projects/extreme-heat-management/index.html" class="btn btn-primary">Extreme Heat Management</a>
+            <a href="/projects/solar-clinics/index.html" class="btn btn-primary">Clean Energy Access (Solar)</a>
+            <a href="/projects/waste-to-wealth/index.html" class="btn btn-primary">Waste to Wealth</a>
+            <a href="/projects/nigeria-plastic-action/index.html" class="btn btn-primary">Nigeria Plastic Action</a>
+            <a href="/projects/ondo-solid-waste/index.html" class="btn btn-primary">Ondo Waste Collaboration</a>
+          </div>
+        </section>
         </div>
       </div>
     </section>
   </main>
   <custom-footer></custom-footer>
+  <script src="../components/navbar.js"></script>
+  <script src="../components/footer.js"></script>
+  <script src="../script.js"></script>
+  <script>feather.replace();</script>
 </body>
 </html>

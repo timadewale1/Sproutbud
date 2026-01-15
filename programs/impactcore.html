@@ -19,28 +19,73 @@
 <body>
   <custom-navbar></custom-navbar>
   <main class="pt-28">
+    <section class="relative hero-gradient text-white py-24 px-6">
+      <div class="hero-content text-center">
+        <h1 class="text-4xl font-heading font-bold mb-4">SproutBud ImpactCore</h1>
+        <p class="text-xl max-w-3xl mx-auto">ImpactCore is our strategic engine for capacity building, fundraising management, CSR design, and monitoring & evaluation. We support startups, NGOs, and community groups to scale sustainably.</p>
+      </div>
+      <div class="hero-overlay-bottom"></div>
+    </section>
+
+    <section class="py-8 px-6 bg-sprout-cream">
+      <div class="max-w-6xl mx-auto container">
+        <div class="bg-white p-6 rounded-2xl shadow-lg">
+          <h3 class="text-xl font-bold mb-2">Impact at a glance</h3>
+          <p class="text-gray-700">Supporting 10+ organisations to scale, managing corporate CSR with measurable outcomes, and facilitating partnerships for growth.</p>
+        </div>
+      </div>
+    </section>
+
     <section class="py-16 px-6">
       <div class="max-w-4xl mx-auto">
-        <h1 class="text-3xl font-heading font-bold mb-4">SproutBud ImpactCore</h1>
-        <p class="text-gray-700 mb-6">ImpactCore is our strategic engine for capacity building, fundraising management, CSR design, and monitoring & evaluation. We support startups, NGOs, and community groups to scale sustainably.</p>
 
-        <h2 class="text-2xl font-bold mb-3">Core Services</h2>
-        <ul class="list-disc list-inside text-gray-700 mb-6">
-          <li>Training & Capacity Building: workshops and bootcamps for early-stage ventures.</li>
-          <li>CSR Design & Implementation: partner with corporations to design measurable CSR projects.</li>
-          <li>Fundraising Management: grant sourcing, proposal writing, and donor reporting.</li>
-        </ul>
+        <h2 class="text-2xl font-bold mb-6">Core Services</h2>
+        <div class="grid sm:grid-cols-2 gap-6 mb-6">
+          <div class="bg-white p-6 rounded-2xl shadow-lg">
+            <div class="w-12 h-12 rounded-full bg-sprout-green-100 flex items-center justify-center mb-4">
+              <i data-feather="book-open" class="text-sprout-green w-6 h-6"></i>
+            </div>
+            <h4 class="text-lg font-bold mb-2">Training & Capacity Building</h4>
+            <p class="text-gray-700">Workshops and bootcamps for early-stage ventures.</p>
+          </div>
 
-        <h2 class="text-2xl font-bold mb-3">Impact at a glance</h2>
-        <p class="text-gray-700">Supporting 10+ organisations to scale, managing corporate CSR with measurable outcomes, and facilitating partnerships for growth.</p>
+          <div class="bg-white p-6 rounded-2xl shadow-lg">
+            <div class="w-12 h-12 rounded-full bg-sprout-blue-100 flex items-center justify-center mb-4">
+              <i data-feather="layers" class="text-sprout-blue w-6 h-6"></i>
+            </div>
+            <h4 class="text-lg font-bold mb-2">CSR Design & Implementation</h4>
+            <p class="text-gray-700">Partner with corporations to design measurable CSR projects.</p>
+          </div>
+
+          <div class="bg-white p-6 rounded-2xl shadow-lg">
+            <div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center mb-4">
+              <i data-feather="dollar-sign" class="text-purple-600 w-6 h-6"></i>
+            </div>
+            <h4 class="text-lg font-bold mb-2">Fundraising Management</h4>
+            <p class="text-gray-700">Grant sourcing, proposal writing, and donor reporting.</p>
+          </div>
+        </div>
 
         <div class="mt-8">
-          <a href="/contact.html" class="px-6 py-3 bg-sprout-green text-white rounded-full font-bold">Get Support</a>
-          <a href="/donate.html" class="ml-4 px-6 py-3 border border-sprout-green text-sprout-green rounded-full font-bold">Donate</a>
+          <a href="/contact.html" class="btn btn-primary">Get Support</a>
+          <a href="/donate.html" class="btn btn-outline ml-4">Donate</a>
         </div>
+
+        <section class="mt-12">
+          <h3 class="text-xl font-bold mb-4">Services & Projects under ImpactCore</h3>
+          <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+            <a href="/projects/training-capacity-building/index.html" class="btn btn-primary">Training & Capacity Building</a>
+            <a href="/projects/csr-design/index.html" class="btn btn-primary">CSR Design & Implementation</a>
+            <a href="/projects/fundraising-management/index.html" class="btn btn-primary">Fundraising Management</a>
+          </div>
+        </section>
       </div>
     </section>
   </main>
   <custom-footer></custom-footer>
+  <script src="../components/navbar.js"></script>
+  <script src="../components/footer.js"></script>
+  <script src="../script.js"></script>
+  <script>feather.replace();</script>
 </body>
 </html>
