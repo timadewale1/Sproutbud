@@ -41,13 +41,14 @@ if (postImageInput) {
   if(form){
     form.addEventListener('submit', async (e)=>{
       e.preventDefault();
+      const editId = document.getElementById('edit-id').value.trim();
       const title = document.getElementById('post-title').value.trim();
       const summary = document.getElementById('post-summary').value.trim();
       const category = document.getElementById('post-category').value.trim();
       const content = document.getElementById('post-content').value.trim();
       const fileInput = document.getElementById('post-image');
       if(!title){ status.textContent = 'Title required'; return; }
-      status.textContent = 'Publishing...';
+      status.textContent = editId ? 'Updating...' : 'Publishing...';
       try{
         const owner = (auth && auth.currentUser) ? { uid: auth.currentUser.uid, email: auth.currentUser.email } : null;
         const post = { title, summary, category, content, owner };
@@ -57,9 +58,17 @@ if (postImageInput) {
           const url = await uploadFile(path, file, ()=>{});
           post.imageUrl = url; post.imagePath = path;
         }
-        const id = await createPost(post);
-        status.textContent = 'Published — '+id;
+        let id;
+        if(editId){
+          await db.collection('posts').doc(editId).update({ ...post, updatedAt: firebase.firestore.FieldValue.serverTimestamp() });
+          id = editId;
+        }else{
+          const docRef = await db.collection('posts').add({ ...post, createdAt: firebase.firestore.FieldValue.serverTimestamp() });
+          id = docRef.id;
+        }
+        status.textContent = editId ? 'Updated — '+id : 'Published — '+id;
         form.reset();
+        document.getElementById('edit-id').value = '';
         setTimeout(()=> status.textContent='',1500);
         loadPosts();
       }catch(err){ status.textContent = 'Error: '+(err.message||err); }
@@ -74,16 +83,19 @@ if (postImageInput) {
       if(!confirm('Delete post?')) return;
       try{ await db.collection('posts').doc(id).delete(); loadPosts(); }catch(e){ alert('Delete failed: '+e.message); }
     }else if(act==='edit'){
-      // load post into form for quick edit (simple replace)
+      // load post into form for edit
       const doc = await db.collection('posts').doc(id).get(); if(!doc.exists) return alert('Post not found');
       const d = doc.data();
+      document.getElementById('edit-id').value = id;
       document.getElementById('post-title').value = d.title||'';
       document.getElementById('post-summary').value = d.summary||'';
       document.getElementById('post-category').value = d.category||'';
       document.getElementById('post-content').value = d.content||'';
-      // on submit, update instead of create
-      status.textContent = 'Editing post — saving will update existing post.';
-      form.onsubmit = async function(ev){ ev.preventDefault(); status.textContent='Saving...'; try{ const title = document.getElementById('post-title').value.trim(); const summary = document.getElementById('post-summary').value.trim(); const category = document.getElementById('post-category').value.trim(); const content = document.getElementById('post-content').value.trim(); await db.collection('posts').doc(id).update({ title, summary, category, content, updatedAt: firebase.firestore.FieldValue.serverTimestamp() }); status.textContent='Updated'; form.reset(); form.onsubmit = null; setTimeout(()=> status.textContent='',1500); loadPosts(); }catch(err){ status.textContent='Error: '+err.message; } };
+      // clear image preview
+      previewBox.innerHTML = '';
+      previewBox.classList.add('hidden');
+      postImageInput.value = '';
+      status.textContent = 'Editing post — submit to update.';
     }
   });
 
