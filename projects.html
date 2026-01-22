@@ -92,20 +92,6 @@
       function normalize(s){ return (s||'').toString().toLowerCase().replace(/[^a-z0-9]+/g,''); }
             function findMediaFolderFor(title){
                 const t = (title||'').toString().toLowerCase();
-                // direct substring matches
-                for(const key of Object.keys(manifest||{})){
-                    if(!key) continue;
-                    const k = key.toString().toLowerCase();
-                    if(k.indexOf(t)!==-1 || t.indexOf(k)!==-1) return key;
-                }
-                // token intersection matching (better for titles vs folder names)
-                const tTokens = new Set(t.split(/[^a-z0-9]+/).filter(Boolean));
-                for(const key of Object.keys(manifest||{})){
-                    const kTokens = new Set(key.toString().toLowerCase().split(/[^a-z0-9]+/).filter(Boolean));
-                    let common = 0;
-                    kTokens.forEach(tok=>{ if(tTokens.has(tok)) common++; });
-                    if(common>0) return key;
-                }
                 // special mappings for known folders
                 const map = {
                     'digital literacy': 'TechNest - Students Training',
@@ -151,8 +137,11 @@
             img.alt = p.title;
             top.appendChild(img);
           } else {
-            const i = document.createElement('i'); i.setAttribute('data-feather', getIconFor(p.title)); i.className='w-12 h-12 text-white';
-            top.appendChild(i);
+            const img = document.createElement('img');
+            img.className = 'w-full h-full object-cover';
+            img.src = '/Media/Logo/IMG_2380.png';
+            img.alt = p.title;
+            top.appendChild(img);
           }
           col.appendChild(top);
 

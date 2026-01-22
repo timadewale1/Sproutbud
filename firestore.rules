@@ -11,13 +11,13 @@ service cloud.firestore {
     // Publications: public read, admin-only writes
     match /publications/{doc} {
       allow read: if true;
-      allow create, update, delete: if request.auth != null && request.auth.token.admin == true;
+      allow create, update, delete: if request.auth != null && get(/databases/$(database)/documents/admins/$(request.auth.uid)).data.role == 'admin';
     }
 
     // Posts / blog: admin-only writes
     match /posts/{doc} {
       allow read: if true;
-      allow create, update, delete: if request.auth != null && request.auth.token.admin == true;
+      allow create, update, delete: if request.auth != null && get(/databases/$(database)/documents/admins/$(request.auth.uid)).data.role == 'admin';
     }
 
     // Volunteers, partners, donations:
@@ -26,29 +26,29 @@ service cloud.firestore {
     // to Firestore with service credentials instead. Reads/edits restricted to admins.
     match /volunteers/{doc} {
       allow create: if true;
-      allow read, update, delete: if request.auth != null && request.auth.token.admin == true;
+      allow read, update, delete: if request.auth != null && get(/databases/$(database)/documents/admins/$(request.auth.uid)).data.role == 'admin';
     }
 
     match /partners/{doc} {
       allow create: if true;
-      allow read, update, delete: if request.auth != null && request.auth.token.admin == true;
+      allow read, update, delete: if request.auth != null && get(/databases/$(database)/documents/admins/$(request.auth.uid)).data.role == 'admin';
     }
 
     match /donations/{doc} {
       allow create: if true;
-      allow read, update, delete: if request.auth != null && request.auth.token.admin == true;
+      allow read, update, delete: if request.auth != null && get(/databases/$(database)/documents/admins/$(request.auth.uid)).data.role == 'admin';
     }
 
     // Messages: allow unauthenticated creates, admin-only reads/updates/deletes
     match /messages/{doc} {
       allow create: if true;
-      allow read, update, delete: if request.auth != null && request.auth.token.admin == true;
+      allow read, update, delete: if request.auth != null && get(/databases/$(database)/documents/admins/$(request.auth.uid)).data.role == 'admin';
     }
 
     // Newsletter subscribers: allow unauthenticated creates, admin-only reads/updates/deletes
     match /newsletter_subscribers/{doc} {
       allow create: if true;
-      allow read, update, delete: if request.auth != null && request.auth.token.admin == true;
+      allow read, update, delete: if request.auth != null && get(/databases/$(database)/documents/admins/$(request.auth.uid)).data.role == 'admin';
     }
 
     // Default: allow reads, deny writes

@@ -41,7 +41,7 @@ whenFirebaseReady(()=>{
         const res = await auth.createUserWithEmailAndPassword(email, password);
         const user = res.user;
         // Note: Firestore write commented out due to permission rules - deploy updated rules to enable
-        await db.collection('admins').doc(user.uid).set({ uid: user.uid, email: user.email, name, createdAt: firebase.firestore.FieldValue.serverTimestamp() });
+        await db.collection('admins').doc(user.uid).set({ uid: user.uid, email: user.email, name, role: 'admin', createdAt: firebase.firestore.FieldValue.serverTimestamp() });
         status.textContent = 'Account created successfully! Redirecting to sign in...';
         setTimeout(() => window.location.href = '/admin/login.html', 2000);
       }catch(err){ console.error(err); status.textContent = 'Signup failed: '+(err.message||err); }
@@ -73,9 +73,24 @@ whenFirebaseReady(()=>{
      window.location.pathname.endsWith('/admin/messages.html') ||
      window.location.pathname.endsWith('/admin/donations.html') ||
      window.location.pathname.endsWith('/admin/newsletter.html')){
-    onAuthStateChanged(user=>{
+    onAuthStateChanged(async (user)=>{
       if(!user){ window.location.href = '/admin/login.html'; }
-      else if(window.location.pathname.endsWith('/admin/dashboard.html')) { initDashboard(); }
+      else {
+        // Check if user has admin role
+        try {
+          const doc = await db.collection('admins').doc(user.uid).get();
+          if (doc.exists && doc.data().role === 'admin') {
+            if(window.location.pathname.endsWith('/admin/dashboard.html')) { initDashboard(); }
+          } else {
+            alert('Access denied: You do not have admin privileges.');
+            window.location.href = '/admin/login.html';
+          }
+        } catch (error) {
+          console.error('Error checking admin role:', error);
+          alert('Error verifying permissions. Please try again.');
+          window.location.href = '/admin/login.html';
+        }
+      }
     });
   }
 
