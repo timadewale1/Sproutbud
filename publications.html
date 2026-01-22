@@ -163,7 +163,9 @@
                                 <h3 class="text-lg font-heading font-bold text-sprout-deep mb-1">${d.title||'Untitled'}</h3>
                                 <p class="text-sm text-gray-600 mb-3">${d.summary||d.description||''}</p>
                                 <div class="flex items-center gap-4 text-sm">
-                                    ${d.fileUrl? `<a href="${d.fileUrl}" class="text-sprout-green font-medium hover:underline" target="_blank">Read PDF</a>` : ''}
+                                    ${d.fileUrl? `<a href="${d.fileUrl}" class="text-sprout-green font-medium hover:underline" target="_blank">Download PDF</a>` : ''}
+                                    <span class="text-gray-400">•</span>
+                                    <span class="text-gray-500">By ${d.authorName || 'Admin'}</span>
                                     <span class="text-gray-400">•</span>
                                     <span class="text-gray-500">${d.year||''}</span>
                                 </div>

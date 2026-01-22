@@ -51,7 +51,14 @@ if (postImageInput) {
       status.textContent = editId ? 'Updating...' : 'Publishing...';
       try{
         const owner = (auth && auth.currentUser) ? { uid: auth.currentUser.uid, email: auth.currentUser.email } : null;
-        const post = { title, summary, category, content, owner };
+        let authorName = 'Admin';
+        if(owner && owner.uid){
+          try{
+            const adminDoc = await db.collection('admins').doc(owner.uid).get();
+            if(adminDoc.exists) authorName = adminDoc.data().name || owner.email || 'Admin';
+          }catch(e){ console.warn('Could not fetch admin name', e); }
+        }
+        const post = { title, summary, category, content, owner, authorName };
         if(fileInput && fileInput.files && fileInput.files[0]){
           const file = fileInput.files[0];
           const path = `posts/${Date.now()}_${file.name}`;

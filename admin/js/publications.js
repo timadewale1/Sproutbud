@@ -33,7 +33,14 @@ whenDbReady(()=>{
       status.textContent = 'Uploading...';
       try{
         const owner = (auth && auth.currentUser) ? { uid: auth.currentUser.uid, email: auth.currentUser.email } : null;
-        const meta = { title, year, type, owner };
+        let authorName = 'Admin';
+        if(owner && owner.uid){
+          try{
+            const adminDoc = await db.collection('admins').doc(owner.uid).get();
+            if(adminDoc.exists) authorName = adminDoc.data().name || owner.email || 'Admin';
+          }catch(e){ console.warn('Could not fetch admin name', e); }
+        }
+        const meta = { title, year, type, owner, authorName };
         if(coverInput && coverInput.files && coverInput.files[0]){
           const f = coverInput.files[0];
           const path = `publications/covers/${Date.now()}_${f.name}`;

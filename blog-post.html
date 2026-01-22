@@ -15,6 +15,9 @@
 <body class="font-body bg-sprout-green-50">
   <custom-navbar></custom-navbar>
   <div class="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow mt-24">
+    <a href="/blog.html" class="inline-flex items-center text-sprout-green hover:text-sprout-forest mb-4">
+      <i data-feather="arrow-left" class="w-5 h-5 mr-2"></i> Back to Blog
+    </a>
     <div id="post"></div>
   </div>
 
@@ -30,10 +33,11 @@
       if(!doc.exists) return document.getElementById('post').innerHTML = '<p>Post not found.</p>';
       const data = doc.data();
       const html = `
-        <h1 class="text-3xl font-heading font-bold mb-4">${data.title}</h1>
-        ${data.imageUrl? `<img src="${data.imageUrl}" class="w-full h-64 object-cover rounded mb-4">`:''}
-        <p class="text-gray-600 mb-4">${data.summary||''}</p>
-        <div class="prose">${data.content.replace(/\n/g,'<br/>')}</div>
+        <h1 class="text-4xl font-heading font-bold mb-4 text-center">${data.title}</h1>
+        ${data.imageUrl? `<img src="${data.imageUrl}" class="w-full object-contain rounded mb-4 max-h-96">`:''}
+        <p class="text-center text-gray-600 mb-4">By ${data.authorName || 'Admin'}</p>
+        <p class="text-gray-600 mb-4 text-justify">${data.summary||''}</p>
+        <div class="prose text-justify">${data.content.replace(/\n/g,'<br/>')}</div>
       `;
       document.getElementById('post').innerHTML = html;
     }
