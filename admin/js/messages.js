@@ -14,7 +14,7 @@ whenDbReady(()=>{
       snap.forEach(doc=>{
         const data = doc.data();
         const row = document.createElement('div'); row.className='p-3 border rounded';
-        row.innerHTML = `<div class="flex justify-between"><div><div class="font-semibold">${data.name||data.email||'Message'}</div><div class="text-sm text-gray-600">${data.email||''} ${data.phone? '• '+data.phone : ''}</div></div><div class="text-sm text-gray-500">${data.createdAt && data.createdAt.toDate? new Date(data.createdAt.toDate()).toLocaleString() : ''}</div></div><div class="mt-2 text-gray-700">${(data.message||'').replace(/\n/g,'<br>')}</div>`;
+        row.innerHTML = `<div class="flex justify-between"><div><div class="font-semibold">${data.name||data.email||'Message'}</div><div class="text-sm text-gray-600">${data.email||''} ${data.phone? '• '+data.phone : ''}${(data.topic||data.subject)? ' <span class="inline-block ml-2 px-2 py-0.5 bg-gray-200 text-xs rounded">'+(data.topic||data.subject)+'</span>' : ''}</div></div><div class="text-sm text-gray-500">${data.createdAt && data.createdAt.toDate? new Date(data.createdAt.toDate()).toLocaleString() : ''}</div></div><div class="mt-2 text-gray-700">${(data.message||'').replace(/\n/g,'<br>')}</div>`;
         const controls = document.createElement('div'); controls.className='mt-3 flex gap-2';
         const mark = document.createElement('button'); mark.className='btn btn-outline'; mark.textContent = data.read ? 'Mark Unread' : 'Mark Read';
         mark.addEventListener('click', async ()=>{

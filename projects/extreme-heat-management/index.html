@@ -1,31 +1,1694 @@
 <!doctype html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Extreme Heat Management — SproutBud</title>
-  <link rel="stylesheet" href="../../style.css">
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap"
+    rel="stylesheet">
+  <script src="https://unpkg.com/feather-icons"></script>
+
+  <style>
+    :root {
+      --forest: #0f3d22;
+      --green: #1a7a3f;
+      --lime: #32A65A;
+      --amber: #e8841a;
+      --heat: #f04e1f;
+      --sand: #f5ede0;
+      --cream: #faf7f2;
+      --ink: #0d1a10;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      margin: 0;
+      overflow-x: hidden;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    .display {
+      font-family: 'Syne', sans-serif;
+    }
+
+    /* Noise texture overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      background: var(--forest);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hero-bg-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+    }
+
+    .orb-amber {
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(232, 132, 26, 0.35) 0%, transparent 70%);
+      top: -100px;
+      right: -100px;
+      animation: pulse-orb 8s ease-in-out infinite;
+    }
+
+    .orb-heat {
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(240, 78, 31, 0.2) 0%, transparent 70%);
+      bottom: 100px;
+      left: -80px;
+      animation: pulse-orb 10s ease-in-out infinite reverse;
+    }
+
+    .orb-green {
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(50, 166, 90, 0.15) 0%, transparent 70%);
+      top: 40%;
+      left: 35%;
+      animation: pulse-orb 12s ease-in-out infinite 2s;
+    }
+
+    @keyframes pulse-orb {
+
+      0%,
+      100% {
+        transform: scale(1) translate(0, 0);
+        opacity: 1;
+      }
+
+      50% {
+        transform: scale(1.15) translate(20px, -20px);
+        opacity: 0.7;
+      }
+    }
+
+    .hero-nav {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.5rem 2.5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .hero-nav .logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: #fff;
+      letter-spacing: -0.02em;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--amber);
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .hero-nav .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .hero-nav .nav-links a {
+      color: rgba(255, 255, 255, 0.65);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .hero-nav .nav-links a:hover {
+      color: #fff;
+    }
+
+    .hero-cta-nav {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .hero-body {
+      flex: 1;
+      position: relative;
+      z-index: 5;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      padding: 5rem 2.5rem 4rem;
+      max-width: 1280px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .alert-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(232, 132, 26, 0.15);
+      border: 1px solid rgba(232, 132, 26, 0.4);
+      color: #f5b349;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.85rem;
+      border-radius: 999px;
+      margin-bottom: 1.75rem;
+    }
+
+    .alert-chip .blink {
+      width: 6px;
+      height: 6px;
+      background: var(--amber);
+      border-radius: 50%;
+      animation: blink 1.5s ease-in-out infinite;
+    }
+
+    @keyframes blink {
+
+      0%,
+      100% {
+        opacity: 1
+      }
+
+      50% {
+        opacity: 0.2
+      }
+    }
+
+    .hero-title {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 800;
+      line-height: 1.05;
+      color: #fff;
+      letter-spacing: -0.03em;
+      margin: 0 0 1.5rem;
+    }
+
+    .hero-title .heat-word {
+      color: var(--amber);
+      position: relative;
+      display: inline-block;
+    }
+
+    .hero-title .heat-word::after {
+      content: '';
+      position: absolute;
+      bottom: 4px;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--amber);
+      opacity: 0.4;
+      border-radius: 2px;
+    }
+
+    .hero-desc {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      max-width: 520px;
+      margin-bottom: 2.5rem;
+    }
+
+    .btn-primary-hero {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--amber);
+      color: #fff;
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 0.8rem 1.6rem;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: all 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary-hero:hover {
+      background: #d4771a;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(232, 132, 26, 0.35);
+    }
+
+    .btn-ghost-hero {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: transparent;
+      color: rgba(255, 255, 255, 0.8);
+      font-weight: 500;
+      font-size: 0.9rem;
+      padding: 0.8rem 1.4rem;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: all 0.2s;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-ghost-hero:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+    }
+
+    /* Hero right panel */
+    .hero-right {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .temp-card {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 2rem;
+      backdrop-filter: blur(12px);
+    }
+
+    .temp-big {
+      font-family: 'Syne', sans-serif;
+      font-size: 5rem;
+      font-weight: 800;
+      line-height: 1;
+      color: var(--amber);
+      letter-spacing: -0.04em;
+    }
+
+    .temp-label {
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.85rem;
+      margin-top: 0.25rem;
+    }
+
+    .heat-bar {
+      margin-top: 1.25rem;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .heat-fill {
+      height: 100%;
+      width: 78%;
+      background: linear-gradient(90deg, var(--lime), var(--amber), var(--heat));
+      border-radius: 3px;
+      animation: fill-bar 2s ease-out forwards;
+    }
+
+    @keyframes fill-bar {
+      from {
+        width: 0
+      }
+    }
+
+    .heat-bar-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.7rem;
+      color: rgba(255, 255, 255, 0.4);
+      margin-top: 0.4rem;
+    }
+
+    .stats-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 0.75rem;
+    }
+
+    .stat-box {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 1rem;
+      text-align: center;
+      backdrop-filter: blur(8px);
+    }
+
+    .stat-box .num {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .stat-box .lbl {
+      font-size: 0.7rem;
+      color: rgba(255, 255, 255, 0.5);
+      margin-top: 0.2rem;
+    }
+
+    .tags-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: rgba(50, 166, 90, 0.15);
+      border: 1px solid rgba(50, 166, 90, 0.3);
+      color: #6fcf8a;
+      font-size: 0.75rem;
+      font-weight: 500;
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+    }
+
+    /* SCROLL INDICATOR */
+    .scroll-hint {
+      position: relative;
+      z-index: 5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+      padding-bottom: 2rem;
+      color: rgba(255, 255, 255, 0.35);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .scroll-hint svg {
+      animation: bounce 2s ease-in-out infinite;
+    }
+
+    @keyframes bounce {
+
+      0%,
+      100% {
+        transform: translateY(0)
+      }
+
+      50% {
+        transform: translateY(4px)
+      }
+    }
+
+    /* SECTION SHARED */
+    .section {
+      padding: 6rem 2.5rem;
+    }
+
+    .section-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--lime);
+      margin-bottom: 1rem;
+    }
+
+    .section-label::before {
+      content: '';
+      width: 20px;
+      height: 2px;
+      background: var(--lime);
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      color: var(--ink);
+    }
+
+    /* IMPACT NUMBERS */
+    .impact {
+      background: var(--forest);
+      color: #fff;
+    }
+
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 24px;
+      overflow: hidden;
+    }
+
+    .impact-cell {
+      padding: 3rem 2rem;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.03);
+      transition: background 0.3s;
+    }
+
+    .impact-cell:hover {
+      background: rgba(255, 255, 255, 0.07);
+    }
+
+    .impact-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 3.5rem;
+      font-weight: 800;
+      line-height: 1;
+      color: var(--amber);
+      letter-spacing: -0.04em;
+    }
+
+    .impact-label {
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.85rem;
+      margin-top: 0.5rem;
+      max-width: 120px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* WHAT WE DO */
+    .focus-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    .focus-main {
+      background: var(--ink);
+      border-radius: 24px;
+      overflow: hidden;
+      position: relative;
+      min-height: 500px;
+    }
+
+    .focus-main-img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      opacity: 0.5;
+    }
+
+    .focus-main-content {
+      padding: 2.5rem;
+    }
+
+    .focus-main-tag {
+      display: inline-block;
+      background: var(--amber);
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+      margin-bottom: 1rem;
+    }
+
+    .focus-main h3 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.02em;
+      margin: 0 0 0.75rem;
+    }
+
+    .focus-main p {
+      color: rgba(255, 255, 255, 0.65);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    .focus-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .focus-card {
+      background: #fff;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      border-radius: 18px;
+      padding: 1.5rem;
+      transition: all 0.25s;
+    }
+
+    .focus-card:hover {
+      transform: translateX(6px);
+      box-shadow: -6px 0 0 var(--lime), 0 8px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    .focus-card-icon {
+      width: 36px;
+      height: 36px;
+      background: rgba(50, 166, 90, 0.1);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--lime);
+      margin-bottom: 0.75rem;
+    }
+
+    .focus-card h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin: 0 0 0.35rem;
+      letter-spacing: -0.01em;
+    }
+
+    .focus-card p {
+      font-size: 0.82rem;
+      color: #666;
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    /* PROGRAMS */
+    .programs {
+      background: var(--sand);
+    }
+
+    .programs-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      margin-top: 3rem;
+    }
+
+    .program-card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 1.75rem;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .program-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--lime), var(--amber));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s;
+    }
+
+    .program-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+    }
+
+    .program-card:hover::after {
+      transform: scaleX(1);
+    }
+
+    .prog-icon {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, rgba(50, 166, 90, 0.12), rgba(232, 132, 26, 0.12));
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--lime);
+      margin-bottom: 1.25rem;
+    }
+
+    .program-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin: 0 0 0.6rem;
+    }
+
+    .program-card p {
+      font-size: 0.85rem;
+      color: #666;
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    .programs-cta {
+      margin-top: 2.5rem;
+      background: linear-gradient(135deg, var(--forest), #1a3f52);
+      border-radius: 24px;
+      padding: 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    .programs-cta h3 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.02em;
+      margin: 0 0 0.5rem;
+    }
+
+    .programs-cta p {
+      color: rgba(255, 255, 255, 0.65);
+      margin: 0;
+      font-size: 0.9rem;
+    }
+
+    /* PUBLICATIONS */
+    .pub-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .pub-card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 2rem;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      display: flex;
+      flex-direction: column;
+      transition: all 0.25s;
+    }
+
+    .pub-card:hover {
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+    }
+
+    .pub-type {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 0.75rem;
+    }
+
+    .pub-card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      line-height: 1.4;
+      margin: 0 0 0.75rem;
+    }
+
+    .pub-card p {
+      font-size: 0.85rem;
+      color: #666;
+      line-height: 1.65;
+      margin: 0;
+      flex: 1;
+    }
+
+    .pub-actions {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+      align-items: center;
+    }
+
+    .btn-read {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--lime);
+      color: #fff;
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .btn-read:hover {
+      background: #2a9450;
+      transform: translateY(-1px);
+    }
+
+    .btn-dl {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: transparent;
+      color: var(--lime);
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      text-decoration: none;
+      border: 1.5px solid var(--lime);
+      transition: all 0.2s;
+    }
+
+    .btn-dl:hover {
+      background: var(--lime);
+      color: #fff;
+    }
+
+    .pub-upcoming {
+      background: linear-gradient(135deg, #f8fdf9, #fff);
+      border: 1.5px dashed rgba(50, 166, 90, 0.3);
+      border-radius: 20px;
+      padding: 2rem;
+      margin-top: 1.5rem;
+    }
+
+    .pub-upcoming h4 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin: 0 0 1rem;
+    }
+
+    .pub-upcoming ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .pub-upcoming li {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      color: #555;
+      padding: 0.4rem 0;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .pub-upcoming li:last-child {
+      border: none;
+    }
+
+    /* FAQ */
+    .faq-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 3rem;
+    }
+
+    .faq-item {
+      background: #fff;
+      border-radius: 16px;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      overflow: hidden;
+    }
+
+    .faq-btn {
+      width: 100%;
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1.25rem 1.5rem;
+      text-align: left;
+      font-family: 'Syne', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--ink);
+      transition: background 0.2s;
+    }
+
+    .faq-btn:hover {
+      background: rgba(50, 166, 90, 0.04);
+    }
+
+    .faq-btn .chevron {
+      flex-shrink: 0;
+      color: var(--lime);
+      transition: transform 0.3s;
+    }
+
+    .faq-btn.open .chevron {
+      transform: rotate(180deg);
+    }
+
+    .faq-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s;
+      font-size: 0.875rem;
+      color: #555;
+      line-height: 1.7;
+      padding: 0 1.5rem;
+    }
+
+    .faq-body.open {
+      max-height: 200px;
+      padding-bottom: 1.25rem;
+    }
+
+    /* CONTACT */
+    .contact {
+      background: var(--forest);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .contact-left h2 {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.03em;
+      margin: 0 0 1rem;
+    }
+
+    .contact-left p {
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin: 0 0 2rem;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .contact-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .contact-row a,
+    .contact-row span {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .contact-row a:hover {
+      color: var(--amber);
+    }
+
+    .c-icon {
+      width: 36px;
+      height: 36px;
+      flex-shrink: 0;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--lime);
+    }
+
+    .form-box {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 24px;
+      padding: 2.5rem;
+      backdrop-filter: blur(16px);
+    }
+
+    .form-box h3 {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: #fff;
+      margin: 0 0 1.5rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin-bottom: 1rem;
+    }
+
+    .form-field.full {
+      grid-column: 1 / -1;
+    }
+
+    .form-field label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.6);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .form-field input,
+    .form-field select,
+    .form-field textarea {
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 10px;
+      padding: 0.75rem 1rem;
+      color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      transition: border-color 0.2s;
+      outline: none;
+    }
+
+    .form-field input::placeholder,
+    .form-field textarea::placeholder {
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    .form-field input:focus,
+    .form-field select:focus,
+    .form-field textarea:focus {
+      border-color: var(--amber);
+    }
+
+    .form-field select option {
+      background: #1a2a1a;
+    }
+
+    .form-submit {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    #formStatus {
+      font-size: 0.8rem;
+      color: #6fcf8a;
+    }
+
+    /* FOOTER */
+    .footer {
+      background: #060e08;
+      color: rgba(255, 255, 255, 0.45);
+      padding: 2rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.8rem;
+    }
+
+    .footer .logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    /* Divider */
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.08), transparent);
+    }
+
+    /* Animations on scroll */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .hero-body {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-right {
+        display: none;
+      }
+
+      .focus-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .programs-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .impact-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .pub-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .faq-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero-nav .nav-links {
+        display: none;
+      }
+
+      .programs-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .impact-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .programs-cta {
+        flex-direction: column;
+      }
+
+      .section {
+        padding: 4rem 1.25rem;
+      }
+
+      .hero-body {
+        padding: 3rem 1.25rem;
+      }
+
+      .hero-nav {
+        padding: 1.25rem;
+      }
+    }
+  </style>
 </head>
-<body class="font-body bg-sprout-green-50">
-  <custom-navbar></custom-navbar>
-  <section class="relative bg-gradient-to-r from-sprout-forest to-sprout-deep text-white py-20 px-6">
-    <div class="max-w-6xl mx-auto text-center">
-      <h1 class="text-4xl font-heading font-bold mb-4">Extreme Heat Management Programs</h1>
-      <p class="text-xl max-w-3xl mx-auto">Community interventions and awareness to mitigate health and livelihood risks from extreme heat.</p>
+
+<body>
+
+  <!-- ══════════════════════════════════════ HERO ══════════════════════════════════════ -->
+  <section class="hero" id="home">
+    <div class="hero-bg-orb orb-amber"></div>
+    <div class="hero-bg-orb orb-heat"></div>
+    <div class="hero-bg-orb orb-green"></div>
+
+    <!-- Inline Nav (no custom element dependency) -->
+    <nav class="hero-nav">
+      <div class="logo">
+        <span class="logo-dot"></span>
+        SproutBud
+      </div>
+      <ul class="hero-nav nav-links">
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#programs">Programs</a></li>
+        <li><a href="#publications">Publications</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+      <div class="hero-cta-nav">
+        <a href="#contact" class="btn-primary-hero" style="padding: 0.55rem 1.1rem; font-size: 0.82rem;">
+          Partner With Us <i data-feather="arrow-right" style="width:14px;height:14px"></i>
+        </a>
+      </div>
+    </nav>
+
+    <!-- Body -->
+    <div class="hero-body">
+      <div class="hero-left">
+        <div class="alert-chip">
+          <span class="blink"></span>
+          Extreme Heat Management Programs Community
+        </div>
+
+        <h1 class="hero-title">
+          Building <span class="heat-word">heat resilience</span><br>
+          across urban &amp; rural Nigeria
+        </h1>
+
+        <p class="hero-desc">
+          The Extreme Heat Management Programs Community advances heat resilience, urban and rural cooling, air quality,
+          public health protection, and biodiversity-conscious planning through advocacy, research, convenings, and
+          data-driven programs using AI, GIS, and geospatial monitoring.
+        </p>
+
+        <div style="display:flex;gap:0.75rem;flex-wrap:wrap">
+          <a href="#programs" class="btn-primary-hero">
+            Explore Programs <i data-feather="arrow-right" style="width:15px;height:15px"></i>
+          </a>
+          <a href="#contact" class="btn-ghost-hero">
+            Partner With Us <i data-feather="users" style="width:15px;height:15px"></i>
+          </a>
+        </div>
+
+        <div class="tags-row" style="margin-top:2rem">
+          <span class="tag"><i data-feather="map" style="width:12px;height:12px"></i> GIS Mapping</span>
+          <span class="tag"><i data-feather="activity" style="width:12px;height:12px"></i> Heat Alerts</span>
+          <span class="tag"><i data-feather="cpu" style="width:12px;height:12px"></i> AI Analytics</span>
+          <span class="tag"><i data-feather="leaf" style="width:12px;height:12px"></i> OECMs Protection</span>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="temp-card">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start">
+            <div>
+              <div class="temp-big">42°C</div>
+              <div class="temp-label">Peak urban heat index — Abuja, Nigeria</div>
+            </div>
+            <div style="text-align:right">
+              <div style="color:rgba(255,255,255,0.4);font-size:0.72rem;text-transform:uppercase;letter-spacing:0.08em">
+                Risk level</div>
+              <div style="color:var(--heat);font-weight:700;font-size:1rem;margin-top:0.2rem">Extreme</div>
+            </div>
+          </div>
+          <div class="heat-bar">
+            <div class="heat-fill"></div>
+          </div>
+          <div class="heat-bar-labels">
+            <span>Safe</span><span>Caution</span><span>High</span><span>Extreme</span>
+          </div>
+        </div>
+
+        <div class="stats-row">
+          <div class="stat-box">
+            <div class="num" data-count="4">0</div>
+            <div class="lbl">Program pillars</div>
+          </div>
+          <div class="stat-box">
+            <div class="num" data-count="5">0</div>
+            <div class="lbl">Advocacy areas</div>
+          </div>
+          <div class="stat-box">
+            <div class="num" data-count="2">0</div>
+            <div class="lbl">Publications</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scroll-hint">
+      <span>Scroll to explore</span>
+      <i data-feather="chevron-down" style="width:14px;height:14px"></i>
     </div>
   </section>
-  <main class="pt-8">
-    <section class="py-12 px-6">
-      <div class="max-w-6xl mx-auto bg-white p-6 rounded-2xl shadow">
-        <h2 class="text-2xl font-bold mb-3">Overview</h2>
-        <p class="text-gray-700">Community awareness, vulnerability mapping, and practical interventions to reduce heat-related impacts.</p>
+
+  <!-- ══════════════════════════════════════ IMPACT ══════════════════════════════════════ -->
+  <section class="section impact" id="overview">
+    <div class="section-inner">
+      <div class="impact-grid reveal">
+        <div class="impact-cell">
+          <div class="impact-num">4</div>
+          <div class="impact-label">Core program pillars</div>
+        </div>
+        <div class="impact-cell">
+          <div class="impact-num">5</div>
+          <div class="impact-label">Advocacy focus areas</div>
+        </div>
+        <div class="impact-cell">
+          <div class="impact-num">2+</div>
+          <div class="impact-label">Published policy guidance documents</div>
+        </div>
+        <div class="impact-cell">
+          <div class="impact-num">36</div>
+          <div class="impact-label">States in monitoring scope</div>
+        </div>
       </div>
-    </section>
-  </main>
-  <custom-footer></custom-footer>
-  <script src="../../components/navbar.js"></script>
-  <script src="../../components/footer.js"></script>
-  <script>feather.replace();</script>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════ WHAT WE DO ══════════════════════════════════════ -->
+  <section class="section" id="focus" style="background:#fff">
+    <div class="section-inner">
+      <div style="max-width:600px;margin-bottom:3.5rem" class="reveal">
+        <div class="section-label">What We Do</div>
+        <h2 class="section-title">Advocacy. Evidence.<br>Programs. Tools.</h2>
+      </div>
+
+      <div class="focus-grid">
+        <div class="focus-main reveal">
+          <img src="https://images.unsplash.com/photo-1592210454359-9043f067919b?auto=format&fit=crop&w=1200&q=80"
+            alt="Heat action planning" class="focus-main-img" />
+          <div class="focus-main-content">
+            <div class="focus-main-tag">Advocacy</div>
+            <h3>We drive policy influence and institutional action</h3>
+            <p>
+              We work with government, researchers, development partners, and frontline communities to strengthen
+              preparedness and coordinated response to extreme heat, while supporting green area protection and OECMs.
+            </p>
+          </div>
+        </div>
+
+        <div class="focus-stack">
+          <div class="focus-card reveal">
+            <div class="focus-card-icon">
+              <i data-feather="shield" style="width:18px;height:18px"></i>
+            </div>
+            <h4>Heat Action Planning</h4>
+            <p>Supporting governments with AI-driven climate projections, GIS heat and vegetation monitoring systems,
+              and
+              policy guidance for urban and rural resilience.</p>
+          </div>
+
+          <div class="focus-card reveal">
+            <div class="focus-card-icon">
+              <i data-feather="wind" style="width:18px;height:18px"></i>
+            </div>
+            <h4>Public Health Protection</h4>
+            <p>Promoting early warning systems, cooling centers, hydration campaigns, and occupational heat-safety
+              standards.</p>
+          </div>
+
+          <div class="focus-card reveal">
+            <div class="focus-card-icon">
+              <i data-feather="bar-chart-2" style="width:18px;height:18px"></i>
+            </div>
+            <h4>Urban and Rural Cooling Policy</h4>
+            <p>Advancing adoption-ready Heat Action Frameworks, greening regulations, and biodiversity-sensitive
+              planning, including protection of OECMs and community-managed green areas.</p>
+          </div>
+
+          <div class="focus-card reveal">
+            <div class="focus-card-icon">
+              <i data-feather="users" style="width:18px;height:18px"></i>
+            </div>
+            <h4>Equity and Inclusion</h4>
+            <p>Prioritizing rural residents, informal workers, women, children, and the elderly most exposed to heat
+              stress.</p>
+          </div>
+
+          <div class="focus-card reveal">
+            <div class="focus-card-icon">
+              <i data-feather="activity" style="width:18px;height:18px"></i>
+            </div>
+            <h4>Data-Driven Governance</h4>
+            <p>Strengthening decision-making through real-time dashboards, remote sensing, predictive analytics, and
+              geospatial monitoring.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ══════════════════════════════════════ PROGRAMS ══════════════════════════════════════ -->
+  <section class="section programs" id="programs">
+    <div class="section-inner">
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;flex-wrap:wrap"
+        class="reveal">
+        <div style="max-width:520px">
+          <div class="section-label">Programs</div>
+          <h2 class="section-title" style="color:var(--ink)">Science, technology &amp; community action</h2>
+        </div>
+        <a href="/donate.html" class="btn-primary-hero">
+          Support a Program <i data-feather="heart" style="width:15px;height:15px"></i>
+        </a>
+      </div>
+
+      <div class="programs-grid">
+        <div class="program-card reveal">
+          <div class="prog-icon"><i data-feather="heart" style="width:20px;height:20px"></i></div>
+          <h3>Heat Health and Livelihood Protection</h3>
+          <p>Real-world protection for urban, rural, and ecologically sensitive areas.</p>
+        </div>
+        <div class="program-card reveal">
+          <div class="prog-icon"><i data-feather="cloud" style="width:20px;height:20px"></i></div>
+          <h3>Urban and Rural Cooling Initiative</h3>
+          <p>Real-world protection for urban, rural, and ecologically sensitive areas.</p>
+        </div>
+        <div class="program-card reveal">
+          <div class="prog-icon"><i data-feather="feather" style="width:20px;height:20px"></i></div>
+          <h3>3:30:300 Urban and Rural Greening Approach</h3>
+          <p>Real-world protection for urban, rural, and ecologically sensitive areas.</p>
+        </div>
+        <div class="program-card reveal">
+          <div class="prog-icon"><i data-feather="map" style="width:20px;height:20px"></i></div>
+          <h3>AI-Powered Geospatial Monitoring and Heat Preparedness</h3>
+          <p>Real-world protection for urban, rural, and ecologically sensitive areas.</p>
+        </div>
+        <div class="program-card reveal">
+          <div class="prog-icon"><i data-feather="bell" style="width:20px;height:20px"></i></div>
+          <h3>Development of a geospatial heat and vegetation monitoring system</h3>
+          <p>Real-world protection for urban, rural, and ecologically sensitive areas.</p>
+        </div>
+        <div class="program-card reveal">
+          <div class="prog-icon"><i data-feather="award" style="width:20px;height:20px"></i></div>
+          <h3>AI-based heat forecasting and risk prediction</h3>
+          <p>For urban, rural, and ecologically sensitive areas.</p>
+        </div>
+      </div>
+
+      <div class="programs-cta reveal">
+        <div>
+          <h3>More program actions</h3>
+          <p>
+            GIS mapping of vulnerable populations, health facilities, cooling centers, green areas, and OECMs;
+            real-time heat alert communication systems reaching remote communities and protected areas; training for
+            health workers and community leaders on digital heat-response tools; and deployment of nexus between energy
+            transition, urban cooling, and heat-resilient livelihoods.
+          </p>
+        </div>
+        <a href="#contact" class="btn-primary-hero" style="white-space:nowrap;flex-shrink:0">
+          Talk to the Team <i data-feather="arrow-right" style="width:15px;height:15px"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════ PUBLICATIONS ══════════════════════════════════════ -->
+  <section class="section" id="publications" style="background:#fff">
+    <div class="section-inner">
+      <div class="reveal" style="max-width:500px;margin-bottom:0.5rem">
+        <div class="section-label">Publications</div>
+        <h2 class="section-title">Evidence &amp; policy knowledge</h2>
+      </div>
+
+      <div class="pub-grid">
+        <div class="pub-card reveal">
+          <div class="pub-type">Report</div>
+          <h3>The Tipping Point Is Here: Nigeria’s Fight to Avoid a Hothouse Future</h3>
+          <p>These publications provide actionable insights for government, communities, and stakeholders on climate
+            resilience, urban cooling, and heat action.</p>
+          <div class="pub-actions">
+            <a href="#" class="btn-read"><i data-feather="book-open" style="width:13px;height:13px"></i> Read</a>
+            <a href="#" class="btn-dl"><i data-feather="download" style="width:13px;height:13px"></i> Download PDF</a>
+          </div>
+        </div>
+
+        <div class="pub-card reveal">
+          <div class="pub-type">Policy Brief</div>
+          <h3>Policy Brief: Advancing Urban Climate Resilience in Nigeria – Toward a National Heat Action Framework with
+            Abuja as Pioneer City</h3>
+          <p>These publications provide actionable insights for government, communities, and stakeholders on climate
+            resilience, urban cooling, and heat action.</p>
+          <div class="pub-actions">
+            <a href="#" class="btn-read"><i data-feather="book-open" style="width:13px;height:13px"></i> Read</a>
+            <a href="#" class="btn-dl"><i data-feather="download" style="width:13px;height:13px"></i> Download PDF</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pub-upcoming reveal">
+        <h4><i data-feather="clock" style="width:14px;height:14px;vertical-align:-2px;color:var(--lime)"></i>
+          &nbsp;Upcoming Government-Led Policy Publications</h4>
+        <ul>
+          <li><i data-feather="arrow-right" style="width:13px;height:13px;color:var(--amber)"></i> Anticipated! Abuja
+            Heat Action Plan</li>
+          <li><i data-feather="arrow-right" style="width:13px;height:13px;color:var(--amber)"></i> Anticipated! National
+            Heat Action Plan for Nigeria</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════ FAQ ══════════════════════════════════════ -->
+  <section class="section" id="faq" style="background:var(--cream)">
+    <div class="section-inner">
+      <div class="reveal" style="text-align:center;max-width:480px;margin:0 auto 0.5rem">
+        <div class="section-label" style="justify-content:center">FAQ</div>
+        <h2 class="section-title">Quick answers for partners &amp; communities</h2>
+      </div>
+
+      <div class="faq-grid">
+        <div class="faq-item reveal">
+          <button class="faq-btn" data-faq>
+            What is Heat Action Planning?
+            <i data-feather="chevron-down" class="chevron" style="width:18px;height:18px"></i>
+          </button>
+          <div class="faq-body">
+            Heat Action Planning supports preparedness and response using projections, monitoring, and policy guidance
+            to reduce heat impacts on people and livelihoods. It coordinates government, health workers, and communities
+            before, during, and after extreme heat events.
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-btn" data-faq>
+            Do you support early warning and alerts?
+            <i data-feather="chevron-down" class="chevron" style="width:18px;height:18px"></i>
+          </button>
+          <div class="faq-body">
+            Yes. Our approach includes real-time heat alert communication systems designed to reach remote communities
+            and protected areas, including through mobile and community radio channels.
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-btn" data-faq>
+            Who do you prioritize in your programs?
+            <i data-feather="chevron-down" class="chevron" style="width:18px;height:18px"></i>
+          </button>
+          <div class="faq-body">
+            Rural residents, informal workers, women, children, and the elderly — the groups most exposed to heat stress
+            and least served by existing systems. Equity is central to every program we design.
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-btn" data-faq>
+            How can we partner or provide support?
+            <i data-feather="chevron-down" class="chevron" style="width:18px;height:18px"></i>
+          </button>
+          <div class="faq-body">
+            Reach out via the contact form below. We collaborate with government agencies, research institutions,
+            development partners, and frontline community organizations across Nigeria and beyond.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════ CONTACT ══════════════════════════════════════ -->
+  <section class="section contact" id="contact">
+    <div class="section-inner">
+      <div class="contact-grid">
+        <div class="contact-left reveal">
+          <div class="section-label" style="color:var(--amber)">Contact</div>
+          <h2>Start a conversation</h2>
+          <p>For partnerships, programs, publications, or media inquiries — reach the team directly. We respond within 2
+            business days.</p>
+
+          <div class="contact-info">
+            <div class="contact-row">
+              <div class="c-icon"><i data-feather="mail" style="width:16px;height:16px"></i></div>
+              <a href="mailto:heat_actionnigeria@sproutbud.org">heat_actionnigeria@sproutbud.org</a>
+            </div>
+            <div class="contact-row">
+              <div class="c-icon"><i data-feather="phone" style="width:16px;height:16px"></i></div>
+              <a href="tel:+2348061935246">+234 806 193 5246</a>
+            </div>
+            <div class="contact-row">
+              <div class="c-icon"><i data-feather="map-pin" style="width:16px;height:16px"></i></div>
+              <span>Abuja, Nigeria</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-box reveal">
+          <h3>Send a message</h3>
+          <form onsubmit="handleForm(event)">
+            <div class="form-row">
+              <div class="form-field">
+                <label>Full Name</label>
+                <input type="text" placeholder="Your name" required />
+              </div>
+              <div class="form-field">
+                <label>Email Address</label>
+                <input type="email" placeholder="you@example.com" required />
+              </div>
+            </div>
+            <div class="form-field">
+              <label>Topic</label>
+              <select>
+                <option>Partnership</option>
+                <option>Programs</option>
+                <option>Publications</option>
+                <option>Events & Convenings</option>
+                <option>Media Inquiry</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label>Message</label>
+              <textarea rows="5" placeholder="Tell us what you need..." required></textarea>
+            </div>
+            <div class="form-submit">
+              <button type="submit" class="btn-primary-hero">
+                Send Message <i data-feather="send" style="width:15px;height:15px"></i>
+              </button>
+              <span id="formStatus"></span>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="logo">SproutBud &mdash; Extreme Heat Management</div>
+    <div>© 2025 SproutBud. All rights reserved.</div>
+  </footer>
+
+  <script src="/firebase.js"></script>
+  <script>
+    feather.replace();
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const el = document.querySelector(a.getAttribute('href'));
+        if (!el) return;
+        e.preventDefault();
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+
+    // Counter animation
+    function animateCount(el, to) {
+      const dur = 1200, start = performance.now();
+      (function frame(t) {
+        const p = Math.min((t - start) / dur, 1);
+        el.textContent = Math.round(to * p);
+        if (p < 1) requestAnimationFrame(frame);
+      })(performance.now());
+    }
+
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        const el = e.target;
+        const to = parseInt(el.dataset.count);
+        if (!isNaN(to)) animateCount(el, to);
+        io.unobserve(el);
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('[data-count]').forEach(el => io.observe(el));
+
+    // Reveal on scroll
+    const revealObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          revealObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach((el, i) => {
+      el.style.transitionDelay = `${(i % 4) * 80}ms`;
+      revealObs.observe(el);
+    });
+
+    // FAQ accordion
+    document.querySelectorAll('[data-faq]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const body = btn.nextElementSibling;
+        const isOpen = body.classList.contains('open');
+        // Close all
+        document.querySelectorAll('.faq-body').forEach(b => b.classList.remove('open'));
+        document.querySelectorAll('.faq-btn').forEach(b => b.classList.remove('open'));
+        // Open this if it was closed
+        if (!isOpen) {
+          body.classList.add('open');
+          btn.classList.add('open');
+        }
+      });
+    });
+
+    // Form
+    // send form data to Firestore so admins can view messages
+    function handleForm(e) {
+      e.preventDefault();
+      const status = document.getElementById('formStatus');
+      status.textContent = 'Sending…';
+      const form = e.target;
+      const name = form.querySelector('input[type=text]')?.value.trim() || '';
+      const email = form.querySelector('input[type=email]')?.value.trim() || '';
+      const topic = form.querySelector('select')?.value || '';
+      const message = form.querySelector('textarea')?.value.trim() || '';
+
+      // attempt to save to Firestore; if db not ready wait a bit
+      const saveMessage = () => {
+        if(window.db) {
+          db.collection('messages').add({
+            name,
+            email,
+            topic,
+            message,
+            read: false,
+            createdAt: firebase.firestore.FieldValue.serverTimestamp()
+          }).catch(err => console.error('failed to save message', err));
+        } else {
+          setTimeout(saveMessage, 150);
+        }
+      };
+      saveMessage();
+
+      setTimeout(() => {
+        status.textContent = '✓ Message received — we\'ll be in touch.';
+        e.target.reset();
+      }, 800);
+    }
+  </script>
 </body>
+
 </html>
