@@ -122,6 +122,64 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
 
+    .hamburger-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: #fff;
+      cursor: pointer;
+      padding: 0.5rem;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hamburger-btn:hover {
+      opacity: 0.8;
+    }
+
+    .mobile-nav-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: rgba(15, 61, 34, 0.98);
+      backdrop-filter: blur(12px);
+      flex-direction: column;
+      gap: 0;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .mobile-nav-menu.open {
+      display: flex;
+    }
+
+    .mobile-nav-menu li {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .mobile-nav-menu li:last-child {
+      border-bottom: none;
+    }
+
+    .mobile-nav-menu a {
+      display: block;
+      padding: 1rem 1.25rem;
+      color: rgba(255, 255, 255, 0.65);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: color 0.2s, background 0.2s;
+    }
+
+    .mobile-nav-menu a:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
     .hero-nav .logo {
       font-family: 'Syne', sans-serif;
       font-weight: 800;
@@ -1113,7 +1171,19 @@
     }
 
     @media (max-width: 600px) {
+      .hero-nav {
+        padding: 1.25rem;
+      }
+
       .hero-nav .nav-links {
+        display: none;
+      }
+
+      .hamburger-btn {
+        display: flex;
+      }
+
+      .hero-cta-nav {
         display: none;
       }
 
@@ -1137,8 +1207,12 @@
         padding: 3rem 1.25rem;
       }
 
-      .hero-nav {
-        padding: 1.25rem;
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .form-box {
+        padding: 1.5rem;
       }
     }
   </style>
@@ -1158,11 +1232,21 @@
         <span class="logo-dot"></span>
         SproutBud
       </div> -->
+      <button class="hamburger-btn" id="hamburger">
+        <i data-feather="menu" style="width:24px;height:24px"></i>
+      </button>
       <ul class="hero-nav nav-links">
         <li><a href="#overview">Overview</a></li>
         <li><a href="#programs">Programs</a></li>
         <li><a href="#publications">Publications</a></li>
         <li><a href="#faq">FAQ</a></li>
+      </ul>
+      <ul class="mobile-nav-menu" id="mobileNav">
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#programs">Programs</a></li>
+        <li><a href="#publications">Publications</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact" style="color: var(--amber);">Partner With Us</a></li>
       </ul>
       <div class="hero-cta-nav">
         <a href="#contact" class="btn-primary-hero" style="padding: 0.55rem 1.1rem; font-size: 0.82rem;">
@@ -1592,6 +1676,21 @@
   <script src="/firebase.js"></script>
   <script>
     feather.replace();
+
+    // Mobile hamburger menu toggle
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+    if (hamburger && mobileNav) {
+      hamburger.addEventListener('click', () => {
+        mobileNav.classList.toggle('open');
+      });
+      // Close menu when a link is clicked
+      mobileNav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileNav.classList.remove('open');
+        });
+      });
+    }
 
     // Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(a => {
